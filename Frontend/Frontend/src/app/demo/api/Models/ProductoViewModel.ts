@@ -10,6 +10,7 @@ export class ProductosViewModel {
     Unida_Id!: Number;
     Prove_Id!: number;
     Sucur_Id!: Number;
+    Categ_Id!: Number;
     Produ_UsuarioCreacion!: number;
     Produ_FechaCreacion!: Date;
     Produ_UsuarioModificacion?: number | null;
@@ -43,6 +44,7 @@ export class Fill {
     Unida_Id!: Number;
     Prove_Id!: number;
     Sucur_Id!: Number;
+    Categ_Id!: Number;
     Produ_UsuarioCreacion!: number;
     Produ_FechaCreacion!: Date;
     Produ_UsuarioModificacion?: number | null;

@@ -35,11 +35,12 @@ export class ProductoCreateComponent implements OnInit {
     Unida_Id: 0,
     Prove_Id: 0,
     Sucur_Id: 0,
+    Categ_Id: 0,
     Produ_UsuarioCreacion: 0,
     Produ_FechaCreacion: new Date(),
     Produ_UsuarioModificacion:  null,
     Produ_FechaModificacion:  null,
-    Produ_Estado: null,
+    Produ_Estado: true,
     Produ_ImagenUrl: '',
     Unida_Descripcion: '',
     Prove_Marca: '',
@@ -76,6 +77,7 @@ onGlobalFilter(event: any): void {
       Prod.Unida_Id.toString().toLowerCase().includes(searchText) ||
       Prod.Prove_Id.toString().toLowerCase().includes(searchText) ||
       Prod.Sucur_Id.toString().toLowerCase().includes(searchText) ||
+      Prod.Categ_Id.toString().toLowerCase().includes(searchText) ||
       Prod.UsuarioCreacion.toString().toLowerCase().includes(searchText) ||
       Prod.UsuarioModificacion.toString().toLowerCase().includes(searchText) ||
       (Prod.Produ_FechaCreacion && Prod.Produ_FechaCreacion.toString().toLowerCase().includes(searchText)) ||
@@ -162,6 +164,7 @@ onGlobalFilter(event: any): void {
           Unida_Id: 0,
           Prove_Id: 0,
           Sucur_Id: 0,
+          Categ_Id: 0,
           Produ_UsuarioCreacion: 1,
           Produ_FechaCreacion: new Date(),
           Produ_UsuarioModificacion:  null,
