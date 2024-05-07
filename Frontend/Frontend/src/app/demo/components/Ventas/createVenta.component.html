@@ -1,0 +1,45 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Nueva Venta</h5>
+            <form>
+                <div class="p-field">
+                    <label for="sucursal">Sucursal</label>
+                    <input type="text" id="sucursal" name="sucursal" pInputText [(ngModel)]="ventaSeleccionado.sucur_Id" />
+                </div>
+
+                <div class="p-field">
+                    <label for="ventaEncabezado">Empleado</label>
+                    <input type="text" id="ventaEncabezado" name="empleado" pInputText [(ngModel)]="ventaSeleccionado.emple_Id" />
+                </div>
+
+                <div class="p-field">
+                    <label for="ventaEncabezado">Producto</label>
+                    <input type="text" id="ventaEncabezado" name="producto" pInputText [(ngModel)]="ventaSeleccionado.produ_Id" />
+                </div>
+
+                <div class="p-field">
+                    <label for="cliente">Cantidad</label>
+                    <input type="text" id="cliente" name="cantidad" pInputText [(ngModel)]="ventaSeleccionado.vende_Cantidad" />
+                </div>
+
+                <div class="p-field">
+                    <label for="ventaEncabezado">Cliente</label>
+                    <input type="text" id="ventaEncabezado" name="cliente" pInputText [(ngModel)]="ventaSeleccionado.clien_Id" />
+                </div>
+
+                <div class="p-field">
+                    <label for="fechaPedido">Fecha de Pedido</label>
+                    <input type="text" id="fechaPedido" name="fechaPedido" pInputText [(ngModel)]="ventaSeleccionado.venen_FechaPedido" />
+                </div>
+
+                <div class="p-field">
+                    <label for="idEncabezado">ID Encabezado</label>
+                    <input type="text" id="idEncabezado" name="idEncabezado" pInputText [(ngModel)]="ventaSeleccionado.venen_Id" />
+                </div>
+
+                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" (click)="guardarNuevoEncabezado()"></button> 
+            </form>
+        </div>
+    </div>
+</div>

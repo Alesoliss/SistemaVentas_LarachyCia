@@ -1,0 +1,155 @@
+<p-toast style="background-color: red ;"></p-toast>
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Cargos</h5>
+            <div class="flex justify-content-start mb-3">
+                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" (click)="openModal('nuevo')"></button>
+            </div>
+            
+            <p-table [value]="cargo" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
+                [paginator]="true" [globalFilterFields]="['cargo_Id','cargo_Descripcion']" responsiveLayout="scroll">
+                <ng-template pTemplate="caption">
+                    <div class="flex justify-content-between flex-column sm:flex-row">
+                        <button pButton label="Limpiar Filtro" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
+                            (click)="clear()"></button>
+                        <span class="p-input-icon-left mb-2">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" #filter (input)="onGlobalFilter($event)" placeholder="Buscar"
+                                class="w-full" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Código
+                                <p-columnFilter type="text" field="cargo_Id" display="menu"
+                                    placeholder="Buscar por código"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Descripción
+                                <p-columnFilter type="text" field="cargo_Descripcion" display="menu"
+                                    placeholder="Buscar por descripción"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">Acciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-cargo>
+                    <tr>
+                        <td>{{cargo.cargo_Id}}</td>
+                        <td>{{cargo.cargo_Descripcion}}</td>
+  
+                        <td style="align-items: center; text-align: center;">
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
+                            (click)="openModal('editar', cargo)">Editar</button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
+                                (click)="eliminarcategoria(cargo.cargo_Id)">Eliminar</button>
+                                <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-warning"
+                                (click)="showDetails(cargo)">Detalles</button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="3">No hay datos para cargar.</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="loadingbody">
+                    <tr>
+                        <td colspan="3">Cargando datos. Por favor espera.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+  </div>
+  
+
+  <p-dialog [(visible)]="showModal" header="Nuevo cargo" [modal]="true" [style]="{ width: '50%' }">
+    <ng-template pTemplate="content">
+      
+        <form class="p-grid p-fluid">
+            <div class="p-col-6" style="display: flex;">
+                <div style="flex: 1;">
+                    <label for="new-cargo-id" class="p-d-block"> Cargo</label>
+                    <input type="text" id="new-cargo-descripcion" name="new-cargo-descripcion" [(ngModel)]="cargoSeleccionado.cargo_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
+                </div>
+            </div>
+           
+        </form>      
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <!-- Botones del pie de página -->
+        <button style="color: #0464B4;" pButton type="button" label="Cancelar" class="p-button-text" (click)="closeModal('nuevo')"></button>
+        <button pButton type="button" label="Guardar" class="p-button-danger" (click)="guardarNuevocategoria()"></button>
+    </ng-template>
+</p-dialog>
+
+
+<!-- Modal para editar categoría
+<p-dialog [(visible)]="editModal" [modal]="true" [style]="{ width: '50%' }">
+    <ng-template pTemplate="header">
+        <h5>Editar Categoría</h5>
+    </ng-template>
+    <ng-template pTemplate="content">
+        <!-- Contenido del formulario de edición 
+        <form>
+            <div class="p-field">
+                <label for="edit-categoria-id">ID</label>
+                <input type="text"  id="edit-categoria-id" [(ngModel)]="categoriaSeleccionada.categ_Id" hidden/>
+            </div>
+            <div class="p-field">
+                <label for="edit-categoria-descripcion">Descripción</label>
+                <input type="text" id="edit-categoria-descripcion" [(ngModel)]="categoriaSeleccionada.categ_Descripcion" />
+            </div>
+            <div class="p-field">
+                <label for="edit-categoria-imagen">URL de la Imagen</label>
+                <input type="text" id="edit-categoria-imagen" [(ngModel)]="categoriaSeleccionada.cate_ImagenUrl" />
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <!-- Botones del pie de página 
+        <button pButton type="button" label="Cancelar" (click)="editModal = false"></button>
+        <button pButton type="button" label="Guardar" class="p-button-success" (click)="guardarCambios()"></button>
+    </ng-template>
+</p-dialog> -->
+
+<!-- Modal para confirmar eliminación -->
+<p-dialog [(visible)]="showDeleteConfirmation" header="Confirmar Eliminación" [modal]="true" [style]="{width: '50%'}">
+    <ng-template pTemplate="content">
+        ¿Estás seguro que deseas eliminar este municipio?
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton type="button" label="No" class="p-button-text" (click)="cancelarEliminacion()"></button>
+        <button pButton type="button" label="Sí" class="p-button-text" (click)="confirmarEliminacion()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="editModal" [modal]="true" [style]="{ width: '50%' }">
+    <ng-template pTemplate="header">
+        <h5>Editar Cargo </h5>
+    </ng-template>
+    <ng-template pTemplate="content">
+        <!-- Contenido del formulario de edición -->
+        <form class="p-grid p-fluid">
+            <div class="p-col-6">
+              <div class="p-field">
+                <label for="new-Cargo-descripcion" class="p-d-block">Descripción</label>
+                <input type="text" id="new-Cargo-descripcion" name="new-Cargo-descripcion" [(ngModel)]="cargoSeleccionado.cargo_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
+              </div>
+            </div>
+          </form>
+                
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <!-- Botones del pie de página -->
+        <button pButton type="button" label="Cancelar" (click)="closeModal('editar')"></button>
+        <button pButton type="button" label="Guardar" class="p-button-success" (click)="guardarCambios()"></button>
+    </ng-template>
+</p-dialog>

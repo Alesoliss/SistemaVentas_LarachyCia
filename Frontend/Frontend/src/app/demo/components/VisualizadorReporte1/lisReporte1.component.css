@@ -1,0 +1,85 @@
+@media print {
+  body {
+    font-size: 12px; /* Tamaño de fuente adecuado para impresión */
+  }
+  
+  header, main, footer {
+    width: 100%; /* Asegurar que los elementos ocupen todo el ancho de la página */
+    margin: 0;
+    padding: 0;
+  }
+  
+  table {
+    page-break-inside: auto; /* Permitir salto de página dentro de la tabla */
+  }
+}
+
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #f2f2f2;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    max-width: 100px;
+    margin-right: 20px;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tfoot {
+    font-weight: bold;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 20px;
+  }
+  
+
+  @media print {
+    body {
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  

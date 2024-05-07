@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte Crecimiento de ventas</title>
+</head>
+<body id="tablaReporte" class="print">
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <h1>Reporte Crecimiento de ventas</h1>
+  </header>
+
+  <main>
+    <table >
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Ventas</th>
+          <th>Crecimiento</th>
+          <th>Porcentaje de Crecimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reporte of reportes">
+          <td>{{ reporte.mes }}</td>
+          <td>{{ reporte.ventas }}</td>
+          <td>{{ reporte.crecimiento }}</td>
+          <td>{{ reporte.porcentaje_Crecimiento }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  
+  
+<!--  styleSheetFile="./lisReporte1.component.css"-->
+
+
+  
+</body>
+
+
+<footer>
+  <button 
+    ngxPrint
+    printTitle="Crecimiento de Ventas Mensuales"
+    printSectionId="tablaReporte" 
+    [printStyle]="{
+      
+      body: {
+        fontFamily: 'Arial, sans-serif',
+        margin: '0',
+        padding: '0'
+      },
+      header: {
+        backgroundColor: '#f2f2f2',
+        padding: '20px',
+        display: 'flex',
+        alignItems: 'center'
+      },
+      '.logo img': {
+        maxWidth: '100px',
+        marginRight: '20px'
+      },
+      h1: {
+        margin: '0'
+      },
+      main: {
+        padding: '20px'
+      },
+      table: {
+        width: '100%',
+        borderCollapse: 'collapse'
+      },
+      'table, th, td': {
+        border: '1px solid #ddd',
+        padding: '10px',
+        textAlign: 'left'
+      },
+      th: {
+        backgroundColor: '#f2f2f2'
+      },
+      tfoot: {
+        fontWeight: 'bold'
+      },
+      footer: {
+        textAlign: 'center',
+        padding: '20px'
+      }
+    }"
+  >Imprimir Reporte</button>
+</footer>
+
+</html>

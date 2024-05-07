@@ -1,0 +1,17 @@
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\Sistema_Larach.DataAccess.csproj.AssemblyReference.cache
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\Sistema_Larach.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\Sistema_Larach.DataAccess.AssemblyInfoInputs.cache
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\Sistema_Larach.DataAccess.AssemblyInfo.cs
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\Sistema_Larach.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\bin\Debug\net5.0\Sistema_Larach.DataAccess.deps.json
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\bin\Debug\net5.0\Sistema_Larach.DataAccess.dll
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\bin\Debug\net5.0\ref\Sistema_Larach.DataAccess.dll
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\bin\Debug\net5.0\Sistema_Larach.DataAccess.pdb
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\bin\Debug\net5.0\Sistema_Larach.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\bin\Debug\net5.0\Sistema_Larach.Entities.pdb
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\Sistema_Larach.DataAccess.csproj.CopyComplete
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\Sistema_Larach.DataAccess.dll
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\ref\Sistema_Larach.DataAccess.dll
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\obj\Debug\net5.0\Sistema_Larach.DataAccess.pdb
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\bin\Debug\net5.0\Sistema_Larach.Common.dll
+C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\bin\Debug\net5.0\Sistema_Larach.Common.pdb
