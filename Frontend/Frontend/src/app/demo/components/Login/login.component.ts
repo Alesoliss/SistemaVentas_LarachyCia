@@ -27,9 +27,8 @@ import { LoginVieweMOdel } from '../../api/Models/LoginViewModel';
           if (data.length > 0) {
             console.log('Login successful', data);
             // Almacena el nombre de usuario en el Local Storage
-            localStorage.setItem('usuario', data[0].usuario);
-            
-            this.router.navigate(['/app/dashboard'], { queryParams: { usuario: data[0].usuario } });
+            this.router.navigate(['/app/dashboard']);
+            // Redirecciona al usuario o realiza acciones post-login
             // Redirecciona al usuario con los parámetros de consulta
           } else {
             // Maneja la respuesta vacía como credenciales incorrectas
