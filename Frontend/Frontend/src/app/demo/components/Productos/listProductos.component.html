@@ -1,9 +1,9 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            <h5>Empleados</h5>
+            <h5>Producto</h5>
             <div class="flex justify-content-start mb-3">
-                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                <button pButton pRipple label="Nuevo" icon="pi pi-plus"  (click)="openModal()" class="p-button-success mr-2" ></button>
             </div>
             
             <p-table [value]="Productos" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"

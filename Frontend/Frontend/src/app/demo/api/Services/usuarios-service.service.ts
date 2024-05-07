@@ -10,11 +10,11 @@ import { Observable } from 'rxjs/internal/Observable';
 export class UsuariosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/api/Usuario/Listado';
+  Url = 'http://sistemalarach.somee.com/api/Usuario/Listado';
   getUsuarios (){
     return this.http.get<UsuariosViewModel[]>(this.Url);
   }
-  private baseUrl = 'https://localhost:44300/api/Usuario';
+  private baseUrl = 'http://sistemalarach.somee.com/api/Usuario';
 
  
   login(usuario: string, contraseña: string): Observable<any> {

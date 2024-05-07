@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
 export class RolServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Rol/Listado';
+  Url = 'http://sistemalarach.somee.com/API/Rol/Listado';
 
   getRoles (){
     return this.http.get<RolesViewModel[]>(this.Url);

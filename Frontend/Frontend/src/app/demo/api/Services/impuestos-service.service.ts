@@ -9,8 +9,8 @@ import { Observable,map } from 'rxjs';
 export class ImpuestoServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Impuesto/Listado';
-  private baseUrl = 'https://localhost:44300/API/Impuesto';
+  Url = 'http://sistemalarach.somee.com/API/Impuesto/Listado';
+  private baseUrl = 'http://sistemalarach.somee.com/API/Impuesto';
 
   
   insertarImpuesto(formData: any): Observable<any> {
@@ -28,7 +28,7 @@ export class ImpuestoServiceService {
   }
   
   getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'https://localhost:44300/API/EstadosCiviles/Detalles/' + codigo}`);
+    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/EstadosCiviles/Detalles/' + codigo}`);
   }
 
   eliminarImpuesto(categoriaId: number): Observable<any> {

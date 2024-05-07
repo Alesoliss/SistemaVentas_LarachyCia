@@ -10,8 +10,8 @@ import { map } from 'rxjs';
 export class UnidadServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Unidades/Listado';
-  private baseUrl = 'https://localhost:44300/API/Unidades';
+  Url = 'http://sistemalarach.somee.com/API/Unidades/Listado';
+  private baseUrl = 'http://sistemalarach.somee.com/API/Unidades';
 
   
   insertarmetodo(formData: any): Observable<any> {
@@ -29,7 +29,7 @@ export class UnidadServiceService {
   }
   
   getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'https://localhost:44300/API/Unidades/Detalles/' + codigo}`);
+    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/Unidades/Detalles/' + codigo}`);
   }
 
   eliminarmetodo(categoriaId: number): Observable<any> {

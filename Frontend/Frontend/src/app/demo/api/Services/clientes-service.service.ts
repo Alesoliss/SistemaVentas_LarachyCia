@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
 export class ClienteServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Clientes/Listado';
+  Url = 'http://sistemalarach.somee.com/API/Clientes/Listado';
 
   getCliente (){
     return this.http.get<ClienteViewModel[]>(this.Url);

@@ -9,11 +9,11 @@ import { Observable,map } from 'rxjs';
 export class GraficasServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/api/Grafico/Grafico1';
-  Url2 = 'https://localhost:44300/api/Grafico/Grafico2';
-  Url3 = 'https://localhost:44300/api/Grafico/Grafico3';
-  Url4 = 'https://localhost:44300/api/Grafico/Grafico4';
-  Url5 = 'https://localhost:44300/API/EstadosCiviles/Listado';
+  Url = 'http://sistemalarach.somee.com/api/Grafico/Grafico1';
+  Url2 = 'http://sistemalarach.somee.com/api/Grafico/Grafico2';
+  Url3 = 'http://sistemalarach.somee.com/api/Grafico/Grafico3';
+  Url4 = 'http://sistemalarach.somee.com/api/Grafico/Grafico4';
+  Url5 = 'http://sistemalarach.somee.com/API/EstadosCiviles/Listado';
 
   
   getGrafico1 (){

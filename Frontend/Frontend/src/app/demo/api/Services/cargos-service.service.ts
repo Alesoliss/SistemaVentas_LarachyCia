@@ -9,8 +9,8 @@ import { Observable,map } from 'rxjs';
 export class CargosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Cargo/Listado';
-  private baseUrl = 'https://localhost:44300/API/Cargo';
+  Url = 'http://sistemalarach.somee.com/API/Cargo/Listado';
+  private baseUrl = 'http://sistemalarach.somee.com/API/Cargo';
 
   insertarCargo(formData: any): Observable<any> {
     return this.http.post<any>(this.baseUrl + '/Create/', formData).pipe(
@@ -27,7 +27,7 @@ export class CargosServiceService {
   }
   
   getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'https://localhost:44300/API/Cargo/Detalles/' + codigo}`);
+    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/Cargo/Detalles/' + codigo}`);
   }
 
   eliminarCargo(categoriaId: number): Observable<any> {

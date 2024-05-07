@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
    //  url = BASE_URL + 'API/Cargo/List'
  
  
-   UrlLogin =  'https://localhost:44300/api/Usuario/Login/';
+   UrlLogin =  'http://sistemalarach.somee.com/api/Usuario/Login/';
    login(loginData: LoginVieweMOdel): Observable<any> {
        return this.http.get<any>(`${this.UrlLogin}${loginData.usuario},${loginData.contra}`, {});
      }

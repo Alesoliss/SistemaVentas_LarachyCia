@@ -9,8 +9,8 @@ import { Observable,map } from 'rxjs';
 export class EstadosCivilesServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/EstadosCiviles/Listado';
-  private baseUrl = 'https://localhost:44300/API/EstadosCiviles';
+  Url = 'http://sistemalarach.somee.com/API/EstadosCiviles/Listado';
+  private baseUrl = 'http://sistemalarach.somee.com/API/EstadosCiviles';
 
   
   insertarCivil(formData: any): Observable<any> {
@@ -28,7 +28,7 @@ export class EstadosCivilesServiceService {
   }
   
   getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'https://localhost:44300/API/EstadosCiviles/Detalles/' + codigo}`);
+    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/EstadosCiviles/Detalles/' + codigo}`);
   }
 
   eliminarCivil(categoriaId: number): Observable<any> {

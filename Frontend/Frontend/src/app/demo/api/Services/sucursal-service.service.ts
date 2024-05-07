@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
 export class SucursalServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Sucursales/Listado';
+  Url = 'http://sistemalarach.somee.com/API/Sucursales/Listado';
 
   getSucursal (){
     return this.http.get<SucursalesViewModel[]>(this.Url);

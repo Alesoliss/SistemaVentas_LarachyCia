@@ -55,7 +55,9 @@ export class AppComponent {
         ventaCreate (){
             this.router.navigate(['ventaCreate']);
         }
-
+        ProductoCreate (){
+            this.router.navigate(['ProductoCreate']);
+        }
 
 
         // reporte1 (){

@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
 export class ProveedoresServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Proveedores/Listado';
+  Url = 'http://sistemalarach.somee.com/API/Proveedores/Listado';
 
   getProveedor (){
     return this.http.get<ProveedoresViewModel[]>(this.Url);

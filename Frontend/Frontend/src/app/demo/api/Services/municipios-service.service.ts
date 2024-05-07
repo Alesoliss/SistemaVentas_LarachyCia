@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class MunicipiosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Municipios/Listado';
-  private baseUrl = 'https://localhost:44300/API/Municipios';
+  Url = 'http://sistemalarach.somee.com/API/Municipios/Listado';
+  private baseUrl = 'http://sistemalarach.somee.com/API/Municipios';
 
   insertarMunicipio(municipio: MunicipiosViewModel) {
     return this.http.post<MunicipiosViewModel>(`${this.baseUrl}/Create`, municipio);

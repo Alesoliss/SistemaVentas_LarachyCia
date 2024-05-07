@@ -10,8 +10,8 @@ import { map } from 'rxjs';
 export class MetodopagoServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/MetodosPago/Listado';
-  private baseUrl = 'https://localhost:44300/API/MetodosPago';
+  Url = 'http://sistemalarach.somee.com/API/MetodosPago/Listado';
+  private baseUrl = 'http://sistemalarach.somee.com/API/MetodosPago';
 
   
   insertarmetodo(formData: any): Observable<any> {
@@ -29,7 +29,7 @@ export class MetodopagoServiceService {
   }
   
   getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'https://localhost:44300/API/MetodosPago/Detalles/' + codigo}`);
+    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/MetodosPago/Detalles/' + codigo}`);
   }
 
   eliminarmetodo(categoriaId: number): Observable<any> {

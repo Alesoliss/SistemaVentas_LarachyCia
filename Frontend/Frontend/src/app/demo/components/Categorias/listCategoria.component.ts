@@ -162,7 +162,7 @@ export class CategoriaListadoComponent implements OnInit {
   }
   guardarNuevocategoria(): void {
     // Verificar que los campos requeridos no estén vacíos
-    if (!this.categoriaSeleccionada.categ_Descripcion.trim() || !this.categoriaSeleccionada.cate_ImagenUrl.trim()) {
+    if (!this.categoriaSeleccionada.categ_Descripcion.trim()) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Por favor complete todos los campos', life: 3000 });
       return; // Detener la ejecución si falta algún campo requerido
     }
@@ -186,7 +186,7 @@ export class CategoriaListadoComponent implements OnInit {
   
   guardarCambios(): void {
     // Verificar que los campos requeridos no estén vacíos
-    if (!this.categoriaSeleccionada.categ_Descripcion.trim() || !this.categoriaSeleccionada.cate_ImagenUrl.trim()) {
+    if (!this.categoriaSeleccionada.categ_Descripcion.trim()) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Por favor complete todos los campos', life: 3000 });
       return; // Detener la ejecución si falta algún campo requerido
     }

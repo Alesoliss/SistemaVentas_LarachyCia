@@ -1,0 +1,94 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+            <h5>Nuevo Producto</h5>
+            <div class="col">
+                <label for="sucursal">Descripción</label>
+            </div>
+                <div class="col-12">
+                   
+                    <input type="text" id="sucursal" name="sucursal" class="p-inputtext" [(ngModel)]="productoSeleccionado.Produ_Descripcion" />
+                </div>
+                <div class="col-12">
+                    <label for="productoExistente">Producto Existente</label>
+                </div>
+                <div class="col-12">
+                  
+                    <input type="text" id="productoExistente" name="productoExistente" class="p-inputtext" [(ngModel)]="productoSeleccionado.Produ_Existencia" />
+                </div>
+                <div class="col-12">
+                    <label for="precioCompra">Precio Compra</label>
+                </div>
+                <div class="col-12">
+                 
+                    <input type="number" id="precioCompra" name="precioCompra" class="p-inputtext" [(ngModel)]="productoSeleccionado.Produ_PrecioCompra" />
+                </div>
+                <div class="col-12">
+                    <label for="precioVenta">Precio Venta</label>
+                </div>
+                <div class="col-12">
+                
+                    <input type="number" id="precioVenta" name="precioVenta" class="p-inputtext" [(ngModel)]="productoSeleccionado.Produ_PrecioVenta" />
+                </div>
+                <div class="col-12">
+                    <label for="impuesto">Impuesto</label>
+                </div>
+                <div class="col-12">
+                   
+                    <input type="number" id="impuesto" name="impuesto" class="p-inputtext" [(ngModel)]="productoSeleccionado.Impue_Id" />
+                </div>
+                <div class="col-12">
+                    <label for="unidades">Unidades</label>
+                </div>
+                <div class="col-12">
+                    
+                    <input type="number" id="unidades" name="unidades" class="p-inputtext" [(ngModel)]="productoSeleccionado.Unida_Id" />
+                </div>
+                <div class="col-12">
+                    <label for="proveedor">Proveedor</label>
+                </div>
+                <div class="col-12">
+                 
+                    <input type="number" id="proveedor" name="proveedor" class="p-inputtext" [(ngModel)]="productoSeleccionado.Prove_Id" />
+                </div> 
+                <div class="col-12">
+                    <label for="sucursalProducto">Sucursal</label>
+                </div>
+                <div class="col-12">
+                 
+                    <input type="number" id="sucursalProducto" name="sucursalProducto" class="p-inputtext" [(ngModel)]="productoSeleccionado.Sucur_Id" />
+                </div> 
+                <div class="col-12">
+                    <label for="sucursalProducto">Imagen</label>
+                </div>
+                <div class="col-12">
+                 
+                    <input type="number" id="sucursalProducto" name="sucursalProducto" class="p-inputtext" [(ngModel)]="productoSeleccionado.Produ_ImagenUrl" />
+                </div> 
+            
+                <button type="button" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" (click)="guardarNuevoEncabezado()"></button> 
+           
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+
+/* Estilos para los botones */
+.p-button-info {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+}
+
+/* Estilos para la tarjeta (card) */
+.card {
+    border-radius: 8px; /* Radio de borde */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px; /* Espaciado interno de la tarjeta */
+}
+
+</style>

@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
 export class ReportesServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Reportes/Listado';
+  Url = 'http://sistemalarach.somee.com/API/Reportes/Listado';
 
   getReporte (){
     return this.http.get<ReportesViewModel[]>(this.Url);
@@ -49,12 +49,12 @@ export class ReportesServiceService {
   }
 
   GenerateInvoicePDF() {
-    return this.http.get('https://localhost:44300/API/Reportes/ReporteCrecimiento',
+    return this.http.get('http://sistemalarach.somee.com/API/Reportes/ReporteCrecimiento',
      { observe: 'response', responseType: 'blob' });
   }
 
   GenerateInvoicePDF1(fecha1: string, fecha2: string) {
-    return this.http.get(`https://localhost:44300/API/Reportes/ReporteCrecimientoVentas?Venen_FechaPedido1=${fecha1}&Venen_FechaPedido2=${fecha2}`, { observe: 'response', responseType: 'blob' });
+    return this.http.get(`http://sistemalarach.somee.com/API/Reportes/ReporteCrecimientoVentas?Venen_FechaPedido1=${fecha1}&Venen_FechaPedido2=${fecha2}`, { observe: 'response', responseType: 'blob' });
   }
   
 

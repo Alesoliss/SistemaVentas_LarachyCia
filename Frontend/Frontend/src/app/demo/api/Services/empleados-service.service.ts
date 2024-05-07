@@ -9,7 +9,7 @@ import { EmpleadoViewModel } from '../Models/EmpleadosViewModel';
 export class EmpleadosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44300/API/Empleados/Listado';
+  Url = 'http://sistemalarach.somee.com/API/Empleados/Listado';
 
   getCargo (){
     return this.http.get<EmpleadoViewModel[]>(this.Url);

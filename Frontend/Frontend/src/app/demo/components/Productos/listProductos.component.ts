@@ -101,7 +101,7 @@ onGlobalFilter(event: any): void {
   }
 
   openModal(): void {
-    this.showModal = true;
+    this.router.navigate(['app/ProductoCreate']);
   }
 
   closeModal(): void {
