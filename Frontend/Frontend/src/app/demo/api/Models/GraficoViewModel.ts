@@ -1,17 +1,33 @@
-export class GraficosViewModel {
-    Cantidad!: number;
-    Total!: number ;
-    Genero!: String; 
-    Ano!: number;
-    Mes!: number; 
-    Categoria!: string;
+export class ProductoMasCompradoMes{
+  NombreProducto?:string;
+  TotalComprado?:string;
+ 
 }
 
-export class Fill {
-  Cantidad!: number;
-  Total!: number ;
-  Genero!: String; 
-  Ano!: number;
-  Mes!: number; 
-  Categoria!: string;
+
+
+
+export class TotalVentasPorCategoria{
+  Producto?:string;
+  TotalVentas?:string;
+}
+
+
+
+
+
+export class ProductoMes{
+  Producto?:string;
+  Cantidad?:string;
+}
+
+
+
+
+
+
+export class Ventatotalescatgoria{
+  TotalVentas?:string;
+  Categoria?:string;
+  Producto?:string;
 }

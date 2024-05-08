@@ -36,19 +36,90 @@ namespace Sistema_Larach.API.Controllers
 
             return Ok(listado);
         }
-        [HttpGet("Grafico3")]
-        public IActionResult Grafico3()
-        {
-            var listado = _graficoServices.CantidadRegistrosPorClientesPorGenero();
+        //[HttpGet("Grafico3")]
+        //public IActionResult Grafico3()
+        //{
+        //    var listado = _graficoServices.CantidadRegistrosPorClientesPorGenero();
 
-            return Ok(listado);
-        }
+        //    return Ok(listado);
+        //}
         [HttpGet("Grafico4")]
         public IActionResult Grafico4()
         {
             var listado = _graficoServices.TotalGanancia();
 
             return Ok(listado);
+        }
+
+
+        [HttpGet("ProductoMes")]
+        public IActionResult TotalProductosMes()
+        {
+            var list = _graficoServices.totalProductoMes();
+
+            return Json(list);
+        }
+
+
+        [HttpGet("ProductoMasCompradoMes")]
+        public IActionResult TotalMaqillajeMes()
+        {
+            var list = _graficoServices.totalMaquillajeMes();
+            return Json(list);
+        }
+
+
+      
+
+
+
+
+
+
+        [HttpGet("TotalVentasPorCategoria")]
+        public IActionResult TotalVentasPorCategoria()
+        {
+            var list = _graficoServices.totalinJoyasMes();
+            return Json(list);
+        }
+
+
+
+
+        //public IActionResult TotalJoyaMes()
+        //{
+        //    int ? total = 0;
+        //    var list = _generalServices.totalJoyasMes();
+        //    var lista = list.Data as List<tbFacturaDetalles>;
+        //    foreach (var item in lista)
+        //    {
+        //        total += item.Total;
+        //    }
+
+        //    return Ok(lista.ToList());
+        //}
+
+
+        [HttpGet("GeneroMes")]
+        public IActionResult TotalGeneroMes()
+        {
+            var list = _graficoServices.totalGeneroMes();
+            return Json(list);
+        }
+
+
+     
+
+
+
+
+
+
+        [HttpGet("Ventatotalescatgoria")]
+        public IActionResult Ventatotalcate()
+        {
+            var list = _graficoServices.Ventatotalcate();
+            return Json(list);
         }
     }
 }

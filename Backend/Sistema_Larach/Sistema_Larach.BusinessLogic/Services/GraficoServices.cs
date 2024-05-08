@@ -54,26 +54,26 @@ namespace Sistema_Larach.BusinessLogic.Services
                 return result.Error(ex.Message);
             }
         }
-        public ServiceResult CantidadRegistrosPorClientesPorGenero()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _graficoRepository.CantidadRegistrosPorClientesPorGenero();
-                if (list.Any())
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
+        //public ServiceResult CantidadRegistrosPorClientesPorGenero()
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var list = _graficoRepository.CantidadRegistrosPorClientesPorGenero();
+        //        if (list.Any())
+        //        {
+        //            return result.Ok(list);
+        //        }
+        //        else
+        //        {
+        //            return result.Error(list);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error(ex.Message);
+        //    }
+        //}
         public ServiceResult TotalGanancia()
         {
             var result = new ServiceResult();
@@ -94,5 +94,128 @@ namespace Sistema_Larach.BusinessLogic.Services
                 return result.Error(ex.Message);
             }
         }
+
+        public ServiceResult totalProductoMes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _graficoRepository.CantidadProductoVenta();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+        public ServiceResult totalMaquillajeMes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _graficoRepository.ProductoMasCompradoMes();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+
+  
+
+
+
+
+
+   
+
+        public ServiceResult totalinJoyasMes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _graficoRepository.TotalVentasPorCategoria();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
+        public ServiceResult totalGeneroMes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _graficoRepository.CantidadRegistrosPorClientesPorGenero();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+
+    
+
+
+
+        public ServiceResult Ventatotalcate()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _graficoRepository.TotalDeVentasPorCategoriaPorMes();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
+        public ServiceResult Ventatotal()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _graficoRepository.VentastotalMesConDetallesProductos();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
     }
 }

@@ -30,28 +30,51 @@ namespace Sistema_Larach.DataAccess.Repository
                 return result;
             }
         }
-        public IEnumerable<tbGraficos> TotalVentasPorCategoria()
+        public IEnumerable<tbVentasDetalle> TotalVentasPorCategoria()
         {
-            string sql = ScriptDataBase.Graph_TotalVentasPorCategoria;
+            const string sql = "Grph.SP_TotalDeVentasPorCategoriaPorMes";
 
-            List<tbGraficos> result = new List<tbGraficos>();
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
 
             using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
             {
-                result = db.Query<tbGraficos>(sql, commandType: CommandType.StoredProcedure).ToList();
+                var parameter = new DynamicParameters();
+                parameter.Add("@MesActual", DateTime.Now.Month);
+                parameter.Add("@AñoActual", DateTime.Now.Year);
+
+
+
+                result = db.Query<tbVentasDetalle>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
             }
         }
-        public IEnumerable<tbGraficos> CantidadRegistrosPorClientesPorGenero()
+        public IEnumerable<tbVentasDetalle> TotalDeVentasPorCategoriaPorMes()
         {
-            string sql = ScriptDataBase.Graph_CantidadRegistrosPorClientesPorGenero;
+            const string sql = "[Gral].[SP_TotalDeVentasPorCategoriaPorMes]";
 
-            List<tbGraficos> result = new List<tbGraficos>();
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
 
             using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
             {
-                result = db.Query<tbGraficos>(sql, commandType: CommandType.StoredProcedure).ToList();
+
+
+                result = db.Query<tbVentasDetalle>(sql, commandType: CommandType.Text).ToList();
+
+                return result;
+            }
+        }
+        public IEnumerable<tbVentasDetalle> CantidadRegistrosPorClientesPorGenero()
+        {
+            const string sql = "Grph.SP_CantidadDeRegistrosDeClientesPorGeneroPorMes";
+
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+
+
+                result = db.Query<tbVentasDetalle>(sql, commandType: CommandType.Text).ToList();
 
                 return result;
             }
@@ -66,6 +89,63 @@ namespace Sistema_Larach.DataAccess.Repository
             using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
             {
                 result = db.Query<tbGraficos>(sql, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
+        public IEnumerable<tbVentasDetalle> VentastotalMesConDetallesProductos()
+        {
+            const string sql = "[Venta].[Sp_VentastotalMesConDetallesProductos]";
+
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+
+
+                result = db.Query<tbVentasDetalle>(sql, commandType: CommandType.Text).ToList();
+
+                return result;
+            }
+        }
+
+        public IEnumerable<tbVentasDetalle> CantidadProductoVenta()
+        {
+            const string sql = "[Venta].[Sp_Dash_CantidadProducto_Mes_Producto]";
+
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@MesActual", DateTime.Now.Month);
+                parameter.Add("@AñoActual", DateTime.Now.Year);
+
+
+
+                result = db.Query<tbVentasDetalle>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
+        public IEnumerable<tbVentasDetalle> ProductoMasCompradoMes()
+        {
+            const string sql = "[Venta].[Sp_Dash_ProductoMasCompradoMes]";
+
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+
+
+                var parameter = new DynamicParameters();
+                parameter.Add("@MesActual", DateTime.Now.Month);
+                parameter.Add("@AñoActual", DateTime.Now.Year);
+
+
+                result = db.Query<tbVentasDetalle>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
             }
