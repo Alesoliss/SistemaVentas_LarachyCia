@@ -608,6 +608,80 @@ namespace Sistema_Larach.API.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [HttpPost("Create")]
+
+        public IActionResult Insert(VentasEncabezadoViewModel item)
+        {
+            //parametro.Add("@Venen_FechaPedido", DateTime.Now);
+            //parametro.Add("@Sucur_Id", item.Sucur_Id);
+            //parametro.Add("@Clien_Id", item.Clien_Id);
+            //parametro.Add("@Emple_Id", item.Emple_Id);
+            //parametro.Add("Venen_UsuarioCreacion", 1);
+            //parametro.Add("Venen_FechaCreacion", DateTime.Now);
+            //parametro.Add("Venen_Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            var model = _mapper.Map<tbVentasEncabezado>(item);
+            var modelo = new tbVentasEncabezado()
+            {
+                Sucur_Id = item.Sucur_Id,
+                Clien_Id = item.Clien_Id,
+                MtPag_Id = item.MtPag_Id,
+                Emple_Id = item.Emple_Id,
+
+
+            };
+            var list = _supermercadoService.CrearFactura(modelo, out int id);
+            if (list.Success)
+            {
+                list.Message = id.ToString();
+                return Ok(list.Message);
+            }
+            else
+            {
+                list.Message = "0";
+                return Ok(list.Message);
+            }
+        }
+
+
+        [HttpPost("CreateDetalle")]
+        public IActionResult InsertDetalle(VentasDetalleViewModel item)
+        {
+            var model = _mapper.Map<tbVentasDetalle>(item);
+            var modelo = new tbVentasDetalle()
+            {
+                      
+                Produ_Id = item.Produ_Id,
+                Vende_Cantidad = item.Vende_Cantidad,
+                Venen_Id = item.Venen_Id,
+            };
+            var list = _supermercadoService.InsertarDetalle(modelo);
+            return Ok(new { success = true, message = list.Message });
+        }
+
+
+
+
+
+
+
+
+
+
+
         //[HttpGet("MetodoPago/DDL")]
         //public IActionResult ListarMetodosPago()
         //{

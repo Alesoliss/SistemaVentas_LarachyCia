@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs'; 
-import { MunicipiosViewModel } from '../Models/MunicipiosViewModel';
+import { MunicipiosViewModel, Fill } from '../Models/MunicipiosViewModel';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class MunicipiosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'http://sistemalarach.somee.com/API/Municipios/Listado';
+  Url = 'https://localhost:44300/API/Municipios/Listado';
   private baseUrl = 'http://sistemalarach.somee.com/API/Municipios';
 
   insertarMunicipio(municipio: MunicipiosViewModel) {
@@ -30,5 +30,16 @@ export class MunicipiosServiceService {
 
   getMunicipio() {
     return this.http.get<MunicipiosViewModel[]>(this.Url);
+  }
+  // https://localhost:44300/API/Municipios/Detalles?Munic_Id=05
+
+  getFill(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`https://localhost:44300/API/Municipios/Detalles?Munic_Id=${codigo}`);
+  }
+
+
+
+  getdetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`https://localhost:44300/API/Municipios/Detalles?Munic_Id=${codigo}`);
   }
 }

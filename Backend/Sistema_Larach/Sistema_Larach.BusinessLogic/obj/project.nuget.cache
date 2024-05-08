@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SyKLh+piFkVllunHCx9TiVsqp1wRsxrPSsLBSUvynCKBbTe8gNpwQXN0xvNtt5ePXPES2X2vkd77CSkoSLNgag==",
+  "dgSpecHash": "9P91rGZiwFMgN+vH+sTr7e9FJCr+YsIXApL7uZAVC/2r//OHA92NgTL0YWaKKdLYLXlDEvhn5S28hCOU8Ln9kA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\Sistema_Larach-Cia\\Backend\\Sistema_Larach\\Sistema_Larach.BusinessLogic\\Sistema_Larach.BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\SistemaVentas_LarachyCia\\Backend\\Sistema_Larach\\Sistema_Larach.BusinessLogic\\Sistema_Larach.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleso\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\aleso\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

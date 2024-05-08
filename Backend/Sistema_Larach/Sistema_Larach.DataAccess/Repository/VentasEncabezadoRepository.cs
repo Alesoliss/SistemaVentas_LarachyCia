@@ -312,5 +312,67 @@ namespace Sistema_Larach.DataAccess.Repository
         {
             throw new NotImplementedException();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //nuevo po si acaso
+
+        public RequestStatus InsertarDetalle(tbVentasDetalle item)
+        {
+            const string sql = "[Venta].[SP_VentasDetalle_Insertar]";
+
+      
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Produ_Id", item.Produ_Id);
+                parametro.Add("@Vende_Cantidad", item.Vende_Cantidad);
+                parametro.Add("@Venen_Id", item.Venen_Id);
+
+
+                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+        public (RequestStatus, int) Insertar(tbVentasEncabezado item)
+        {
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+
+
+
+
+                parametro.Add("@Venen_FechaPedido", DateTime.Now);
+                parametro.Add("@Sucur_Id", item.Sucur_Id);
+                parametro.Add("@Clien_Id", item.Clien_Id);
+                parametro.Add("@Emple_Id", item.Emple_Id);
+                parametro.Add("Venen_UsuarioCreacion", 1);
+                parametro.Add("Venen_FechaCreacion", DateTime.Now);
+                parametro.Add("Venen_Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                var result = db.Execute(ScriptDataBase.VentasEncabezado_Insertar,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+                int Fact_Id = parametro.Get<int>("Fact_Id");
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return (new RequestStatus { CodeStatus = result, MessageStatus = mensaje }, Fact_Id);
+            }
+        }
     }
 }

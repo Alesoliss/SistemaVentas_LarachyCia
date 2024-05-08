@@ -67,3 +67,9 @@ export class Fill {
     Vende_Estado?: boolean | null;
     cliente?: string;
 }
+
+
+export class dropProducto{
+    value?:String;
+    text?:String;
+}

@@ -691,6 +691,75 @@ namespace Sistema_Larach.BusinessLogic.Services
         #endregion
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region Factura
+
+
+        public ServiceResult CrearFactura(tbVentasEncabezado item, out int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var (lost, scope) = _ventasEncabezado.Insertar(item);
+                id = scope;
+                if (lost.CodeStatus > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus != 1) ? "401 Error de consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+            }
+            catch (Exception ex)
+            {
+                id = 0;
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult InsertarDetalle(tbVentasDetalle item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ventasEncabezado.InsertarDetalle(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+
+        #endregion
+
+
     }
 }
 

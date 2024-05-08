@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z9Ma7ETbhRGMhefHNVmtOGH/h7fUHLfv3Gf3raS1v7mX4OL8KUywyA0TAZx/u/ZPpNm/wjPL5jwQzeUNVnpKXA==",
+  "dgSpecHash": "4eOmGUqkdopJASzuQDdh+v3S0GycF0nP9tTWvvC9EfBb7Q4L7XdZ3VvS62s87wOoM648Nqnhy4B18UaQ3Ukfvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\Sistema_Larach-Cia\\Backend\\Sistema_Larach\\Sistema_Larach.API\\Sistema_Larach.API.csproj",
+  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\SistemaVentas_LarachyCia\\Backend\\Sistema_Larach\\Sistema_Larach.API\\Sistema_Larach.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleso\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\aleso\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
