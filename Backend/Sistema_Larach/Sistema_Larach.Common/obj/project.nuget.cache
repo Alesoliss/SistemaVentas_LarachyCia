@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yRSgdn4tI078bLVyGFsQTja894eH7kxN3COARv+1De+kvrMNgNV6oyeGmi/JCCIMJ0aYFUrOFZmppagIBoV5uw==",
+  "dgSpecHash": "V8JGLlrPOkD4HFrbyB0x7tXYQ1Apc3P2YYl56hr/gd8O2duIHUjFsF/A5j20V9+gQJIwWS3g1OV7ZKknHISa4A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\Sistema_Larach-Cia\\Backend\\Sistema_Larach\\Sistema_Larach.Common\\Sistema_Larach.Common.csproj",
+  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\SistemaVentas_LarachyCia\\Backend\\Sistema_Larach\\Sistema_Larach.Common\\Sistema_Larach.Common.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleso\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.0\\microsoft.entityframeworkcore.5.0.0.nupkg.sha512",
     "C:\\Users\\aleso\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512",

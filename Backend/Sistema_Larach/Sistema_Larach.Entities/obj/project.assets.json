@@ -533,11 +533,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aleso\\OneDrive\\Escritorio\\Sistema_Larach-Cia\\Backend\\Sistema_Larach\\Sistema_Larach.Entities\\Sistema_Larach.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\aleso\\OneDrive\\Escritorio\\SistemaVentas_LarachyCia\\Backend\\Sistema_Larach\\Sistema_Larach.Entities\\Sistema_Larach.Entities.csproj",
       "projectName": "Sistema_Larach.Entities",
-      "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\Sistema_Larach-Cia\\Backend\\Sistema_Larach\\Sistema_Larach.Entities\\Sistema_Larach.Entities.csproj",
+      "projectPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\SistemaVentas_LarachyCia\\Backend\\Sistema_Larach\\Sistema_Larach.Entities\\Sistema_Larach.Entities.csproj",
       "packagesPath": "C:\\Users\\aleso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\Sistema_Larach-Cia\\Backend\\Sistema_Larach\\Sistema_Larach.Entities\\obj\\",
+      "outputPath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\SistemaVentas_LarachyCia\\Backend\\Sistema_Larach\\Sistema_Larach.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RowPySHQ+kXA17UVFdZ+iIs+ByhFpAkRymZAKPTSZERpxPz6Z7YIzZ2iT+27uPxVcLB6a90GJHMVoWymtg1/6Q==",
+  "dgSpecHash": "5spmJL5JZvBKHKmKk+TWOHFz/YoJX8Y4mltx4bqBMXAaflY4E00HltvpXcjfEp/J7u8owTrRnfAcZIsdb5B2BA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\Sistema_Larach-Cia\\Backend\\Sistema_Larach\\Sistema_Larach.DataAccess\\Sistema_Larach.DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\aleso\\OneDrive\\Escritorio\\SistemaVentas_LarachyCia\\Backend\\Sistema_Larach\\Sistema_Larach.DataAccess\\Sistema_Larach.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aleso\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\aleso\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

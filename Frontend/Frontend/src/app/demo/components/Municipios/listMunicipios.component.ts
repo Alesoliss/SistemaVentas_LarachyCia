@@ -1,12 +1,13 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormGroup, FormControl,  Validators  } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
-import { MunicipiosViewModel } from '../../api/Models/MunicipiosViewModel';
+import { MunicipiosViewModel, Fill } from '../../api/Models/MunicipiosViewModel';
 import { MunicipiosServiceService } from '../../api/Services/municipios-service.service';
 import { DepartamentoServiceService } from '../../api/Services/departamento-service.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -21,13 +22,19 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 
 export class MunicipioListadoComponent implements OnInit {
+  staticData = [{}];
   // msgs: Message[] = [];
+  MunCodigo: boolean = true;
 
 // showSuccessViaMessages() {
 //   this.msgs = [];
 //   this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Message sent' });
 // }
   impuesto!: MunicipiosViewModel[];
+  fill: any[] = [];
+  Collapse: boolean = false;
+  Detalles: boolean = false;
+  municipioForm: FormGroup;
 
   showModal: boolean = false;
   editModal: boolean = false;
@@ -48,7 +55,16 @@ export class MunicipioListadoComponent implements OnInit {
     usuarioModificacion: '' 
     
   };
-
+  deleteProductDialog: boolean = false;
+  //Detalle
+  Muni: String = "";
+  Codigo: String = "";
+  Depa: String = "";
+  UsuarioCreacion: String = "";
+  UsuarioModificacion: String = "";
+  FechaCreacion: String = "";
+  FechaModificacion: String = "";
+  ID: String = "";
 
   constructor(private service: MunicipiosServiceService, 
     private departamentoService: DepartamentoServiceService,
@@ -63,6 +79,44 @@ export class MunicipioListadoComponent implements OnInit {
 
 
   }
+
+  cancelar(){
+    this.Collapse= false;
+    this.Detalles = false;
+    this.municipioForm = new FormGroup({
+        Muni_Codigo: new FormControl("",Validators.required),
+        Muni_Municipio: new FormControl("", Validators.required),
+        Depa_Codigo: new FormControl('0', [Validators.required])
+    });
+    this.MunCodigo=true;
+}
+
+  collapse(){
+    this.Collapse= true;
+    this.Detalles = false;
+}
+detalles(codigo) {
+  this.Collapse = false;
+  this.Detalles = true;
+  this.service.getdetalles(codigo).subscribe({
+      next: (response: any) => {
+          const data = response.data[0]; // Acceder al primer elemento del array
+          console.log('Respuesta del servidor:', data);
+          this.Muni = data.munic_Descripcion;
+          this.Codigo = data.munic_Id;
+          this.Depa = data.depar_Descripcion;
+          this.UsuarioCreacion = data.usuarioCreacion;
+          this.UsuarioModificacion = data.usuarioModificacion;
+          this.FechaCreacion = data.munic_FechaCreacion;
+          this.FechaModificacion = data.munic_FechaModificacion;
+      },
+      error: (error) => {
+          console.error('Error al obtener detalles:', error);
+      }
+  });
+}
+
+
 
 
   
@@ -285,10 +339,30 @@ openModal(tipo: string, municipio?: MunicipiosViewModel): void {
       }
     );
   }
+
+
+
+
+  Fill(codigo) {
+    this.service.getFill(codigo).subscribe({
+        next: (data: Fill) => {
+            this.municipioForm = new FormGroup({
+                Muni_Codigo: new FormControl(data.munic_Id,Validators.required),
+                Muni_Municipio: new FormControl(data.munic_Descripcion, Validators.required),
+                Depa_Codigo: new FormControl(data.depar_Id, [Validators.required])
+            });
+            this.Collapse= true;
+
+            this.Detalles = false;
+        }
+      });
+
+}
+}
   
 
 
-}
+
 
 
 @NgModule({

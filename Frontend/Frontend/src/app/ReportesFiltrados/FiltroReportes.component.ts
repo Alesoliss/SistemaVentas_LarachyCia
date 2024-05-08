@@ -12,8 +12,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-
-
  import { Subject } from 'rxjs';
 
 @Component({
@@ -86,17 +84,15 @@ export class FiltroReportesComponent
     firstTimeClicked = true;
 
     firstClick: boolean = true;
+    
     toggleCollapse(): void {
-      if (this.firstClick) {
+      if (!this.collapse && this.fechaInicio && this.fechaFin) {
         console.log('Primera vez que se hace clic');
-        this.firstClick = false;
         this.collapse = true;
-      } else {
         console.log('Segunda vez que se hace clic');
         this.collapse = !this.collapse;
         console.log('Tipo de fechaInicio:', typeof this.fechaInicio);
         console.log('Tipo de fechaFin:', typeof this.fechaFin);
-        if (!this.collapse && this.fechaInicio && this.fechaFin) {
           // Convertir las cadenas de texto en objetos Date
           const fechaInicioDate = new Date(this.fechaInicio);
           const fechaFinDate = new Date(this.fechaFin);
@@ -104,9 +100,37 @@ export class FiltroReportesComponent
           console.log('Tipo de fechaFin después de convertir:', typeof fechaFinDate);
           console.log('Generando reporte...');
           this.generarReporte(fechaInicioDate, fechaFinDate);
-        }
-      }
+        
+      } 
     }
+    
+
+
+
+
+    // toggleCollapse(): void {
+    //   if (this.firstClick) {
+    //     console.log('Primera vez que se hace clic');
+    //     this.firstClick = false;
+    //     this.collapse = true;
+    //   } 
+    //   else
+    //  {
+    //     console.log('Segunda vez que se hace clic');
+    //     this.collapse = !this.collapse;
+    //     console.log('Tipo de fechaInicio:', typeof this.fechaInicio);
+    //     console.log('Tipo de fechaFin:', typeof this.fechaFin);
+    //     if (!this.collapse && this.fechaInicio && this.fechaFin) {
+    //       // Convertir las cadenas de texto en objetos Date
+    //       const fechaInicioDate = new Date(this.fechaInicio);
+    //       const fechaFinDate = new Date(this.fechaFin);
+    //       console.log('Tipo de fechaInicio después de convertir:', typeof fechaInicioDate);
+    //       console.log('Tipo de fechaFin después de convertir:', typeof fechaFinDate);
+    //       console.log('Generando reporte...');
+    //       this.generarReporte(fechaInicioDate, fechaFinDate);
+    //     }
+    //   }
+    // }
     
     
     

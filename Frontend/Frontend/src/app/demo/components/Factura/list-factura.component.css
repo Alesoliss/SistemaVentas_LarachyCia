@@ -1,0 +1,8 @@
+.ui-autocomplete {
+    position: relative;
+}
+.ui-autocomplete-panel {
+    z-index: 1050 !important; 
+}::ng-deep .p-datatable {
+    overflow: visible;
+}

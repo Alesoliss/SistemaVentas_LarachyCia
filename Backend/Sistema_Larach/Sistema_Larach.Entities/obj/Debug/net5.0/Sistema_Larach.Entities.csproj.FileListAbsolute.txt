@@ -10,3 +10,15 @@ C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sis
 C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.dll
 C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\ref\Sistema_Larach.Entities.dll
 C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.pdb
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\bin\Debug\net5.0\Sistema_Larach.Entities.deps.json
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\bin\Debug\net5.0\Sistema_Larach.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\bin\Debug\net5.0\ref\Sistema_Larach.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\bin\Debug\net5.0\Sistema_Larach.Entities.pdb
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.csproj.AssemblyReference.cache
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.AssemblyInfoInputs.cache
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.AssemblyInfo.cs
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.csproj.CoreCompileInputs.cache
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\ref\Sistema_Larach.Entities.dll
+C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.Entities\obj\Debug\net5.0\Sistema_Larach.Entities.pdb

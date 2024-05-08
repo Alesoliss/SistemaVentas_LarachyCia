@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Sistema_Larach.DataAccess
-build_property.ProjectDir = C:\Users\aleso\OneDrive\Escritorio\Sistema_Larach-Cia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\
+build_property.ProjectDir = C:\Users\aleso\OneDrive\Escritorio\SistemaVentas_LarachyCia\Backend\Sistema_Larach\Sistema_Larach.DataAccess\

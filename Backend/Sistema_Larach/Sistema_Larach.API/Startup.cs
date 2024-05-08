@@ -67,13 +67,15 @@ namespace Sistema_Larach.API
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sistema_Larach.API v1"));
             app.UseHttpsRedirection();
-            //app.UseDefaultFiles();
-            //app.UseStaticFiles(new StaticFileOptions
+            app.UseDefaultFiles();
+            app.UseStaticFiles(
+            //    new StaticFileOptions
             //{
             //    FileProvider = new PhysicalFileProvider(
             //        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
             //    RequestPath = "/uploads"
-            //});
+            //}
+                );
             app.UseRouting();
 
             app.UseAuthorization();

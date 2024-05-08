@@ -18,9 +18,9 @@ export class Fill {
     munic_Descripcion!: string;
     depar_Id!: string;
     munic_UsuarioCreacion!: number;
-    munic_FechaCreacion!: Date;
+    munic_FechaCreacion!: string;
     munic_UsuarioModificacion?: number | null;
-    munic_FechaModificacion?: Date | null;
+    munic_FechaModificacion?: string;
     depar_Descripcion?: string;
     munic_Estado?: boolean | null;
     usuarioCreacion?: string;

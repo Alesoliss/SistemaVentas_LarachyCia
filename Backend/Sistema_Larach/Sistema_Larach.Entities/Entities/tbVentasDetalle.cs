@@ -9,6 +9,68 @@ namespace Sistema_Larach.Entities
 {
     public partial class tbVentasDetalle
     {
+
+
+        public int Vende_Id { get; set; }
+        public int? Produ_Id { get; set; }
+        public int? Vende_Cantidad { get; set; }
+        public int? total { get; set; }
+        public int? Venen_Id { get; set; }
+
+        [NotMapped]
+        public string? TotalFinal { get; set; }
+
+        [NotMapped]
+        public string? Genero { get; set; }
+
+        [NotMapped]
+        public string? TotalCompras { get; set; }
+
+        [NotMapped]
+        public string? Producto { get; set; }
+
+        [NotMapped]
+        public string? NombreProducto { get; set; }
+
+
+
+        [NotMapped]
+        public string? TotalVendido { get; set; }
+
+
+
+        [NotMapped]
+        public string? Cantidad { get; set; }
+
+        [NotMapped]
+        public string? TipoProducto { get; set; }
+
+
+        [NotMapped]
+        public string? PrecioVenta { get; set; }
+
+        [NotMapped]
+        public string? Mes { get; set; }
+
+        [NotMapped]
+        public string? TotalVentas { get; set; }
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
         [NotMapped]
         public int ClienteIdNuevo { get; set; }
         [NotMapped]
@@ -18,10 +80,7 @@ namespace Sistema_Larach.Entities
         public int Emple_Id { get; set; }
         [NotMapped]
         public string empleado { get; set; }
-        public int Vende_Id { get; set; }
-        public int Venen_Id { get; set; }
-        public int Produ_Id { get; set; }
-        public int Vende_Cantidad { get; set; }
+ 
         public int Vende_UsuarioCreacion { get; set; }
         public DateTime Vende_FechaCreacion { get; set; }
         public int? Vende_UsuarioModificacion { get; set; }
