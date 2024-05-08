@@ -17,7 +17,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Inicio',
                 items: [
-                    { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/app/dashboard'] }
+                    { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/app/uikit/charts'] }
                 ]
             },
             // {
@@ -294,10 +294,18 @@ export class AppMenuComponent implements OnInit {
                                 icon: 'pi pi-fw pi-lock',
                                 routerLink: ['/app/Sucursal']
                             },
+                            {
+                                label: 'Graficos',
+                                icon: 'pi pi-fw pi-chart-bar',
+                                routerLink: ['/app/uikit/charts']
+                            },
+                           
                         ]
+                        
                     },
                
                 ]
+                
             },
 
 
@@ -308,4 +316,6 @@ export class AppMenuComponent implements OnInit {
        
         ];
     }
+    
 }
+

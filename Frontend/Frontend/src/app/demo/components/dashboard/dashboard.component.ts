@@ -102,23 +102,23 @@ total13:string;
         this.service.getMaquillajemes().subscribe({
             next: (data: ProductoMasCompradoMes[]) => {
                 if (data && data.length > 0) {
-                    this.Top1 = data[0].NombreProducto;
-                    this.Catidad1 = data[0].TotalComprado;
+                    this.Top1 = data[0].nombreProducto;
+                    this.Catidad1 = data[0].totalComprado;
                     if (data.length > 1) {
-                        this.Top2 = data[1].NombreProducto;
-                        this.Catidad2 = data[1].TotalComprado;
+                        this.Top2 = data[1].nombreProducto;
+                        this.Catidad2 = data[1].totalComprado;
                     }
                     if (data.length > 2) {
-                        this.Top3 = data[2].NombreProducto;
-                        this.Catidad3 = data[2].TotalComprado;
+                        this.Top3 = data[2].nombreProducto;
+                        this.Catidad3 = data[2].totalComprado;
                     }
                     if (data.length > 3) {
-                        this.Top4 = data[3].NombreProducto;
-                        this.Catidad4 = data[3].TotalComprado;
+                        this.Top4 = data[3].nombreProducto;
+                        this.Catidad4 = data[3].totalComprado;
                     }
                     if (data.length > 4) {
-                        this.Top5 = data[4].NombreProducto;
-                        this.Catidad5 = data[4].TotalComprado;
+                        this.Top5 = data[4].nombreProducto;
+                        this.Catidad5 = data[4].totalComprado;
                     }
                 } else {
                     console.error("El arreglo 'data' está vacío o es null.");
@@ -143,16 +143,16 @@ total13:string;
 
           this.service.getJoyas().subscribe({
             next: (data: TotalVentasPorCategoria[]) => {
-               this.Topm1 = data[0].Producto,
-               this.Catidadm1 = data[0].TotalVentas,
-               this.Topm2 = data[1].Producto,
-               this.Catidadm2 = data[1].TotalVentas,
-               this.Topm3 = data[2].Producto,
-               this.Catidadm3 = data[2].TotalVentas,
-               this.Topm4 = data[3].Producto,
-               this.Catidadm4 = data[3].TotalVentas,
-               this.Topm5 = data[4].Producto,
-               this.Catidadm5 = data[4].TotalVentas
+               this.Topm1 = data[0].producto,
+               this.Catidadm1 = data[0].totalVentas,
+               this.Topm2 = data[1].producto,
+               this.Catidadm2 = data[1].totalVentas,
+               this.Topm3 = data[2].producto,
+               this.Catidadm3 = data[2].totalVentas,
+               this.Topm4 = data[3].producto,
+               this.Catidadm4 = data[3].totalVentas,
+               this.Topm5 = data[4].producto,
+               this.Catidadm5 = data[4].totalVentas
                
             }
           });
@@ -210,7 +210,7 @@ total13:string;
             console.log(data);
             this.MaqJoyaMes = data;
 
-            this.totalVendido1 = data[0].Cantidad;
+            this.totalVendido1 = data[0].cantidad;
             
             
    

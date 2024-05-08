@@ -4,6 +4,7 @@ import { ChartsDemoRoutingModule } from './chartsdemo-routing.module';
 import { ChartModule } from 'primeng/chart'
 import { ChartsDemoComponent } from './chartsdemo.component';
 
+
 @NgModule({
 	imports: [
 		CommonModule,

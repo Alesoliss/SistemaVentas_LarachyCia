@@ -57,7 +57,7 @@ namespace Sistema_Larach.API.Controllers
         {
             var list = _graficoServices.totalProductoMes();
 
-            return Json(list);
+            return Ok(list.Data);
         }
 
 
@@ -65,7 +65,7 @@ namespace Sistema_Larach.API.Controllers
         public IActionResult TotalMaqillajeMes()
         {
             var list = _graficoServices.totalMaquillajeMes();
-            return Json(list);
+            return Ok(list.Data);
         }
 
 
@@ -80,7 +80,7 @@ namespace Sistema_Larach.API.Controllers
         public IActionResult TotalVentasPorCategoria()
         {
             var list = _graficoServices.totalinJoyasMes();
-            return Json(list);
+            return Ok(list.Data);
         }
 
 
@@ -104,7 +104,7 @@ namespace Sistema_Larach.API.Controllers
         public IActionResult TotalGeneroMes()
         {
             var list = _graficoServices.totalGeneroMes();
-            return Json(list);
+            return Ok(list.Data);
         }
 
 
@@ -119,7 +119,7 @@ namespace Sistema_Larach.API.Controllers
         public IActionResult Ventatotalcate()
         {
             var list = _graficoServices.Ventatotalcate();
-            return Json(list);
+            return Ok(list.Data);
         }
     }
 }

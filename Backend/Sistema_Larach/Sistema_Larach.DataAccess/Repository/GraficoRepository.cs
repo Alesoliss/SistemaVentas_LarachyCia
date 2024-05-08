@@ -132,7 +132,22 @@ namespace Sistema_Larach.DataAccess.Repository
 
         public IEnumerable<tbVentasDetalle> ProductoMasCompradoMes()
         {
-            const string sql = "[Venta].[Sp_Dash_ProductoMasCompradoMes]";
+            string sql = ScriptDataBase.ProductoMasCompradoMes;
+
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                result = db.Query<tbVentasDetalle>(sql, commandType: System.Data.CommandType.Text).ToList();
+                return result;
+            }
+        }
+        ////////////////////////////////////////////////////////////////////////
+        ///
+
+        public IEnumerable<tbVentasDetalle> totalProductoMesfiltrado(DateTime fecha)
+        {
+            const string sql = "[Venta].[sp_Dash_Top5ProductosMasVendidos]";
 
             List<tbVentasDetalle> result = new List<tbVentasDetalle>();
 
@@ -140,9 +155,12 @@ namespace Sistema_Larach.DataAccess.Repository
             {
 
 
+                int año = ObtenerAño(fecha);
+                int mesi = Obtenemes(fecha);
+
                 var parameter = new DynamicParameters();
-                parameter.Add("@MesActual", DateTime.Now.Month);
-                parameter.Add("@AñoActual", DateTime.Now.Year);
+                parameter.Add("@MesActual", mesi);
+                parameter.Add("@AñoActual", año);
 
 
                 result = db.Query<tbVentasDetalle>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
@@ -150,5 +168,94 @@ namespace Sistema_Larach.DataAccess.Repository
                 return result;
             }
         }
+        public IEnumerable<tbVentasDetalle> totalCategoriaMesfiltrado(DateTime fecha)
+        {
+            const string sql = "[Grph].[SP_TotalDeVentasPorCategoriaPorMes]";
+
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+
+
+                int año = ObtenerAño(fecha);
+                int mesi = Obtenemes(fecha);
+
+                var parameter = new DynamicParameters();
+                parameter.Add("@MesActual", mesi);
+                parameter.Add("@AñoActual", año);
+
+
+
+                result = db.Query<tbVentasDetalle>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+        public IEnumerable<tbVentasDetalle> CantidadProductoVentaFiltrado(DateTime fecha)
+        {
+            const string sql = "[Venta].[Sp_Dash_CantidadProducto_Mes_Producto]";
+
+
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+
+
+                int año = ObtenerAño(fecha);
+                int mesi = Obtenemes(fecha);
+
+                var parameter = new DynamicParameters();
+                parameter.Add("@MesActual", mesi);
+                parameter.Add("@AñoActual", año);
+
+
+
+                result = db.Query<tbVentasDetalle>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
+        //public IEnumerable<tbVentasDetalle> VentastotalMesConDetallesProductosFiltrado(DateTime fecha)
+        //{
+        //    const string sql = "[Venta].[Sp_VentastotalMesConDetallesProductos]";
+
+
+        //    List<tbVentasDetalle> result = new List<tbVentasDetalle>();
+
+        //    using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+        //    {
+
+
+        //        int año = ObtenerAño(fecha);
+        //        int mesi = Obtenemes(fecha);
+
+        //        var parameter = new DynamicParameters();
+        //        parameter.Add("@MesActual", mesi);
+        //        parameter.Add("@AñoActual", año);
+
+
+
+        //        result = db.Query<tbVentasDetalle>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
+
+        //        return result;
+        //    }
+        //}
+
+
+        public int ObtenerAño(DateTime fecha)
+        {
+            return fecha.Year;
+        }
+
+
+
+        public int Obtenemes(DateTime mes)
+        {
+            return mes.Month;
+        }
+
     }
 }

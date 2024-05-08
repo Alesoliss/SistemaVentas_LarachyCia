@@ -1,6 +1,6 @@
 export class ProductoMasCompradoMes{
-  NombreProducto?:string;
-  TotalComprado?:string;
+  nombreProducto?:string;
+  totalComprado?:string;
  
 }
 
@@ -8,8 +8,8 @@ export class ProductoMasCompradoMes{
 
 
 export class TotalVentasPorCategoria{
-  Producto?:string;
-  TotalVentas?:string;
+  producto?:string;
+  totalVentas?:string;
 }
 
 
@@ -17,8 +17,8 @@ export class TotalVentasPorCategoria{
 
 
 export class ProductoMes{
-  Producto?:string;
-  Cantidad?:string;
+  producto?:string;
+  cantidad?:string;
 }
 
 
@@ -27,7 +27,7 @@ export class ProductoMes{
 
 
 export class Ventatotalescatgoria{
-  TotalVentas?:string;
-  Categoria?:string;
-  Producto?:string;
+  totalVentas?:string;
+  categoria?:string;
+  producto?:string;
 }

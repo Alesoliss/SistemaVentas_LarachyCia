@@ -35,5 +35,26 @@ namespace Sistema_Larach.Entities
         public virtual tbUsuarios Vende_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Vende_UsuarioModificacionNavigation { get; set; }
         public virtual tbVentasEncabezado Venen { get; set; }
+
+        [NotMapped]
+        public int Year { get; set; }
+        [NotMapped]
+        public int Month { get; set; }
+        [NotMapped]
+        public int TotalVendido { get; set; }
+        [NotMapped]
+
+        public string NombreProducto { get; set; }
+        [NotMapped]
+
+        public string Cantidad { get; set; }
+        [NotMapped]
+
+        public string Producto { get; set; }
+
+        [NotMapped]
+
+        public string TotalVentas { get; set; }
+
     }
 }

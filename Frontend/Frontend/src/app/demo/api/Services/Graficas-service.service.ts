@@ -25,8 +25,8 @@ export class ServiceService {
   
   urlE ='https://localhost:44300/api/Grafico/ProductoMasCompradoMes'
 
-  getMaquillajemes(){
-    return this.http.get<ProductoMasCompradoMes[]>(this.urlE)
+  getMaquillajemes(): Observable<any[]> {
+    return this.http.get<any[]>(this.urlE);
   }
 
 

@@ -249,6 +249,7 @@ namespace Sistema_Larach.DataAccess.Repository
         public static string Graph_TotalVentasPorCategoria = "Grph.SP_TotalDeVentasPorCategoriaPorMes";
         public static string Graph_CantidadRegistrosPorClientesPorGenero = "Grph.SP_CantidadDeRegistrosDeClientesPorGeneroPorMes";
         public static string Graph_TotalGanancia = "Grph.SP_TotalGananciaPorMes";
+        public static string ProductoMasCompradoMes = "[Venta].[sp_Dash_ProductoMasCompradoMes]";
         #endregion
 
 
