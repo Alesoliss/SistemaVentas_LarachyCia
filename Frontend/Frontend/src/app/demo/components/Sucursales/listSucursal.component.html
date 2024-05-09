@@ -1,9 +1,10 @@
+<p-toast style="background-color: red ;"></p-toast>
 <div class="grid">
-    <div class="col-12">
+    <div class="col-12" *ngIf="!Detalles">
         <div class="card">
             <h5>Sucursales</h5>
             <div class="flex justify-content-start mb-3">
-                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openModal('nuevo')" ></button>
             </div>
             
             <p-table [value]="sucursal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
@@ -66,13 +67,13 @@
                         <td>{{sucursal.sucur_Direccion}}</td>
                         <td>{{sucursal.sucur_Telefono}}</td>
                         <td>{{sucursal.munic_Idng}}</td>
-                        <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                            >Editar</button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2"
-                                >Eliminar</button>
-                            <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-info"
-                                >Detalles</button>
+                        <td style="align-items: center; text-align: center;">
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
+                            (click)="openModal('editar', sucursal)" >Editar</button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
+                                (click)="eliminarcategoria(sucursal.sucur_Id)" >Eliminar</button>
+                                <p-button  label="Detalles"   icon="pi pi-book" size="small"
+                                (click)="detalles(sucursal.sucur_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                         </td>
                     </tr>
                 </ng-template>
@@ -90,40 +91,162 @@
         </div>
     </div>
   </div>
-  
-  <!-- Modal para editar cargo -->
-  <p-dialog [(visible)]="editModal" [modal]="true" [style]="{ width: '50%' }">
-    <ng-template pTemplate="header">
-        <h5>Editar Cargo</h5>
-    </ng-template>
-    <ng-template pTemplate="content">
-        <!-- Contenido del formulario de edición -->
-        <form>
+  <div class="col-12" *ngIf="Detalles">
+    <div class="card-body">
+     
+        <div class="card">
+            <div class="card-header">
+
+                <div class="card-title">
+                    <h1>Auditoria</h1>
+                </div>
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-4" *ngIf="sucur_Id">
+                        <div class="field rows">
+                            <label for="Codigo" style="font-weight: 800;">Sucursales </label>
+                        </div>
+                        <div class="field rows">
+                            <label for="Codigo">{{ sucursal }}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="field col-12 md:col-4">
+                        <div class="field rows">
+                            <label for="Municipio" style="font-weight: 800;">Direccion:</label>
+                        </div>
+                        <div class="field rows">
+                            <label for="Municipio">{{ Direccion }}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="field col-12 md:col-4">
+                        <div class="field rows" style="font-weight: 800;">
+                            <label for="Departamento">Telefono:</label>
+                        </div>
+                        <div class="field rows">
+                            <label for="Departamento">{{ Telefono }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p-table [value]="staticData">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:200px">Accion</th>
+                            <th style="width:200px">Usuario</th>
+                            <th style="width:200px">Fecha</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-transaction>
+                        <tr>
+                            <td style="width:200px;">Creado</td>
+                            <td style="width:200px">{{ usuarioCreacion }}</td>
+                            <td style="width:200px">{{ FechaCreacion }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width:200px;">Modificado</td>
+                            <td style="width:200px">{{ UsuarioModificacion }}</td>
+                            <td style="width:200px">{{ FechaModificacion }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                <button pButton icon="pi pi-cancel" type="button" (click)="cancelar()" label="Regresar" class="p-button-danger"></button>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+<!-- Fin de la sección grid -->
+
+<!-- Modal para nuevo municipio -->
+<p-dialog [(visible)]="showModal" header="Nuevo Usuario"[modal]="true" [style]="{ width: '50%' }">
+<ng-template pTemplate="content">
+    <form class="p-grid p-fluid">
+        <div class="p-col-12">
             <div class="p-field">
-                <label for="edit-cargo-id">ID</label>
-                <input type="text" id="edit-cargo-id" [(ngModel)]="cargoSeleccionado.cargo_Id" />
+                <label for="new-Usuario-id">Sucursales:</label>
+                <input type="text" id="new-Usuario-id" name="new-Usuario-id" [(ngModel)]="sucursalSeleccionado.sucur_Descripcion" class="p-inputtext" />
             </div>
             <div class="p-field">
-                <label for="edit-cargo-descripcion">Descripción</label>
-                <input type="text" id="edit-cargo-descripcion" [(ngModel)]="cargoSeleccionado.cargo_Descripcion" />
+                <label for="new-Usuario-descripcion">Direccion:</label>
+                <input type="text" id="new-Usuario-descripcion" name="new-Usuario-descripcion" [(ngModel)]="sucursalSeleccionado.sucur_Direccion" class="p-inputtext" />
             </div>
-        </form>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <!-- Botones del pie de página -->
-        <button pButton type="button" label="Cancelar" (click)="editModal = false"></button>
-        <button pButton type="button" label="Guardar" class="p-button-success" (click)="guardarCambios()"></button>
-    </ng-template>
-  </p-dialog>
-  
-  <!-- Modal para confirmar eliminación -->
-  <p-dialog [(visible)]="deleteModal" header="Confirmar Eliminación" [modal]="true" [style]="{width: '50%'}">
-    <ng-template pTemplate="content">
-        ¿Estás seguro que deseas eliminar este cargo?
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <button pButton type="button" label="No" class="p-button-text" (click)="deleteModal = false"></button>
-        <button pButton type="button" label="Sí" class="p-button-text" (click)="eliminarCargo()"></button>
-    </ng-template>
-  </p-dialog>
-  
+            <div class="p-col-6">
+                <label for="new-municipio-dropdown" class="p-d-block">Seleccionar un municipio </label>
+                <select id="new-municipio-dropdown" [(ngModel)]="sucursalSeleccionado.munic_Id" name="new-municipio-dropdown" class="p-inputtext" style="width: 100%; padding: 0.5rem;">
+                    <option value="" selected disabled>---SELECCIONE---</option>
+                    <option *ngFor="let option of dropdownOptions" [ngValue]="option.value">{{ option.label }}</option>
+                </select>
+            </div>  
+          
+            <div class="p-field">
+                <label for="new-Usuario-descripcion">Direccion:</label>
+                <input type="text" id="new-Usuario-descripcion" name="new-Usuario-descripcion" [(ngModel)]="sucursalSeleccionado.sucur_Telefono" class="p-inputtext" />
+            </div>
+        </div>      
+    </form>
+    
+         
+</ng-template>
+<ng-template pTemplate="footer">
+    <button style="color: #0464B4;" pButton type="button" label="Cancelar" class="p-button-text" (click)="closeModal('nuevo')"></button>
+    <button pButton type="button" label="Guardar" class="p-button-danger" (click)="guardarNuevocategoria()"></button>
+</ng-template>
+</p-dialog>
+
+<!-- Modal para confirmar eliminación -->
+<p-dialog [(visible)]="showDeleteConfirmation" header="Confirmar Eliminación" [modal]="true" [style]="{width: '50%'}">
+<ng-template pTemplate="content">
+    ¿Estás seguro que deseas eliminar esta Sucursal?
+</ng-template>
+<ng-template pTemplate="footer">
+    <button pButton type="button" label="No" class="p-button-text" (click)="cancelarEliminacion()"></button>
+    <button pButton type="button" label="Sí" class="p-button-text" (click)="confirmarEliminacion()"></button>
+</ng-template>
+</p-dialog>
+
+<!-- Modal para editar municipio -->
+<p-dialog [(visible)]="editModal" [modal]="true" [style]="{ width: '50%' }">
+<ng-template pTemplate="header">
+    <h5>Editar Usuario</h5>
+</ng-template>
+<ng-template pTemplate="content">
+    <!-- Contenido del formulario de edición -->
+    <form class="p-grid p-fluid">
+        <div class="p-col-12">
+            <div class="p-field">
+                <label for="new-Usuario-id">Sucursales:</label>
+                <input type="text" id="new-Usuario-id" name="new-Usuario-id" [(ngModel)]="sucursalSeleccionado.sucur_Descripcion" class="p-inputtext" />
+            </div>
+            <div class="p-field">
+                <label for="new-Usuario-descripcion">Direccion:</label>
+                <input type="text" id="new-Usuario-descripcion" name="new-Usuario-descripcion" [(ngModel)]="sucursalSeleccionado.sucur_Direccion" class="p-inputtext" />
+            </div>
+            <div class="p-col-6">
+                <label for="new-municipio-dropdown" class="p-d-block">Seleccionar un municipio </label>
+                <select id="new-municipio-dropdown" [(ngModel)]="sucursalSeleccionado.munic_Id" name="new-municipio-dropdown" class="p-inputtext" style="width: 100%; padding: 0.5rem;">
+                    <option value="" selected disabled>---SELECCIONE---</option>
+                    <option *ngFor="let option of dropdownOptions" [ngValue]="option.value">{{ option.label }}</option>
+                </select>
+            </div>  
+          
+            <div class="p-field">
+                <label for="new-Usuario-descripcion">Telefono:</label>
+                <input type="text" id="new-Usuario-descripcion" name="new-Usuario-descripcion" [(ngModel)]="sucursalSeleccionado.sucur_Telefono" class="p-inputtext" />
+            </div>
+        </div>        
+    </form>
+    
+    
+    
+</ng-template>
+<ng-template pTemplate="footer">
+    <!-- Botones del pie de página -->
+    <button pButton type="button" label="Cancelar" (click)="closeModal('editar')"></button>
+    <button pButton type="button" label="Guardar" class="p-button-success" (click)="guardarCambios()"></button>
+</ng-template>
+</p-dialog>

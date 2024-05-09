@@ -50,7 +50,81 @@ namespace Sistema_Larach.API.Controllers
             rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
             return Ok(rol.ToList());
         }
+        [HttpPost("Create")]
+        public IActionResult Insert(SucursalesViewModel item)
+        {
+            var model = _mapper.Map<tbSucursales>(item);
+            var modelo = new tbSucursales()
+            {
+                Sucur_Descripcion = item.Sucur_Descripcion,
+                Sucur_Telefono = item.Sucur_Telefono,
+                Munic_Id = item.Munic_Id,
+                Sucur_Direccion = item.Sucur_Direccion,
+                Sucur_UsuarioModificacion = 1,
+                Sucur_FechaModificacion = DateTime.Now
 
+            };
+            var list = _generalServices.Insertarsucusal(modelo);
+            if (list.Success)
+            {
+                return Ok(list);
+            }
+            else
+            {
+                return Problem(list.Message);
+            }
+        }
+
+        [HttpPut("Actualizar")]
+        public IActionResult Update(SucursalesViewModel item)
+        {
+
+            var model = _mapper.Map<tbSucursales>(item);
+            var modelo = new tbSucursales()
+            {
+                Sucur_Id = item.Sucur_Id,
+                Sucur_Descripcion = item.Sucur_Descripcion,
+                Sucur_Telefono = item.Sucur_Telefono,
+                Munic_Id = item.Munic_Id,
+                Sucur_Direccion = item.Sucur_Direccion,
+                Sucur_UsuarioModificacion = 1,
+                Sucur_FechaModificacion = DateTime.Now
+
+            };
+            var list = _generalServices.Actualizarsucursal(modelo);
+            if (list.Success)
+            {
+                return Ok(list);
+            }
+            else
+            {
+                return Problem(list.Message);
+            }
+        }
+        [HttpGet("Detalles")]
+        public IActionResult Details(int Categ_Id)
+        {
+            var list = _generalServices.Buscarsucursal(Categ_Id);
+
+            return Ok(list);
+        }
+
+        [HttpDelete("Eliminar/{Cargo_Id}")]
+        public IActionResult Delete(int Cargo_Id)
+        {
+            var result = new ServiceResult();
+
+            var list = _generalServices.Eliminarsucursal(Cargo_Id);
+            if (list.Success)
+            {
+                return Ok(list);
+            }
+            else
+            {
+                return Problem(list.Message);
+            }
+
+        }
 
     }
 }

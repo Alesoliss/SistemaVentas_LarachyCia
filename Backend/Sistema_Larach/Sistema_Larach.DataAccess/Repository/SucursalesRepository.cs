@@ -79,12 +79,13 @@ namespace Sistema_Larach.DataAccess.Repository
             using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
+                parametro.Add("@Sucur_Id", item.Sucur_Id);
                 parametro.Add("@Sucur_Descripcion", item.Sucur_Descripcion);
                 parametro.Add("@Munic_Id", item.Munic_Id);
                 parametro.Add("@Sucur_Direccion", item.Sucur_Direccion);
                 parametro.Add("@Sucur_Telefono", item.Sucur_Telefono);
                 parametro.Add("@Sucur_UsuarioModificacion", 1);
-                parametro.Add("@Sucur_FechaCreacion", DateTime.Now);
+                parametro.Add("@Sucur_FechaModificacion", DateTime.Now);
                 var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
 
                 return new RequestStatus { CodeStatus = result, MessageStatus = "" };
