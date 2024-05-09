@@ -1,27 +1,79 @@
 export class EmpleadoViewModel {
-    Emple_Id!: number;
-    Emple_DNI!: Number;
-    Emple_PrimerNombre!: String;
-    Emple_SegundoNombre!: String;
-    Emple_PrimerApellido!: String;
-    Emple_SegundoApellido!: String;
-    Emple_Sexo!: string;
-    Estad_Id!: Number;
-    Emple_Telefono!: String;
-    Emple_Correo!: String;
-    Emple_Direccion!: String;
-    Munic_Id!: Number;
-    Cargo_Id!: Number;
-    Emple_UsuarioCreacion!: number;
-    Emple_FechaCreacion!: Date;
-    Emple_UsuarioModificacion?: number | null;
-    Emple_FechaModificacion?: Date | null;
-    Emple_Estado?: boolean | null;
-    Sucur_Id!: Number;
-    UsuarioCreacion?: string;
-    UsuarioModificacion?: string;
-    Munic_Descripcion?: string;
-    Sucur_Descripcion?: string;
-    Cargo_Descripcion?: string;
+    emple_Id!: number;
+    emple_DNI!: Number;
+    emple_PrimerNombre!: String;
+    emple_SegundoNombre!: String;
+    emple_PrimerApellido!: String;
+    emple_SegundoApellido!: String;
+    emple_Sexo!: string;
+    estad_Id!: Number;
+    emple_Telefono!: String;
+    emple_Correo!: String;
+    emple_Direccion!: String;
+    munic_Id!: Number;
+    cargo_Id!: Number;
+    emple_UsuarioCreacion!: number;
+    emple_FechaCreacion!: Date;
+    emple_UsuarioModificacion?: number | null;
+    emple_FechaModificacion?: Date | null;
+    emple_Estado?: boolean | null;
+    sucur_Id!: Number;
+    usuarioCreacion?: string;
+    usuarioModificacion?: string;
+    munic_Descripcion?: string;
+    sucur_Descripcion?: string;
+    cargo_Descripcion?: string;
+    estad_Descripcion?: string;
+    depa_Departamento?: string;
+}
+export class EmpleadoEnviar {
+    
 
+    emple_Id!: string;
+    emple_DNI!: Number;
+    emple_PrimerNombre!: String;
+    emple_SegundoNombre!: String;
+    emple_PrimerApellido!: String;
+    emple_SegundoApellido!: String;
+    emple_Sexo!: string;
+    estad_Id!: Number;
+    emple_Telefono!: String;
+    emple_Correo!: String;
+    emple_Direccion!: String;
+    munic_Id!: Number;
+    cargo_Id!: Number;
+    sucur_Id!: Number;
+
+
+
+}
+
+export class Fill {
+    emple_Id!: number;
+    emple_DNI!: string;
+    emple_PrimerNombre!: string;
+    emple_SegundoNombre!: String;
+    emple_PrimerApellido!: String;
+    emple_SegundoApellido!: String;
+    emple_Sexo!: string;
+    estad_Id!: Number;
+    emple_Telefono!: String;
+    emple_Correo!: String;
+    emple_Direccion!: String;
+    munic_Id!: string;
+    Depar_Id!: string;
+    cargo_Id!: Number;
+    emple_UsuarioCreacion!: number;
+    emple_FechaCreacion!: Date;
+    emple_UsuarioModificacion?: number | null;
+    emple_FechaModificacion?: Date | null;
+    emple_Estado?: boolean | null;
+    sucur_Id!: Number;
+    usuarioCreacion?: string;
+    usuarioModificacion?: string;
+    munic_Descripcion?: string;
+    sucur_Descripcion?: string;
+    cargo_Descripcion?: string;
+    estad_Descripcion?: string;
+    depa_Departamento?: string;
 }

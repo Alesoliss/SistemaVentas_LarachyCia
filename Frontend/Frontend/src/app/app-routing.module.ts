@@ -13,7 +13,8 @@ import { MunicipioListadoComponent } from './demo/components/Municipios/listMuni
 import { UsuarioListadoComponent } from './demo/components/Usuarios/listUsuarios.component';
 import { UnidadesListadoComponent } from './demo/components/Unidades/listUnidad.component';
 import { RolesListadoComponent } from './demo/components/Roles/listRol.component';
-import { EmpleadoListadoComponent } from './demo/components/Empleados/listEmpleados.component';
+import { ListEmpleadoComponent } from './demo/components/Empleados/listEmpleados.component';
+
 import { ProductoListadoComponent } from './demo/components/Productos/listProductos.component';
 import { ProductoCreateComponent } from './demo/components/Productos/createProducto.component';
 import { SucursalesListadoComponent } from './demo/components/Sucursales/listSucursales.component';
@@ -56,7 +57,8 @@ import { FiltroReportesComponent } from './ReportesFiltrados/FiltroReportes.comp
                     { path: 'usuario', component: UsuarioListadoComponent }, 
                     { path: 'unidad', component: UnidadesListadoComponent },
                     { path: 'rol', component: RolesListadoComponent },
-                    { path: 'Empleado', component: EmpleadoListadoComponent },
+                    { path: 'Empleado', component: ListEmpleadoComponent },
+                    
                     { path: 'Productos', component: ProductoListadoComponent },
                     { path: 'ProductoCreate', component: ProductoCreateComponent },
                     { path: 'Sucursal', component: SucursalesListadoComponent },

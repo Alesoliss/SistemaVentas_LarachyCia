@@ -21,3 +21,8 @@ export class Fill {
     usuarioCreacion?: string;
     usuarioModificacion?: string;
 }
+
+export class dropCargo{
+    value?:String;
+    text?:String;
+}

@@ -58,6 +58,9 @@ export class AppComponent {
         ProductoCreate (){
             this.router.navigate(['ProductoCreate']);
         }
+        EmpleadoCreate (){
+            this.router.navigate(['empleadoscrear']);
+        }
 
 
         // reporte1 (){

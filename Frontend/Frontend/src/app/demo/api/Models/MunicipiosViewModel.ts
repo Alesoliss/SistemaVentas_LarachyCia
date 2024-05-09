@@ -26,3 +26,7 @@ export class Fill {
     usuarioCreacion?: string;
     usuarioModificacion?: string;
 }
+export class dropMunicipio{
+    value?:String;
+    text?:String;
+}

@@ -11,7 +11,7 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
-
+import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -34,7 +34,7 @@ import { LoginComponent } from '../app/demo/components/Login/login.component';
         ButtonModule,
         InputTextModule,
         FormsModule,
-  
+        DialogModule,
         BrowserModule,
         BrowserAnimationsModule,
    

@@ -21,3 +21,8 @@ export class Fill {
     usuarioCreacion?: string;
     usuarioModificacion?: string;
 }
+export class dropEstadoCivil{
+    value?:String;
+    text?:String;
+}
+

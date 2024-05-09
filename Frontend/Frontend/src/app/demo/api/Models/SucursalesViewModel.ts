@@ -13,3 +13,8 @@ export class SucursalesViewModel {
     usuarioCreacion!: string;
     usuarioModificacion!: string;
 }
+
+export class dropSucursales{
+    value?:String;
+    text?:String;
+}

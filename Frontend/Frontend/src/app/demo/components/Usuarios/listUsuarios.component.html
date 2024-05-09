@@ -1,9 +1,10 @@
+<p-toast style="background-color: red ;"></p-toast>
 <div class="grid">
-    <div class="col-12">
+    <div class="col-12" *ngIf="!Detalles">
         <div class="card">
-            <h5>Municipios</h5>
+            <h5>Usuario</h5>
             <div class="flex justify-content-start mb-3">
-                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" (click)="openModal()"></button>
+                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" (click)="openModal('nuevo')"></button>
             </div>
             
             <p-table [value]="usuario" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
@@ -64,11 +65,12 @@
   
                         <td style="align-items: center; text-align: center;">
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
-                                (click)="editUsuario(usuario)">Editar</button>
+                            (click)="openModal('editar', usuario)">Editar</button>
+                                <p-button  label="Detalles"   icon="pi pi-book" size="small"
+                                (click)="detalles(usuario.usuar_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
-                                (click)="deleteUsuario(usuario)">Eliminar</button>
-                                <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-warning"
-                                (click)="showDetails(usuario)">Detalles</button>
+                                (click)="eliminarcategoria(usuario.usuar_Id)">Eliminar</button>
+                     
                         </td>
                     </tr>
                 </ng-template>
@@ -86,39 +88,173 @@
         </div>
     </div>
 </div>
+ 
   
-<!-- Modal para editar usuario -->
+    <div class="col-12" *ngIf="Detalles">
+        <div class="card-body">
+         
+            <div class="card">
+                <div class="card-header">
+
+                    <div class="card-title">
+                        <h1>Auditoria</h1>
+                    </div>
+                    <div class="p-fluid p-formgrid grid">
+                        <div class="field col-12 md:col-4" *ngIf="usuar_Id">
+                            <div class="field rows">
+                                <label for="Codigo" style="font-weight: 800;">Usuario:</label>
+                            </div>
+                            <div class="field rows">
+                                <label for="Codigo">{{ usuario }}</label>
+                            </div>
+                        </div>
+                        
+                        <div class="field col-12 md:col-4">
+                            <div class="field rows">
+                                <label for="Municipio" style="font-weight: 800;">admin:</label>
+                            </div>
+                            <div class="field rows">
+                                <label for="Municipio">{{ admin}}</label>
+                            </div>
+                        </div>
+                        
+                        <div class="field col-12 md:col-4">
+                            <div class="field rows" style="font-weight: 800;">
+                                <label for="Departamento">Empleados:</label>
+                            </div>
+                            <div class="field rows">
+                                <label for="Departamento">{{ empleado }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p-table [value]="staticData">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width:200px">Accion</th>
+                                <th style="width:200px">Usuario</th>
+                                <th style="width:200px">Fecha</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-transaction>
+                            <tr>
+                                <td style="width:200px;">Creado</td>
+                                <td style="width:200px">{{ UsuarioCreacion }}</td>
+                                <td style="width:200px">{{ FechaCreacion }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width:200px;">Modificado</td>
+                                <td style="width:200px">{{ UsuarioModificacion }}</td>
+                                <td style="width:200px">{{ FechaModificacion }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                    <button pButton icon="pi pi-cancel" type="button" (click)="cancelar()" label="Regresar" class="p-button-danger"></button>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+<!-- Fin de la sección grid -->
+
+<!-- Modal para nuevo municipio -->
+<p-dialog [(visible)]="showModal" header="Nuevo Usuario"[modal]="true" [style]="{ width: '50%' }">
+    <ng-template pTemplate="content">
+        <form class="p-grid p-fluid">
+            <div class="p-col-12">
+                <div class="p-field">
+                    <label for="new-Usuario-id">Usuario:</label>
+                    <input type="text" id="new-Usuario-id" name="new-Usuario-id" [(ngModel)]="usuarioSeleccionado.usuar_Usuario" class="p-inputtext" />
+                </div>
+                <div class="p-field">
+                    <label for="new-Usuario-descripcion">Contraseña:</label>
+                    <input type="text" id="new-Usuario-descripcion" name="new-Usuario-descripcion" [(ngModel)]="usuarioSeleccionado.usuar_Contrasena" class="p-inputtext" />
+                </div>
+                <div class="p-col-6">
+                    <label for="new-municipio-dropdown" class="p-d-block">Seleccionar Empleado </label>
+                    <select id="new-municipio-dropdown" [(ngModel)]="usuarioSeleccionado.perso_Id" name="new-municipio-dropdown" class="p-inputtext" style="width: 100%; padding: 0.5rem;">
+                        <option value="" selected disabled>---SELECCIONE---</option>
+                        <option *ngFor="let option of dropdownOptions" [ngValue]="option.value">{{ option.label }}</option>
+                    </select>
+                </div>  
+                <div class="p-col-6">
+                    <label for="new-municipio-dropdown" class="p-d-block">Seleccionar Rol</label>
+                    <select id="new-municipio-dropdown" [(ngModel)]="usuarioSeleccionado.roles_Id" name="new-municipio-dropdown" class="p-inputtext" style="width: 100%; padding: 0.5rem;">
+                        <option value="" selected disabled>---SELECCIONE---</option>
+                        <option *ngFor="let option of dropdownOptions" [ngValue]="option.value">{{ option.label }}</option>
+                    </select>
+                </div>  
+                <div class="p-field-checkbox">
+                    <label for="new-Usuario-descripcion" class="p-checkbox-label">Admin:</label>
+                    <input type="checkbox" id="new-Usuario-descripcion" name="new-Usuario-descripcion" [(ngModel)]="usuarioSeleccionado.usuar_Admin" class="p-checkbox" />
+                </div>
+            </div>      
+        </form>
+        
+             
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button style="color: #0464B4;" pButton type="button" label="Cancelar" class="p-button-text" (click)="closeModal('nuevo')"></button>
+        <button pButton type="button" label="Guardar" class="p-button-danger" (click)="guardarNuevocategoria()"></button>
+    </ng-template>
+</p-dialog>
+
+<!-- Modal para confirmar eliminación -->
+<p-dialog [(visible)]="showDeleteConfirmation" header="Confirmar Eliminación" [modal]="true" [style]="{width: '50%'}">
+    <ng-template pTemplate="content">
+        ¿Estás seguro que deseas eliminar este Usuario?
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton type="button" label="No" class="p-button-text" (click)="cancelarEliminacion()"></button>
+        <button pButton type="button" label="Sí" class="p-button-text" (click)="confirmarEliminacion()"></button>
+    </ng-template>
+</p-dialog>
+
+<!-- Modal para editar municipio -->
 <p-dialog [(visible)]="editModal" [modal]="true" [style]="{ width: '50%' }">
     <ng-template pTemplate="header">
         <h5>Editar Usuario</h5>
     </ng-template>
     <ng-template pTemplate="content">
         <!-- Contenido del formulario de edición -->
-        <form>
-            <div class="p-field">
-                <label for="edit-usuario-id">ID Usuario</label>
-                <input type="text" id="edit-usuario-id" [(ngModel)]="usuarioSeleccionado.usuar_Id" />
+        <form class="p-grid p-fluid">
+            <div class="p-col-12 p-md-6" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <label for="new-Usuario-id" class="p-d-block p-md-none" style="margin-right: 0.5rem;">Usuario:</label>
+                <input type="text" id="new-Usuario-id" name="new-Usuario-id" [(ngModel)]="usuarioSeleccionado.usuar_Usuario" class="p-inputtext" style="flex: 1; margin-right: 0.5rem;" />
             </div>
-            <div class="p-field">
-                <label for="edit-usuario-usuario">Usuario</label>
-                <input type="text" id="edit-usuario-usuario" [(ngModel)]="usuarioSeleccionado.usuar_Usuario" />
-            </div>
+            <div class="p-col-6">
+                <label for="new-municipio-dropdown" class="p-d-block">Seleccionar Empleado </label>
+                <select id="new-municipio-dropdown" [(ngModel)]="usuarioSeleccionado.perso_Id" name="new-municipio-dropdown" class="p-inputtext" style="width: 100%; padding: 0.5rem;">
+                    <option value="" selected disabled>---SELECCIONE---</option>
+                    <option *ngFor="let option of dropdownOptions" [ngValue]="option.value">{{ option.label }}</option>
+                </select>
+            </div>  
+            <div class="p-col-6">
+                <label for="new-municipio-dropdown" class="p-d-block">Seleccionar Rol</label>
+                <select id="new-municipio-dropdown" [(ngModel)]="usuarioSeleccionado.roles_Id" name="new-municipio-dropdown" class="p-inputtext" style="width: 100%; padding: 0.5rem;">
+                    <option value="" selected disabled>---SELECCIONE---</option>
+                    <option *ngFor="let option of dropdownOptions" [ngValue]="option.value">{{ option.label }}</option>
+                </select>
+            </div> 
+            <div class="p-col-12 p-md-6" style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="margin-right: 0.5rem;">
+                    <label for="new-Usuario-descripcion" class="p-d-block p-md-none">Admin:</label>
+                    <input type="checkbox" id="new-Usuario-descripcion" name="new-Usuario-descripcion" [(ngModel)]="usuarioSeleccionado.usuar_Admin" class="p-checkbox" style="margin-right: 0.5rem;" />
+                    <label for="new-Usuario-descripcion" class="p-checkbox-label p-md-none">Es admin</label>
+                </div>
+            </div>      
         </form>
+        
+        
+        
     </ng-template>
     <ng-template pTemplate="footer">
         <!-- Botones del pie de página -->
-        <button pButton type="button" label="Cancelar" (click)="editModal = false"></button>
+        <button pButton type="button" label="Cancelar" (click)="closeModal('editar')"></button>
         <button pButton type="button" label="Guardar" class="p-button-success" (click)="guardarCambios()"></button>
-    </ng-template>
-</p-dialog>
-  
-<!-- Modal para confirmar eliminación -->
-<p-dialog [(visible)]="deleteModal" header="Confirmar Eliminación" [modal]="true" [style]="{width: '50%'}">
-    <ng-template pTemplate="content">
-        ¿Estás seguro que deseas eliminar este usuario?
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <button pButton type="button" label="No" class="p-button-text" (click)="deleteModal = false"></button>
-        <button pButton type="button" label="Sí" class="p-button-text" (click)="eliminarUsuario()"></button>
     </ng-template>
 </p-dialog>

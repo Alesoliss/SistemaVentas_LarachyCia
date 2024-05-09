@@ -34,12 +34,12 @@ export class MunicipiosServiceService {
   // https://localhost:44300/API/Municipios/Detalles?Munic_Id=05
 
   getFill(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`https://localhost:44300/API/Municipios/Detalles?Munic_Id=${codigo}`);
+    return this.http.get<Fill>(`http://sistemalarach.somee.com/API/Municipios/Detalles?Munic_Id=${codigo}`);
   }
 
 
 
   getdetalles(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`https://localhost:44300/API/Municipios/Detalles?Munic_Id=${codigo}`);
+    return this.http.get<Fill>(`http://sistemalarach.somee.com/API/Municipios/Detalles?Munic_Id=${codigo}`);
   }
 }

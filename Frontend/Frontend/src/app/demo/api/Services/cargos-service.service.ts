@@ -9,7 +9,7 @@ import { Observable,map } from 'rxjs';
 export class CargosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'http://sistemalarach.somee.com/API/Cargo/Listado';
+  Url = 'https://localhost:44300/API/Cargo/Listado';
   private baseUrl = 'http://sistemalarach.somee.com/API/Cargo';
 
   insertarCargo(formData: any): Observable<any> {

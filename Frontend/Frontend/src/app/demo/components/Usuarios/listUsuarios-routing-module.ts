@@ -5,6 +5,7 @@ import { UsuarioListadoComponent } from './listUsuarios.component';
 @NgModule({
 	imports: [RouterModule.forChild([
 		{ path: '', component: UsuarioListadoComponent }
+
 	])],
 	exports: [RouterModule]
 })

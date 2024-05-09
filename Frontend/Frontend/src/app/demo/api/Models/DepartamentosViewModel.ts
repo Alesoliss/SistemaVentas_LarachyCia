@@ -21,3 +21,7 @@ export class Fill {
     usuarioCreacion?: string;
     usuarioModificacion?: string;
 }
+export class dropDepartamento{
+    value?:String;
+    text?:String;
+}

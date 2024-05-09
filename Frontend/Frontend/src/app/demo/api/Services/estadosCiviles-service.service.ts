@@ -9,7 +9,7 @@ import { Observable,map } from 'rxjs';
 export class EstadosCivilesServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'http://sistemalarach.somee.com/API/EstadosCiviles/Listado';
+  Url = 'https://localhost:44300/API/EstadosCiviles/Listado';
   private baseUrl = 'http://sistemalarach.somee.com/API/EstadosCiviles';
 
   
