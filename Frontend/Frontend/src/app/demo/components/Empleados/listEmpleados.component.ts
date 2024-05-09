@@ -1,19 +1,27 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgModule } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Product } from 'src/app/demo/api/product';
 import {Router} from '@angular/router';
-import { Table } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { EmpleadoViewModel, EmpleadoEnviar, Fill} from '../../api/Models/EmpleadosViewModel';
 import { EmpleadosServiceService } from '../../api/Services/empleados-service.service';
 // import { MunicipiosServiceService } from '../../api/Services/municipios-service.service';
-import { FormGroup, FormControl,  Validators  } from '@angular/forms';
+import { FormGroup, FormControl,  Validators, FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { dropSucursales } from '../../api/Models/SucursalesViewModel';
 import { dropMunicipio } from '../../api/Models/MunicipiosViewModel';
 import { dropDepartamento } from '../../api/Models/DepartamentosViewModel';
 import { dropEstadoCivil } from '../../api/Models/EstadosCivilesViewModel';
 import { dropCargo } from '../../api/Models/CargosViewModel';
 import { MensajeViewModel } from '../../api/Models/MensajeViewModel';
-
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { DropdownModule } from "primeng/dropdown";
+import { RippleModule } from 'primeng/ripple';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 @Component({
   templateUrl: './listEmpleados.component.html',
   styleUrl: './listEmpleados.component.css',
@@ -79,12 +87,12 @@ export class ListEmpleadoComponent {
 
   ngOnInit(): void {
     this.clienteForm = new FormGroup({
-      Empl_DNI: new FormControl(0,Validators.required),
+      emple_DNI: new FormControl(0,Validators.required),
       emple_PrimerNombre: new FormControl("",Validators.required),
       emple_SegundoNombre: new FormControl("",Validators.required),
       emple_PrimerApellido: new FormControl("",Validators.required),
       emple_SegundoApellido: new FormControl("",Validators.required),
-      // Empl_Apellido: new FormControl(data.empl_Apellido, Validators.required),
+      emple_Telefono: new FormControl("", Validators.required),
       emple_Sexo: new FormControl("", Validators.required),
       emple_Direccion: new FormControl("", Validators.required),
       cargo_Id: new FormControl("", Validators.required),
@@ -93,8 +101,8 @@ export class ListEmpleadoComponent {
       emple_Correo: new FormControl("", Validators.required),
 
 
-      Depar_Id: new FormControl("", [Validators.required]),
-      munic_Id: new FormControl("", [Validators.required]),
+      depar_Id: new FormControl("0", [Validators.required]),
+      munic_Id: new FormControl("0", [Validators.required]),
     });
     this.service.getDropDownsDepartamentos().subscribe((data: dropDepartamento[]) => {
     console.log(data);
@@ -111,9 +119,9 @@ export class ListEmpleadoComponent {
         console.log(data);
         this.cargo = data;
         });
-        this.service.getDropDownCargo().subscribe((data: dropSucursales[]) => {
+        this.service.getDropDownsSucursal().subscribe((data: dropSucursales[]) => {
           console.log(data);
-          this.cargo = data;
+          this.rol = data;
           });
         
 
@@ -134,7 +142,7 @@ export class ListEmpleadoComponent {
       this.service.getMunicipios(departmentId).subscribe(
         (data: any) => {
           this.municipios = data; 
-          this.clienteForm.get('Muni_Codigo').setValue('0'); 
+          this.clienteForm.get('munic_Id').setValue('0'); 
         },
         error => {
           console.error('Error fetching municipios:', error);
@@ -209,7 +217,7 @@ ValidarNumero(event: KeyboardEvent) {
   }
 }
 onSubmit() {
-  if (this.clienteForm.valid && this.clienteForm.get('Depar_Id').value !== '0' && this.clienteForm.get('munic_Id').value !== '0'&& this.clienteForm.get('Esta_Id').value !== '0' ) {
+  if (this.clienteForm.valid && this.clienteForm.get('depar_Id').value !== '0' && this.clienteForm.get('Munic_Id').value !== '0'&& this.clienteForm.get('estad_Id').value !== '0' ) {
      this.viewModel = this.clienteForm.value;
      if (this.Valor == "Agregar") {
       this.service.EnviarEmpleado(this.viewModel).subscribe((data: MensajeViewModel[]) => {
@@ -281,12 +289,12 @@ Fill(codigo) {
         next: (data: Fill) => {
 
           this.clienteForm = new FormGroup({
-            Empl_DNI: new FormControl(data.emple_DNI,Validators.required),
+            emple_DNI: new FormControl(data.emple_DNI,Validators.required),
             emple_PrimerNombre: new FormControl(data.emple_PrimerNombre,Validators.required),
             emple_SegundoNombre: new FormControl(data.emple_SegundoNombre,Validators.required),
             emple_PrimerApellido: new FormControl(data.emple_PrimerApellido,Validators.required),
             emple_SegundoApellido: new FormControl(data.emple_SegundoApellido,Validators.required),
-            // Empl_Apellido: new FormControl(data.empl_Apellido, Validators.required),
+            emple_Telefono: new FormControl(data.emple_Telefono, Validators.required),
             emple_Sexo: new FormControl(data.emple_Sexo, Validators.required),
             emple_Direccion: new FormControl(data.emple_Direccion, Validators.required),
             cargo_Id: new FormControl(data.cargo_Id, Validators.required),
@@ -295,19 +303,19 @@ Fill(codigo) {
             emple_Correo: new FormControl(data.emple_Correo, Validators.required),
 
    
-            Depar_Id: new FormControl(data.Depar_Id, [Validators.required]),
-            munic_Id: new FormControl(data.munic_Id, [Validators.required]),
+            depar_Id: new FormControl(data.depar_Id, [Validators.required]),
+            Munic_Id: new FormControl(data.munic_Id, [Validators.required]),
         });
 
           this.MunicipioCodigo = data.munic_Id;
           console.log(this.MunicipioCodigo);
-          this.service.getMunicipios(data.Depar_Id).subscribe(
+          this.service.getMunicipios(data.depar_Id).subscribe(
             (data: any) => {
               this.municipios = data; 
-              this.clienteForm.get('Muni_Codigo').setValue(this.MunicipioCodigo); 
+              this.clienteForm.get('Munic_Id').setValue(this.MunicipioCodigo); 
             }
           );
-            this.ID = data.emple_Id.toString();
+            this.ID = data.emple_Id;
             this.Collapse= true;
             this.DataTable = false;
             this.Agregar = false;
@@ -321,3 +329,23 @@ Fill(codigo) {
 }
 
 
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    TableModule,
+    ButtonModule,
+    InputTextModule,
+    DialogModule,
+    ToastModule ,
+    MatExpansionModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+		DropdownModule,
+    RippleModule,
+		ConfirmPopupModule
+  ],
+  declarations: [ListEmpleadoComponent]
+})
+export class DepartamentosListadoModule {}

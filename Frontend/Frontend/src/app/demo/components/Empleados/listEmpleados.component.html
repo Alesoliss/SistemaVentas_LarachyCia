@@ -1,4 +1,4 @@
-<!-- <p-toast style="background-color: red ;"></p-toast>
+ <p-toast style="background-color: red ;"></p-toast>
 
 <div class="main-card mb-3 card"> 
     <div class="card-header">
@@ -13,99 +13,122 @@
           <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
               <div class="p-fluid p-formgrid grid">
                 <div class="field col-12 md:col-6">
-                    <label for="Empl_DNI">DNI</label>
-                    <input pInputText id="Empl_DNI" formControlName="Empl_DNI" type="text" required autofocus 
-                           [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['Empl_DNI'].invalid}"
+                    <label for="emple_DNI">DNI</label>
+                    <input pInputText id="emple_DNI" formControlName="emple_DNI" type="text" required autofocus 
+                           [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['emple_DNI'].invalid}"
                            (keydown)="ValidarNumeros($event)" maxlength="13" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['Empl_DNI'].invalid" style="color: red !important;">Nombre Requerido</small>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_DNI'].invalid" style="color: red !important;">DNI Requerido</small>
                  </div>
                   <div class="field col-12 md:col-6">
-                      <label for="Cliente">Nombre</label>
-                      <input pInputText id="Empl_Nombre" formControlName="Empl_Nombre" type="text" required autofocus 
-                             [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['Empl_Nombre'].invalid}"
+                      <label for="Cliente">Primer Nombre</label>
+                      <input pInputText id="emple_PrimerNombre" formControlName="emple_PrimerNombre" type="text" required autofocus 
+                             [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['emple_PrimerNombre'].invalid}"
                              (keydown)="validarTexto($event)" />
-                      <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['Empl_Nombre'].invalid" style="color: red !important;">Nombre Requerido</small>
+                      <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_PrimerNombre'].invalid" style="color: red !important;">Nombre Requerido</small>
                    </div>
+                   <div class="field col-12 md:col-6">
+                    <label for="Cliente">Segundo nombre</label>
+                    <input pInputText id="emple_SegundoNombre" formControlName="emple_SegundoNombre" type="text" required autofocus 
+                           [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['emple_SegundoNombre'].invalid}"
+                           (keydown)="validarTexto($event)" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_SegundoNombre'].invalid" style="color: red !important;">segundo Nombre Requerido</small>
+                 </div>
+                 <div class="field col-12 md:col-6">
+                    <label for="Cliente">Primer apellido</label>
+                    <input pInputText id="emple_PrimerApellido" formControlName="emple_PrimerApellido" type="text" required autofocus 
+                           [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['emple_PrimerApellido'].invalid}"
+                           (keydown)="validarTexto($event)" />
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_PrimerApellido'].invalid" style="color: red !important;">Primer apellido Requerido</small>
+                 </div>
 
                   <div class="field col-12 md:col-6">
-                      <label for="Cliente">Apellido</label>
-                      <input pInputText id="Cliente" formControlName="Empl_Apellido" type="text" required autofocus 
-                             [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['Empl_Apellido'].invalid}"
+                      <label for="emple_SegundoApellido">segundo Apellido</label>
+                      <input pInputText id="emple_SegundoApellido" formControlName="emple_SegundoApellido" type="text" required autofocus 
+                             [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['emple_SegundoApellido'].invalid}"
                              (keydown)="validarTexto($event)" />
-                      <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['Empl_Apellido'].invalid" style="color: red !important;">Apellido Requerido</small>
+                      <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_SegundoApellido'].invalid" style="color: red !important;">segundo Apellido Requerido</small>
                    </div>
 
                    <div class="field col-12 md:col-6">
-                        <label for="Empl_FechaNac" class="form-label">Fecha de Nacimiento</label>
-                        <input pInputText id="Empl_FechaNac" class="form-control" formControlName="Empl_FechaNac" type="datetime-local" required autofocus />
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['Empl_FechaNac'].invalid" style="color: red !important;">Apellido Requerido</small>
+                        <label for="emple_Direccion" class="form-label">Direccion</label>
+                        <input pInputText id="emple_Direccion" class="form-control" formControlName="emple_Direccion" type="text" required autofocus />
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_Direccion'].invalid" style="color: red !important;">Direccion Requerido</small>
 
                     </div>
 
                     <div class="field col-12 md:col-6">
-                        <label for="Empl_Sexo" class="form-label">Sexo</label>
+                        <label for="emple_Sexo" class="form-label">Sexo</label>
                         <div class="col-md-3">
                             <label>
-                                <input type="radio" class="form-check-input" name="sexo" value="M" checked formControlName="Empl_Sexo"> Masculino
+                                <input type="radio" class="form-check-input" name="sexo" value="M" checked formControlName="emple_Sexo"> Masculino
                               </label>
                             </div>
 
                             <div class="col-md-3">
                                 <label>
-                                    <input type="radio" class="form-check-input" name="sexo" value="F" formControlName="Empl_Sexo"> Femenino
+                                    <input type="radio" class="form-check-input" name="sexo" value="F" formControlName="emple_Sexo"> Femenino
                                   </label>
                                 </div>
                             </div>
 
                             <div class="field col-12 md:col-6">
                                 <label for="state">Estado Civil</label>
-                                <select formControlName="Esta_Id" pInputText id="estado" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('Esta_Id').value === '0'}" >
+                                <select formControlName="estad_Id" pInputText id="estad_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('estad_Id').value === '0'}" >
                                   <option *ngFor="let estadocivil of estadocivil" [value]="estadocivil.value">{{ estadocivil.text }}</option>
                                 </select>
-                                <small *ngIf="submitted && clienteForm.get('Esta_Id').value === '0'" style="color: red;">Estado Civil Requerido</small>
+                                <small *ngIf="submitted && clienteForm.get('estad_Id').value === '0'" style="color: red;">Estado Civil Requerido</small>
                               </div>
-                  
+                              <div class="field col-12 md:col-6">
+                                <label for="state">Sucursal</label>
+                                <select formControlName="sucur_Id" pInputText id="sucur_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('sucur_Id').value === '0'}" >
+                                  <option *ngFor="let rol of rol" [value]="rol.value">{{ rol.text }}</option>
+                                </select>
+                                <small *ngIf="submitted && clienteForm.get('sucur_Id').value === '0'" style="color: red;">Sucursal Requerido</small>
+                              </div>
 
                               
                             <div class="field col-12 md:col-6">
+                                
                                 <label for="state">Cargo</label>
-                                <select formControlName="Carg_Id" pInputText id="cargo" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('Carg_Id').value === '0'}" >
+                                <select formControlName="cargo_Id" pInputText id="cargo_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('cargo_Id').value === '0'}" >
                                   <option *ngFor="let cargo of cargo" [value]="cargo.value">{{ cargo.text }}</option>
                                 </select>
-                                <small *ngIf="submitted && clienteForm.get('Carg_Id').value === '0'" style="color: red;">El Cargo Requerido</small>
+                                <small *ngIf="submitted && clienteForm.get('cargo_Id').value === '0'" style="color: red;">El Cargo Requerido</small>
                               </div>
                   
                   
                       <div class="field col-12 md:col-6">
                         <label for="Departamento">Departamento</label>
-                        <select formControlName="Depar_Id" pInputText id="Departamento" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('Depa_Codigo').value === '0'}"
-                          (change)="onDepartmentChange(clienteForm.get('Depar_Id').value)">
+                        <select formControlName="depar_Id" pInputText id="depar_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('depar_Id').value === '0'}"
+                          (change)="onDepartmentChange(clienteForm.get('depar_Id').value)">
                           <option *ngFor="let depa of departamentos" [value]="depa.value">{{ depa.text }}</option>
                          </select>      
-                          <small *ngIf="submitted && clienteForm.get('Depar_Id').value === '0'" style="color: red;">Departamento Requerido</small>
+                          <small *ngIf="submitted && clienteForm.get('depar_Id').value === '0'" style="color: red;">Departamento Requerido</small>
                       </div>
 
                       <div class="field col-12 md:col-6">
                           <label for="Municipio">Municipio</label>
-                          <select formControlName="munic_Id" pInputText id="Municipio" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('Muni_Codigo').value === '0'}" >
+                          <select formControlName="Munic_Id" pInputText id="Munic_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('Munic_Id').value === '0'}" >
                             <option *ngFor="let muni of municipios" [value]="muni.value">{{ muni.text }}</option>
                           </select>
-                          <small *ngIf="submitted && clienteForm.get('munic_Id').value === '0'" style="color: red;">Municipio Requerido</small>
+                          <small *ngIf="submitted && clienteForm.get('Munic_Id').value === '0'" style="color: red;">Municipio Requerido</small>
                         </div>
 
 
                         <div class="field col-12 md:col-6">
-                            <label for="Cliente">Correo</label>
-                            <input pInputText id="Cliente" formControlName="Empl_Correo" type="text" required autofocus 
-                                   [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['Empl_Correo'].invalid}"
+                            <label for="emple_Correo">Correo</label>
+                            <input pInputText id="emple_Correo" formControlName="emple_Correo" type="text" required autofocus 
+                                   [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.controls['emple_Correo'].invalid}"
                                    (keydown)="validarTexto($event)" />
-                            <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['Empl_Correo'].invalid" style="color: red !important;">Correo Requerido</small>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_Correo'].invalid" style="color: red !important;">Correo Requerido</small>
                          </div>
+
+                         
                         
                     </div>
 
                     <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
-                        <button pButton icon="pi pi-check" type="submit" label="Agregar" class="p-button-outlined"></button>
+                        <button pButton icon="pi pi-check" type="submit"  label="Agregar" class="p-button-outlined"></button>
                         <button pButton icon="pi pi-stop" type="button" (click)="cancelar()" label="Cancelar" class="p-button-outlined"></button>
                       </div>
         
@@ -121,57 +144,38 @@
 
 
 
-        <p-table #dt1 [value]="Empleado" dataKey="empl_Id" [rows]="10" [loading]="loading" [rowHover]="true" [class.hidden]="!DataTable" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['Empl_Id,Empl_Nombre,Empl_Apellido, Empl_Sexo,Carg_Cargo,Empl_FechaNaciminto,Esta_Id,Muni_Municipio']" responsiveLayout="scroll">
+    <p-table #dt1 [value]="Empleado" dataKey="emple_Id" [rows]="10" [loading]="loading" [rowHover]="true" [class.hidden]="!DataTable" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['emple_Id,emple_PrimerNombre,emple_PrimerApellido, emple_Sexo,emple_Correo']" responsiveLayout="scroll">
 
             <ng-template pTemplate="header">
                 <tr>
                     <th style="min-width: 12rem">
                         <div class="flex justify-content-between align-items-center">
                              DNI
-                            <p-columnFilter type="text" field="empl_Id" display="menu" placeholder="Search by name"></p-columnFilter>
+                            <p-columnFilter type="text" field="emple_Id" display="menu" placeholder="Search by name"></p-columnFilter>
                         </div>
                     </th>
                     <th style="min-width: 12rem">
                         <div class="flex justify-content-between align-items-center">
                             Nombre
-                            <p-columnFilter type="text" field="empl_Nombre" display="menu" placeholder="Search by country"></p-columnFilter>
+                            <p-columnFilter type="text" field="emple_PrimerNombre" display="menu" placeholder="Search by country"></p-columnFilter>
                         </div>
                     </th>
                     <th style="min-width: 12rem">
                         <div class="flex justify-content-between align-items-center">
                             Apellido
-                            <p-columnFilter type="text" field="empl_Apellido" display="menu" placeholder="Search by country"></p-columnFilter>
-                        </div>
-                    </th>
-                    <th style="min-width: 12rem">
-                        <div class="flex justify-content-between align-items-center">
-                            Fecha
-                            <p-columnFilter type="text" field="empl_FechaNac" display="menu" placeholder="Search by country"></p-columnFilter>
+                            <p-columnFilter type="text" field="emple_PrimerApellido" display="menu" placeholder="Search by country"></p-columnFilter>
                         </div>
                     </th>
                     <th style="min-width: 12rem">
                         <div class="flex justify-content-between align-items-center">
                             Sexo
-                            <p-columnFilter type="text" field="empl_Sexo" display="menu" placeholder="Search by country"></p-columnFilter>
+                            <p-columnFilter type="text" field="emple_Sexo" display="menu" placeholder="Search by country"></p-columnFilter>
                         </div>
                     </th>
                     <th style="min-width: 12rem">
                         <div class="flex justify-content-between align-items-center">
-                            Estado Civil
-                            <p-columnFilter type="text" field="estado_Civil" display="menu" placeholder="Search by country"></p-columnFilter>
-                        </div>
-                    </th>
-                    <th style="min-width: 12rem">
-                        <div class="flex justify-content-between align-items-center">
-                            Cargo
-                            <p-columnFilter type="text" field="carg_Cargo" display="menu" placeholder="Search by country"></p-columnFilter>
-                        </div>
-                    </th>
-                 
-                    <th style="min-width: 12rem">
-                        <div class="flex justify-content-between align-items-center">
-                            Municipio
-                            <p-columnFilter type="text" field="muni_Municipio" display="menu" placeholder="Search by country"></p-columnFilter>
+                            Correo
+                            <p-columnFilter type="text" field="emple_Correo" display="menu" placeholder="Search by country"></p-columnFilter>
                         </div>
                     </th>
                     <th style="min-width: 14rem">
@@ -182,34 +186,26 @@
             <ng-template pTemplate="body" let-empl>
                 <tr>
                     <td>
-                        {{empl.empl_DNI}}
+                        {{empl.emple_Id}}
                     </td>
                     <td>
-                        {{empl.empl_Nombre}}
+                        {{empl.emple_PrimerNombre}}
                     </td>
                     <td>
-                        {{empl.empl_Apellido}}
-                    </td>
-                    <td>
-                        {{empl.empl_FechaNac}}
+                        {{empl.emple_PrimerApellido}}
                     </td>
                     <td>
                         {{empl.empl_Sexo}}
                     </td>
                     <td>
-                        {{empl.esta_EstadoCivil}}
+                        {{empl.emple_Correo}}
                     </td>
-                    <td>
-                        {{empl.carg_Cargo}}
-                    </td>
-               
-                    <td>
-                        {{empl.muni_Municipio}}
-                    </td>
+                    
+                   
                     <td style="display: flex; justify-content: space-around;">
-                        <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(empl.empl_Id)"></button>
-                        <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(empl.empl_Id)"></button>
-                        <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(empl.empl_Id)"></button>
+                        <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(empl.emple_Id)"></button>
+                        <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(empl.emple_Id)"></button>
+                        <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(empl.emple_Id)"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -230,7 +226,7 @@
 
 
   
-            <div class="card-body" [class.hidden]="!Detalles">
+             <div class="card-body" [class.hidden]="!Detalles">
                 <div class="p-fluid p-formgrid grid">
     
                     <div class="field col-12 md:col-4">
@@ -238,7 +234,7 @@
                             <label for="Codigo" style="font-weight: 800;">DNI:</label>
                         </div>
                         <div class="field rows">
-                            <label for="Codigo">{{ Detalle_Codigo }}</label>
+                            <label for="Codigo">{{ Detalle_DNI }}</label>
                         </div>
                     </div>
                     
@@ -247,7 +243,7 @@
                             <label for="Municipio" style="font-weight: 800;">Nombre:</label>
                         </div>
                         <div class="field rows">
-                            <label for="Municipio">{{ Detalle_Nombre }}</label>
+                            <label for="Municipio">{{ Detalle_PrimerNombre }}</label>
                         </div>
                     </div>
     
@@ -258,7 +254,7 @@
                             <label for="Departamento">Apellido:</label>
                         </div>
                         <div class="field rows">
-                            <label for="Departamento">{{ Detalle_Apellido}}</label>
+                            <label for="Departamento">{{ Detalle_SegundoApellido}}</label>
                         </div>
                     </div>
            
@@ -283,10 +279,10 @@
 
                     <div class="field col-12 md:col-4">
                         <div class="field rows">
-                            <label for="Municipio" style="font-weight: 800;">Cargo:</label>
+                            <label for="Municipio" style="font-weight: 800;">Correo:</label>
                         </div>
                         <div class="field rows">
-                            <label for="Municipio">{{ Detalle_Cargo }}</label>
+                            <label for="Municipio">{{ Detalle_Correo }}</label>
                         </div>
                     </div>
                
@@ -362,4 +358,4 @@
     </div>
     
 
- -->
+ 

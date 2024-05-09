@@ -58,14 +58,7 @@ namespace Sistema_Larach.API.Controllers
 
         };
             var list = _supermercadoService.InsertEmpleado(modelo);
-            if (list.Success)
-            {
-                return Ok(list);
-            }
-            else
-            {
-                return Problem(list.Message);
-            }
+            return Ok(new { success = true, message = list.Message });
         }
 
         [HttpPut("Actualizar")]
@@ -95,21 +88,14 @@ namespace Sistema_Larach.API.Controllers
 
             };
             var list = _supermercadoService.UpdateEmpleado(modelo);
-            if (list.Success)
-            {
-                return Ok(list);
-            }
-            else
-            {
-                return Problem(list.Message);
-            }
+            return Ok(new { success = true, message = list.Message });
         }
-        [HttpGet("Detalles")]
+        [HttpGet("Detalles/{Emple_Id}")]
         public IActionResult Details(int Emple_Id)
         {
-            var list = _supermercadoService.BuscarEmpleados(Emple_Id);
+            var list = _supermercadoService.obterEmpleado(Emple_Id);
 
-            return Ok(list);
+            return Json(list.Data);
         }
 
         [HttpDelete("Eliminar/{Emple_Id}")]
@@ -117,7 +103,7 @@ namespace Sistema_Larach.API.Controllers
         {
             var result = new ServiceResult();
 
-            var list = _supermercadoService.BuscarEmpleados(Emple_Id);
+            var list = _supermercadoService.DeleteEmpleados(Emple_Id);
          
                 return Ok(list);
         

@@ -26,7 +26,7 @@ export class EmpleadosServiceService {
   }
 
   getMunicipios(codigo){
-    return this.http.get<dropMunicipio[]>(BASE_URL + 'API/Municipio/Lista/' + codigo )
+    return this.http.get<dropMunicipio[]>(BASE_URL + 'API/Municipios/Lista/' + codigo )
   }
 
 
@@ -36,7 +36,7 @@ export class EmpleadosServiceService {
   getDropDownCargo(){
     return this.http.get<dropCargo[]>(this.urlDropC)
   }
-  urlDropE = BASE_URL + 'API/EstadoCivil/DropDown'
+  urlDropE = BASE_URL + 'API/EstadosCiviles/DropDown'
 
   getDropDownsEstado(){
     return this.http.get<dropEstadoCivil[]>(this.urlDropE)
@@ -61,7 +61,7 @@ export class EmpleadosServiceService {
 
 
   EnviarEmpleado(formData: any): Observable<any> {
-    return this.http.post<any>(BASE_URL + 'API/Empleado/Create/', formData).pipe(
+    return this.http.post<any>(  'https://localhost:44300/API/Empleados/Create', formData).pipe(
       map(response => {
         return response;
       }),
@@ -70,13 +70,13 @@ export class EmpleadosServiceService {
 
     
   getFill(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`${BASE_URL + 'API/Empleado/Detalles/' + codigo}`);
+    return this.http.get<Fill>(`${ 'https://localhost:44300/API/Empleados/Detalles/' + codigo}`);
   }
   EliminarEmpleado(ID): Observable<any>{
-    return this.http.delete<any>(`${BASE_URL + 'API/Empleado/Delete/' + ID}`)
+    return this.http.delete<any>(`${ 'https://localhost:44300/API/Empleados/Eliminar/' + ID}`)
   }
   ActualizarEmpleado(formData){
-    return this.http.put(BASE_URL + 'API/Empleado/Actualizar/', formData)
+    return this.http.put( 'https://localhost:44300/API/Empleados/Actualizar/', formData)
   }
 
   

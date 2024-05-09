@@ -10,7 +10,8 @@ export class EmpleadoViewModel {
     emple_Telefono!: String;
     emple_Correo!: String;
     emple_Direccion!: String;
-    munic_Id!: Number;
+    munic_Id!: string;
+    depar_Id!: string;
     cargo_Id!: Number;
     emple_UsuarioCreacion!: number;
     emple_FechaCreacion!: Date;
@@ -43,13 +44,13 @@ export class EmpleadoEnviar {
     munic_Id!: Number;
     cargo_Id!: Number;
     sucur_Id!: Number;
-
+    depar_Id!: string;
 
 
 }
 
 export class Fill {
-    emple_Id!: number;
+    emple_Id!: string;
     emple_DNI!: string;
     emple_PrimerNombre!: string;
     emple_SegundoNombre!: String;
@@ -61,7 +62,7 @@ export class Fill {
     emple_Correo!: String;
     emple_Direccion!: String;
     munic_Id!: string;
-    Depar_Id!: string;
+    depar_Id!: string;
     cargo_Id!: Number;
     emple_UsuarioCreacion!: number;
     emple_FechaCreacion!: Date;

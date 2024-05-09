@@ -55,8 +55,8 @@ namespace Sistema_Larach.DataAccess.Repository
 
 
                 var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
-
-                return new RequestStatus { CodeStatus = result, MessageStatus = "" };
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
             //throw new NotImplementedException();
         }
@@ -120,8 +120,8 @@ namespace Sistema_Larach.DataAccess.Repository
                 parameter.Add("@Sucur_Id", item.Sucur_Id);
 
                 var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
-
-                return new RequestStatus { CodeStatus = result, MessageStatus = "" };
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
         }
 
@@ -191,12 +191,31 @@ namespace Sistema_Larach.DataAccess.Repository
 
         public RequestStatus Delete(int? id)
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Emple_Id", id);
+
+                var result = db.QueryFirst(ScriptDataBase.EmpleadoEliminar, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+            }
         }
 
         IEnumerable<tbEmpleados> IRepository<tbEmpleados>.List()
         {
             throw new NotImplementedException();
+        }
+
+        public tbEmpleados Find(int id)
+        {
+            tbEmpleados result = new tbEmpleados();
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Emple_Id", id);
+                result = db.QueryFirst<tbEmpleados>(ScriptDataBase.EmpleadoBuscar, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
         }
 
         public tbEmpleados Find(int? id)
