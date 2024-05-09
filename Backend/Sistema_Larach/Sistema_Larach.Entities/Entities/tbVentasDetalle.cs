@@ -99,21 +99,21 @@ namespace Sistema_Larach.Entities
         public int Year { get; set; }
         [NotMapped]
         public int Month { get; set; }
-        [NotMapped]
-        public int TotalVendido { get; set; }
-        [NotMapped]
+        //[NotMapped]
+        //public int TotalVendido { get; set; }
+        //[NotMapped]
 
-        public string NombreProducto { get; set; }
-        [NotMapped]
+        //public string NombreProducto { get; set; }
+        //[NotMapped]
 
-        public string Cantidad { get; set; }
-        [NotMapped]
+        //public string Cantidad { get; set; }
+        //[NotMapped]
 
-        public string Producto { get; set; }
+        //public string Producto { get; set; }
 
-        [NotMapped]
+        //[NotMapped]
 
-        public string TotalVentas { get; set; }
+        //public string TotalVentas { get; set; }
 
     }
 }

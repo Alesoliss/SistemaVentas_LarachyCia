@@ -117,7 +117,7 @@ namespace Sistema_Larach.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpPost("Insert/Usuarios")]
+        [HttpPost("Insert")]
         public IActionResult InsertUsuarios(UsuariosViewModel item)
         {
             try
@@ -155,7 +155,7 @@ namespace Sistema_Larach.API.Controllers
 
 
 
-        [HttpPut("Update/Usuarios")]
+        [HttpPut("Update")]
         public IActionResult UpdateCompraDetalle(UsuariosViewModel item)
         {
             var model = _mapper.Map<tbUsuarios>(item);
@@ -167,9 +167,9 @@ namespace Sistema_Larach.API.Controllers
                 Perso_Id = item.Perso_Id,
                 Roles_Id = item.Roles_Id,
                 Usuar_Admin = item.Usuar_Admin,
-                Usuar_Tipo = item.Usuar_Tipo,
-                Usuar_UsuarioModificacion = item.Usuar_UsuarioModificacion,
-                Usuar_FechaModificacion = item.Usuar_FechaModificacion
+                Usuar_Tipo = true,
+                Usuar_UsuarioModificacion = 1,
+                Usuar_FechaModificacion = DateTime.Now
             };
             var result = _accesoService.UpdateUsuarios(modelo);
 
@@ -178,7 +178,7 @@ namespace Sistema_Larach.API.Controllers
         }
 
 
-        [HttpDelete("Delete/Usuarios")]
+        [HttpDelete("Delete/{Usuar_Id}")]
         public IActionResult DeleteCompraDetalle(int Usuar_Id)
         {
             var list = _accesoService.DeleteUsuarios(Usuar_Id);
@@ -193,7 +193,7 @@ namespace Sistema_Larach.API.Controllers
             return Ok(list);
         }
 
-        [HttpGet("Detalles/Usuarios")]
+        [HttpGet("Detalles")]
         public IActionResult DetallesUsuarios(int Usuar_Id)
         {
             var list = _accesoService.DetallesUsuarios(Usuar_Id);

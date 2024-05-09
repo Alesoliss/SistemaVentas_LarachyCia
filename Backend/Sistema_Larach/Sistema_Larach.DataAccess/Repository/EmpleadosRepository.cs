@@ -45,7 +45,7 @@ namespace Sistema_Larach.DataAccess.Repository
                 parametro.Add("@Emple_Sexo", item.Emple_Sexo);
                 parametro.Add("@Estad_Id", item.Estad_Id);
                 parametro.Add("@Emple_Telefono", item.Emple_Telefono);
-                parametro.Add("@Emple_Correo", item.Munic_Id);
+                parametro.Add("@Emple_Correo", item.Emple_Correo);
                 parametro.Add("@Emple_Direccion", item.Emple_Direccion);
                 parametro.Add("@Munic_Id", item.Munic_Id);
                 parametro.Add("@Cargo_Id", item.Cargo_Id);
@@ -113,7 +113,7 @@ namespace Sistema_Larach.DataAccess.Repository
                 parameter.Add("@Emple_Telefono", item.Emple_Telefono);
                 parameter.Add("@Emple_Correo", item.Emple_Correo);
                 parameter.Add("@Emple_Direccion", item.Emple_Direccion);
-                parameter.Add("@Munic_Id", 1);
+                parameter.Add("@Munic_Id", item.Munic_Id);
                 parameter.Add("@Cargo_Id", item.Cargo_Id);
                 parameter.Add("@Emple_UsuarioCreacion", 1);
                 parameter.Add("@Emple_fechaCreacion", DateTime.Now);
@@ -178,7 +178,7 @@ namespace Sistema_Larach.DataAccess.Repository
 
 
 
-        public IEnumerable<tbEmpleados> Lista()
+        public IEnumerable<tbEmpleados> ListaEmpleado()
         {
             string sql = ScriptDataBase.EmpleadoListar;
             List<tbEmpleados> result = new List<tbEmpleados>();

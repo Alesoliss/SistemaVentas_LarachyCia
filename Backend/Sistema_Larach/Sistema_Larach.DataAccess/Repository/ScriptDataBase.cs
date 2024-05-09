@@ -57,7 +57,7 @@ namespace Sistema_Larach.DataAccess.Repository
 
         #region Empleados
         public static string EmpleadoInsertar = "[Cmrl].[sp_Empleados_Insertar]";
-        public static string EmpleadoListar = "";
+        public static string EmpleadoListar = "[Cmrl].[SP_Empleados_Lista]";
         public static string EmpleadoActualizar = "[Cmrl].[SP_Empleados_Actualizar]";
         public static string EmpleadoBuscar = "[Cmrl].[sp_Empleados_buscar]";
         public static string EmpleadoEliminar = "[Cmrl].[SP_Empleados_Eliminar]";

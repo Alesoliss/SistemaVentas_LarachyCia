@@ -46,7 +46,12 @@ namespace Sistema_Larach.Entities
         public string Sucur_Descripcion { get; set; }
         [NotMapped]
         public string Cargo_Descripcion { get; set; }
-
+        [NotMapped]
+        public string Estad_Descripcion { get; set; }
+        [NotMapped]
+        public string Depa_Departamento { get; set; }
+        [NotMapped]
+        public string Depar_Id { get; set; }
         public virtual tbCargos Cargo { get; set; }
         public virtual tbUsuarios Emple_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Emple_UsuarioModificacionNavigation { get; set; }

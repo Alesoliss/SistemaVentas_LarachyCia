@@ -132,5 +132,21 @@ namespace Sistema_Larach.DataAccess.Repository
                 return result;
             }
         }
+
+        public IEnumerable<tbMunicipios> Lista(string id)
+        {
+            const string sql = "[Gral].[Sp_Municipios_MostrarPorDepartamento]";
+
+            List<tbMunicipios> result = new List<tbMunicipios>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Depa_Codigo", id);
+                result = db.Query<tbMunicipios>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Sistema_Larach.BusinessLogic;
 using Sistema_Larach.BusinessLogic.Services;
 using Sistema_Larach.Common.Models;
@@ -33,8 +34,37 @@ namespace Sistema_Larach.API.Controllers
 
             return Ok(listado);
         }
+        [HttpGet("DropDown")]
+        public IActionResult List()
+        {
+            var list = _generalServices.Listadounicipios();
+            var drop = list.Data as List<tbMunicipios>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Munic_Descripcion,
+                Value = x.Munic_Id
+            }).ToList();
 
 
+            rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
+            return Ok(rol.ToList());
+        }
+
+        [HttpGet("Lista/{id}")]
+        public IActionResult IndexPorMunicipio(string id)
+        {
+            var list = _generalServices.ListadoMunicipioDepartamento(id);
+            var drop = list.Data as List<tbMunicipios>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Munic_Descripcion,
+                Value = x.Munic_Id
+            }).ToList();
+
+
+            rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
+            return Ok(rol.ToList());
+        }
 
 
 

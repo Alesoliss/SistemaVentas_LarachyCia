@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Sistema_Larach.BusinessLogic;
 using Sistema_Larach.BusinessLogic.Services;
 using Sistema_Larach.Common.Models;
@@ -32,6 +33,21 @@ namespace Sistema_Larach.API.Controllers
             var listado = _generalServices.ListadoDepto1();
 
             return Ok(listado);
+        }
+        [HttpGet("DropDown")]
+        public IActionResult List()
+        {
+            var list = _generalServices.ListadoDepto1();
+            var drop = list.Data as List<tbDepartamentos>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Depar_Descripcion,
+                Value = x.Depar_Id
+            }).ToList();
+
+
+            rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
+            return Ok(rol.ToList());
         }
 
 
