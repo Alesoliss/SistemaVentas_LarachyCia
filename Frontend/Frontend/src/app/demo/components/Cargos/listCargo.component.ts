@@ -19,7 +19,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class CargosListadoComponent implements OnInit {
-  cargo!: CargosViewModel[];
+  // cargo!: CargosViewModel[];
+  cargo: CargosViewModel[] = [];
+
   staticData = [{}];
 
   carCodigo: boolean = true;
@@ -33,7 +35,7 @@ export class CargosListadoComponent implements OnInit {
   MensajeViewModel!: MensajeViewModel[];
   deleteModal: boolean = false;
    cargoSeleccionado: CargosViewModel = { 
-    cargo_Id: 0, 
+    cargo_Id: '', 
     cargo_Descripcion: '', 
     cargo_UsuarioCreacion: 0, 
     cargo_FechaCreacion: new Date(), 
@@ -44,18 +46,18 @@ export class CargosListadoComponent implements OnInit {
     usuarioModificacion: '' 
 
 };
-deleteProductDialog: boolean = false;
-//Detalle
-cargoid: String = "";
-desripcion: String = "";
 
-UsuarioCreacion: String = "";
-UsuarioModificacion: String = "";
-FechaCreacion: String = "";
-FechaModificacion: String = "";
 
   constructor(private service: CargosServiceService, private router: Router,   private messageService: MessageService) {}
-
+  deleteProductDialog: boolean = false;
+  //Detalle
+  Cargo_Id: String = "";
+  Cargo_Descripcion: String = "";
+  
+  UsuarioCreacion: String = "";
+  UsuarioModificacion: String = "";
+  FechaCreacion: String = "";
+  FechaModificacion: String = "";
   ngOnInit(): void {
     this.getCargo();
   }
@@ -94,27 +96,26 @@ collapse(){
   this.Collapse= true;
   this.Detalles = false;
 }
-detalles(codigo) {
-this.Collapse = false;
-this.Detalles = true;
-this.service.getDetalles(codigo).subscribe({
-    next: (response: any) => {
-        const data = response.data[0]; // Acceder al primer elemento del array
-        console.log('Respuesta del servidor:', data);
-        this.cargoid = data.cargo_Id;
-        this.desripcion = data.cargo_Descripcion;
-     
-        this.UsuarioCreacion = data.usuarioCreacion;
-        this.UsuarioModificacion = data.usuarioModificacion;
-        this.FechaCreacion = data.cargo_FechaCreacion;
-        this.FechaModificacion = data.cargo_FechaModificacion;
-    },
-    error: (error) => {
-        console.error('Error al obtener detalles:', error);
-    }
-});
-}
 
+  detalles(codigo) {
+    this.Collapse = false;
+    this.Detalles = true;
+    this.service.getdetalles(codigo).subscribe({
+        next: (response: any) => {
+            const data = response.data[0]; // Acceder al primer elemento del array
+            console.log('Respuesta del servidor:', data);
+            this.Cargo_Id = data.cargo_Id;
+            this.Cargo_Descripcion = data.cargo_Descripcion;
+            this.UsuarioCreacion = data.usuarioCreacion;
+            this.UsuarioModificacion = data.usuarioModificacion;
+            this.FechaCreacion = data.cargo_FechaCreacion;
+            this.FechaModificacion = data.munic_FechaModificacion;
+        },
+        error: (error) => {
+            console.error('Error al obtener detalles:', error);
+        }
+    });
+  }
 
 
   getCargo(): void {
@@ -185,7 +186,7 @@ this.service.getDetalles(codigo).subscribe({
     if (tipo === 'nuevo') {
         // Limpiar el objeto impuestoSeleccionado antes de abrir el modal de inserción
         this.cargoSeleccionado = {
-            cargo_Id: 0,
+            cargo_Id: '',
             cargo_Descripcion: '',
             cargo_UsuarioCreacion: 0,
             cargo_FechaCreacion: new Date(),

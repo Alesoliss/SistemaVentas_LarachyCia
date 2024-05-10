@@ -26,11 +26,14 @@ export class CargosServiceService {
     return this.http.put(url, categoria);
   }
   
-  getDetalles(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`${'https://localhost:44300/API/Cargo/Detalles/' + codigo}`);
-  }
   getFill(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`${'https://localhost:44300/API/Cargo/Detalles/' + codigo}`);
+    return this.http.get<Fill>(`https://localhost:44300/API/Cargo/Detalles?Cargo_Id=${codigo}`);
+  }
+
+
+
+  getdetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`https://localhost:44300/API/Cargo/Detalles?Cargo_Id=${codigo}`);
   }
   eliminarCargo(categoriaId: number): Observable<any> {
     const url = `${this.baseUrl}/Eliminar/${categoriaId}`;

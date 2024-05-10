@@ -4,7 +4,7 @@
         <div class="card">
             <h5>Categorías</h5>
             <div class="flex justify-content-start mb-3">
-                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2"  (click)="openModal('nuevo')"></button>
+                <button  pButton icon="pi pi-plus" style="margin-bottom: 10px ;"  (click)="openModal('nuevo')">Agregar</button>
             </div>
             
             <p-table [value]="categorias" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
@@ -44,13 +44,13 @@
                         <td>{{categoria.categ_Id}}</td>
                         <td>{{categoria.categ_Descripcion}}</td>
   
-                        <td style="align-items: center; text-align: center;">
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
-                            (click)="openModal('editar', categoria)">Editar</button>
-                            <p-button  label="Detalles"   icon="pi pi-book" size="small"
-                            (click)="detalles(categoria.categ_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
-                                (click)="eliminarcategoria(categoria.categ_Id)">Eliminar</button>
+                        <td style="display: flex; justify-content: space-around;">
+                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"
+                            (click)="openModal('editar', categoria)"></button>
+                            <button  pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary"
+                            (click)="detalles(categoria.categ_Id)" severity="secondary" [raised]="true" [plain]="true"></button>
+                                <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"
+                                (click)="eliminarcategoria(categoria.categ_Id)"></button>
                              
                         </td>
                     </tr>
@@ -82,19 +82,19 @@
                 <div class="p-fluid p-formgrid grid">
                     <div class="field col-12 md:col-4" *ngIf="cateCodigo">
                         <div class="field rows">
-                            <label for="Codigo" style="font-weight: 800;">Codigo:</label>
+                            <label for="categ_Id" style="font-weight: 800;">Codigo:</label>
                         </div>
                         <div class="field rows">
-                            <label for="Codigo">{{ categ_Id }}</label>
+                            <label for="categ_Id">{{ categ_Id }}</label>
                         </div>
                     </div>
                     
                     <div class="field col-12 md:col-4">
                         <div class="field rows">
-                            <label for="Municipio" style="font-weight: 800;">Descripcion:</label>
+                            <label for="categ_Descripcion" style="font-weight: 800;">Descripcion:</label>
                         </div>
                         <div class="field rows">
-                            <label for="Municipio">{{ categ_Descripcion }}</label>
+                            <label for="categ_Descripcion">{{ categ_Descripcion }}</label>
                         </div>
                     </div>
                     

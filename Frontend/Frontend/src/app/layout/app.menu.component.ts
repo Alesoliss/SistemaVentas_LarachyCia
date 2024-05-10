@@ -297,7 +297,7 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Graficos',
                                 icon: 'pi pi-fw pi-chart-bar',
-                                routerLink: ['/app/uikit/charts']
+                                routerLink: ['/app/dashboard']
                             },
                            
                         ]

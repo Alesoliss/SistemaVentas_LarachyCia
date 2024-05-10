@@ -1,12 +1,12 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
-import { ImpuestosViewModel } from '../../api/Models/ImpuestosViewModel';
+import { Fill, ImpuestosViewModel } from '../../api/Models/ImpuestosViewModel';
 import { ImpuestoServiceService } from '../../api/Services/impuestos-service.service';
 import { MensajeViewModel } from '../../api/Models/MensajeViewModel';
 import { ToastModule } from 'primeng/toast';
@@ -35,6 +35,26 @@ export class ImpuestoListadoComponent implements OnInit {
     usuarioCreacion: '', 
     usuarioModificacion: '' 
   };
+  estadocivilForm: FormGroup;
+
+  Collapse: boolean = false;
+
+  Detalles: boolean = false;
+ 
+  MunCodigo: boolean = true;
+  Valor: string = "";
+  staticData = [{}];
+
+
+  deleteProductDialog: boolean = false;
+  //Detalle
+  descripcion: number = 0;
+  id: string="";
+  UsuarioCreacion: String = "";
+  UsuarioModificacion: String = "";
+  FechaCreacion: Date = null;
+  FechaModificacion: String = "";
+  ID: String = "";
 
   constructor(private service: ImpuestoServiceService, private router: Router,private messageService: MessageService) {}
 
@@ -74,6 +94,39 @@ export class ImpuestoListadoComponent implements OnInit {
   clear(): void {
     this.getImpuesto();
   }
+
+   
+  //Abrir collapse
+  collapse(){
+    this.Collapse= true;
+    this.Detalles = false;
+}
+detalles(id){
+    this.Collapse= false;
+  
+    this.Detalles = true;
+    this.service.getFill(id).subscribe({
+        next: (data: Fill) => {
+           this.descripcion = data.impue_Descripcion,
+           this.UsuarioCreacion = data.usuarioCreacion,
+           this.UsuarioModificacion = data.usuarioModificacion
+           this.FechaCreacion = data.impue_FechaCreacion,
+           this.FechaModificacion = data.fechaModificacion
+        }
+      });
+}
+//Cerrar Collapse y reiniciar el form
+cancelar(){
+    this.Collapse= false;
+    
+    this.Detalles = false;
+    this.estadocivilForm = new FormGroup({
+      impue_Descripcion: new FormControl("", Validators.required),
+      });
+    
+    this.MunCodigo=true;
+
+}
 
   
   impuestoeleccionadoId: string = '';
@@ -226,6 +279,23 @@ export class ImpuestoListadoComponent implements OnInit {
   // eliminarDepartamento(): void {
   //   this.deleteModal = false;
   // }
+
+  Fill(id) {
+    this.service.getFill(id).subscribe({
+        next: (data: Fill) => {
+          this.estadocivilForm = new FormGroup({
+            impue_Descripcion: new FormControl(data.impue_Descripcion, Validators.required),
+            });
+
+            this.id = data.impue_Id;
+            this.Collapse= true;
+            this.MunCodigo = false;
+            this.Detalles = false;
+          
+        }
+      });
+
+}
 }
 
 @NgModule({
@@ -236,7 +306,7 @@ export class ImpuestoListadoComponent implements OnInit {
     ButtonModule,
     InputTextModule,
     DialogModule,
-    ToastModule
+    ToastModule 
   ],
   declarations: [ImpuestoListadoComponent]
 })

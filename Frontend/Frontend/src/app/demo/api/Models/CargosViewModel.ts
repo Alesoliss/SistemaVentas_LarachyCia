@@ -1,5 +1,5 @@
 export class CargosViewModel {
-    cargo_Id!: number;
+    cargo_Id!: string;
     cargo_Descripcion!: string;
     cargo_UsuarioCreacion!: number;
     cargo_FechaCreacion!: Date;
@@ -11,7 +11,7 @@ export class CargosViewModel {
 }
 
 export class Fill {
-    cargo_Id!: number;
+    cargo_Id!: string;
     cargo_Descripcion!: string;
     cargo_UsuarioCreacion!: number;
     cargo_FechaCreacion!: Date;

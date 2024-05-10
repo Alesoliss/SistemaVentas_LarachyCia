@@ -1,5 +1,5 @@
 export class EstadosCivilesViewModel {
-    estad_Id!: number;
+    estad_Id: string;
     estad_Descripcion!: string;
     estad_UsuarioCreacion!: number;
     estad_FechaCreacion!: Date;
@@ -11,7 +11,7 @@ export class EstadosCivilesViewModel {
 }
 
 export class Fill {
-    estad_Id!: number;
+    estad_Id!: string;
     estad_Descripcion!: string;
     estad_UsuarioCreacion!: number;
     estad_FechaCreacion!: Date;
@@ -20,6 +20,8 @@ export class Fill {
     estad_Estado?: boolean | null;
     usuarioCreacion?: string;
     usuarioModificacion?: string;
+    fechaCreacion?: string;
+    fechaModificacion?: string;
 }
 export class dropEstadoCivil{
     value?:String;

@@ -27,8 +27,14 @@ export class EstadosCivilesServiceService {
     return this.http.put(url, categoria);
   }
   
-  getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/EstadosCiviles/Detalles/' + codigo}`);
+  getFill(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`https://localhost:44300/API/EstadosCiviles/Detalles?Estad_Id=${codigo}`);
+  }
+
+
+
+  getdetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`https://localhost:44300/API/EstadosCiviles/Detalles?Estad_Id=${codigo}`);
   }
 
   eliminarCivil(categoriaId: number): Observable<any> {

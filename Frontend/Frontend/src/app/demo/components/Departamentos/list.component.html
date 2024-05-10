@@ -43,13 +43,13 @@
                   <tr>
                       <td>{{depto.depar_Id}}</td>
                       <td>{{depto.depar_Descripcion}}</td>
-                      <td style="align-items: center; text-align: center;">
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
-                        (click)="openModal('editar', depto)">Editar</button>
-                        <p-button  label="Detalles"   icon="pi pi-book" size="small"
+                      <td style="display: flex; justify-content: space-around;">
+                        <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"
+                        (click)="openModal('editar', depto)"></button>
+                        <p-button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary"
                         (click)="detalles(depto.depar_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
-                        (click)="eliminarcategoria(depto.depar_Id)">Eliminar</button>
+                        <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"
+                        (click)="eliminarcategoria(depto.depar_Id)"></button>
                        
                       </td>
                   </tr>
@@ -103,7 +103,7 @@
         <h5>Editar Categoría</h5>
     </ng-template>
     <ng-template pTemplate="content">
-        <!-- Contenido del formulario de edición 
+        Contenido del formulario de edición 
         <form>
             <div class="p-field">
                 <label for="edit-categoria-id">ID</label>
@@ -120,11 +120,11 @@
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
-        <!-- Botones del pie de página 
+         Botones del pie de página 
         <button pButton type="button" label="Cancelar" (click)="editModal = false"></button>
         <button pButton type="button" label="Guardar" class="p-button-success" (click)="guardarCambios()"></button>
     </ng-template>
-</p-dialog> -->
+</p-dialog> 
 
 <!-- Modal para confirmar eliminación -->
 <p-dialog [(visible)]="showDeleteConfirmation" header="Confirmar Eliminación" [modal]="true" [style]="{width: '50%'}">

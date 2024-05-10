@@ -14,7 +14,7 @@ import { UsuarioListadoComponent } from './demo/components/Usuarios/listUsuarios
 import { UnidadesListadoComponent } from './demo/components/Unidades/listUnidad.component';
 import { RolesListadoComponent } from './demo/components/Roles/listRol.component';
 import { ListEmpleadoComponent } from './demo/components/Empleados/listEmpleados.component';
-
+import { EstadisticosComponent } from './demo/components/dashboard/dashboard.component';
 import { ProductoListadoComponent } from './demo/components/Productos/listProductos.component';
 import { ProductoCreateComponent } from './demo/components/Productos/createProducto.component';
 import { SucursalesListadoComponent } from './demo/components/Sucursales/listSucursales.component';
@@ -41,7 +41,7 @@ import { FiltroReportesComponent } from './ReportesFiltrados/FiltroReportes.comp
                 path: 'app', component: AppLayoutComponent,
                 children: [
                     { path: 'Principal',  component:ListDemoComponent},
-                    { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
+                    // { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
                     { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
@@ -58,7 +58,7 @@ import { FiltroReportesComponent } from './ReportesFiltrados/FiltroReportes.comp
                     { path: 'unidad', component: UnidadesListadoComponent },
                     { path: 'rol', component: RolesListadoComponent },
                     { path: 'Empleado', component: ListEmpleadoComponent },
-                    
+                    { path: 'Empleado', component: ListEmpleadoComponent },
                     { path: 'Productos', component: ProductoListadoComponent },
                     { path: 'ProductoCreate', component: ProductoCreateComponent },
                     { path: 'Sucursal', component: SucursalesListadoComponent },
@@ -67,7 +67,8 @@ import { FiltroReportesComponent } from './ReportesFiltrados/FiltroReportes.comp
                     { path: 'ventaCreate', component: ventaCreateComponent },
                     { path: 'reportes', component: ReportesListadoComponent },
                     { path: 'reporte1', component: Reporte1Component },
-                    { path: 'ReporteFiltrado', component: FiltroReportesComponent }
+                    { path: 'ReporteFiltrado', component: FiltroReportesComponent },
+                    { path: 'dashboard', component: EstadisticosComponent },
                 ]
             },
             // { path: 'reportee', loadChildren: () => import('./demo/components/VisualizadorReporte1/reporte1.module').then(m => m.LandingModule) },

@@ -11,7 +11,7 @@ export class ImpuestosViewModel {
 }
 
 export class Fill {
-    impue_Id!: number;
+    impue_Id!: string;
     impue_Descripcion!: number;
     impue_UsuarioCreacion!: number;
     impue_FechaCreacion!: Date;
@@ -20,4 +20,6 @@ export class Fill {
     impue_Estado?: boolean | null;
     usuarioCreacion?: string;
     usuarioModificacion?: string;
+    fechaCreacion?: string;
+    fechaModificacion?: string;
 }

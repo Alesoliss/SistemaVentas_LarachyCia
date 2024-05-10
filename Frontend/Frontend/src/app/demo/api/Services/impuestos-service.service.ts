@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {ImpuestosViewModel,Fill} from '../Models/ImpuestosViewModel';
 import {HttpClient} from '@angular/common/http';
 import { Observable,map } from 'rxjs';
+import { BASE_URL } from './urlsettings';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,9 @@ export class ImpuestoServiceService {
   
   getDetalles(codigo: number): Observable<Fill> {
     return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/EstadosCiviles/Detalles/' + codigo}`);
+  }
+  getFill(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`${BASE_URL + 'API/Impuesto/Detalles/' + codigo}`);
   }
 
   eliminarImpuesto(categoriaId: number): Observable<any> {

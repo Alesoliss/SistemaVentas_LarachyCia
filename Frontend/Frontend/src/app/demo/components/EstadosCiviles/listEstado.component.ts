@@ -2,13 +2,13 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { DepartamentoServiceService } from '../../api/Services/departamento-service.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
 import { EstadosCivilesServiceService } from '../../api/Services/estadosCiviles-service.service';
-import { EstadosCivilesViewModel } from '../../api/Models/EstadosCivilesViewModel';
+import { EstadosCivilesViewModel,Fill } from '../../api/Models/EstadosCivilesViewModel';
 import { MensajeViewModel } from '../../api/Models/MensajeViewModel';
 import { ToastModule } from 'primeng/toast'; 
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -20,13 +20,18 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class EstadoCivilListadoComponent implements OnInit {
   estado!: EstadosCivilesViewModel[];
+  fill: any[] = [];
+  EstaCodigo: boolean = true;
+  Collapse: boolean = false;
+  Detalles: boolean = false;
+  municipioForm: FormGroup;
   showModal: boolean = false;
   editModal: boolean = false;
   showDeleteConfirmation: boolean = false;
   MensajeViewModel!: MensajeViewModel[];
   deleteModal: boolean = false;
   estadoSeleccionado: EstadosCivilesViewModel = { 
-    estad_Id: 0, 
+    estad_Id: '', 
     estad_Descripcion: '', 
     estad_UsuarioCreacion: 0, 
     estad_FechaCreacion: new Date(), 
@@ -38,6 +43,16 @@ export class EstadoCivilListadoComponent implements OnInit {
   };
 
   constructor(private service: EstadosCivilesServiceService, private router: Router,private messageService: MessageService) {}
+  deleteProductDialog: boolean = false;
+  //Detalle
+  Id: String = "";
+  Descripcion: String = "";
+
+  UsuarioCreacion: String = "";
+  UsuarioModificacion: String = "";
+  FechaCreacion: String = "";
+  FechaModificacion: String = "";
+  ID: String = "";
 
   ngOnInit(): void {
     this.getEstado();
@@ -72,6 +87,44 @@ export class EstadoCivilListadoComponent implements OnInit {
       }
     );
   }
+  collapse(){
+    this.Collapse= true;
+    this.Detalles = false;
+}
+detalles(codigo) {
+  this.Collapse = false;
+  this.Detalles = true;
+  this.service.getdetalles(codigo).subscribe({
+      next: (response: any) => {
+          const data = response.data[0]; // Acceder al primer elemento del array
+          console.log('Respuesta del servidor:', data);
+          this.Descripcion = data.estad_Descripcion;
+          this.UsuarioCreacion = data.usuarioCreacion;
+          this.UsuarioModificacion = data.usuarioModificacion;
+          this.FechaCreacion = data.munic_FechaCreacion;
+          this.FechaModificacion = data.munic_FechaModificacion;
+      },
+      error: (error) => {
+          console.error('Error al obtener detalles:', error);
+      }
+  });
+}
+//Cerrar Collapse y reiniciar el form
+
+cancelar(){
+  this.Collapse= false;
+  this.Detalles = false;
+  this.municipioForm = new FormGroup({
+  
+    Estad_Descripcion: new FormControl("", Validators.required),
+    
+  });
+  this.EstaCodigo=true;
+}
+
+
+
+
 
   clear(): void {
     this.getEstado();
@@ -129,7 +182,7 @@ export class EstadoCivilListadoComponent implements OnInit {
     if (tipo === 'nuevo') {
         // Limpiar el objeto impuestoSeleccionado antes de abrir el modal de inserción
         this.estadoSeleccionado = {
-            estad_Id: 0,
+            estad_Id: '',
             estad_Descripcion: '',
             estad_UsuarioCreacion: 0,
             estad_FechaCreacion: new Date(),
@@ -222,6 +275,21 @@ export class EstadoCivilListadoComponent implements OnInit {
   // eliminarDepartamento(): void {
   //   this.deleteModal = false;
   // }
+  Fill(codigo) {
+    this.service.getFill(codigo).subscribe({
+        next: (data: Fill) => {
+            this.municipioForm = new FormGroup({
+             
+              Estad_Descripcion: new FormControl(data.estad_Descripcion, Validators.required),
+               
+            });
+            this.Collapse= true;
+
+            this.Detalles = false;
+        }
+      });
+
+}
   
 }
 

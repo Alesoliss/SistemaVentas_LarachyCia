@@ -1,0 +1,41 @@
+
+
+<div class="grid p-fluid">
+    <div class="col-12 lg:col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <h2>Seleccione el rango de fecha:</h2>
+            <div class="field">
+                <input  type="date" id="fechaInicio" [(ngModel)]="fechaInicio" (change)="cambiarFechaInicio($event)" class="p-inputtext col-6">
+                <input  type="date" id="fechaFin" [(ngModel)]="fechaFin" (change)="cambiarFechaFin($event)" class="p-inputtext col-6">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="grid p-fluid">
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h2>Cantidad de venta Por Fecha</h2>
+            <canvas id="barChart" class="chart"></canvas>
+        </div>
+    </div>
+  
+</div>
+
+<div class="grid p-fluid">
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h2>Productos Vendidos Por Categoria Mes </h2>
+            <p-chart type="doughnut" [data]="chartDataModelo" [options]="chartOptionsModelo" styleClass="chart"></p-chart>
+        </div>
+    </div>
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h2>Cantidad de Compra Por Estado Civil</h2>
+            <p-chart type="pie" [data]="chartDataEstado" [options]="chartOptionsEstado" styleClass="chart"></p-chart>
+        </div>
+    </div>
+</div>

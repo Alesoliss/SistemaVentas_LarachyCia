@@ -116,14 +116,17 @@ export class ServiceService {
 // }
 
 
-private apiUrl: string = BASE_URL + "/api/Grafico/";
+private apiUrl: string = BASE_URL + "api/Grafico/";
 
-VentasPorMes(): Observable<{ anio: string, mes: string,mode_Descripcion: string, cantidadPrestamos: number }[]> {
-  return this.http.get<{ anio: string, mes: string, mode_Descripcion:string, cantidadPrestamos: number }[]>(`${this.apiUrl}VentasPorMes`);
+VentasPorMes(): Observable<{ anio: string, mes: string,mode_Descripcion: string, cantidadVentas: number }[]> {
+  return this.http.get<{ anio: string, mes: string, mode_Descripcion:string, cantidadVentas: number }[]>(`${this.apiUrl}VentasPorMes`);
 } 
 
-ProductosVendidosPorCategoriaMesAnio(): Observable<{ anio: string, mes: string, cantidadPrestamos: number }[]> {
-  return this.http.get<{ anio: string, mes: string, cantidadPrestamos: number }[]>(`${this.apiUrl}ProductosVendidosPorCategoriaMesAnio`);
+ProductosVendidosPorCategoriaMesAnio(): Observable<{ anio: string, mes: string,categ_Descripcion: string, cantidadProductosVendidos: number }[]> {
+  return this.http.get<{ anio: string, mes: string,categ_Descripcion: string, cantidadProductosVendidos: number }[]>(`${this.apiUrl}ProductosVendidosPorCategoriaMesAnio`);
+} 
+obtenerPrestaPorEstado(): Observable<{ anio: string, mes: string,estad_Descripcion: string, cantidadCompras: number }[]> {
+  return this.http.get<{ anio: string, mes: string, estad_Descripcion:string, cantidadCompras: number }[]>(`${this.apiUrl}ComprasPorEstadoCivil`);
 } 
 
 
