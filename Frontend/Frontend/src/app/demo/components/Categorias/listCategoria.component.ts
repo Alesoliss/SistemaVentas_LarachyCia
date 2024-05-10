@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { CargosViewModel } from '../../api/Models/CargosViewModel';
 import { CategoriasServiceservice } from '../../api/Services/categorias-service.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
-import { CategoriasViewModel } from '../../api/Models/CategoriasViewModel';
+import { CategoriasViewModel,Fill } from '../../api/Models/CategoriasViewModel';
 import { MensajeViewModel } from '../../api/Models/MensajeViewModel';
 import { ToastModule } from 'primeng/toast'; 
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -22,6 +22,13 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 
 export class CategoriaListadoComponent implements OnInit {
   categorias!: CategoriasViewModel[];
+  staticData = [{}];
+
+  cateCodigo: boolean = true;
+  fill: any[] = [];
+  Collapse: boolean = false;
+  Detalles: boolean = false;
+  CategoriaForm: FormGroup;
   showModal: boolean = false;
   editModal: boolean = false;
   showDeleteConfirmation: boolean = false;
@@ -42,7 +49,15 @@ export class CategoriaListadoComponent implements OnInit {
 
 
   constructor(private service: CategoriasServiceservice, private router: Router, private messageService: MessageService) {}
-
+  deleteProductDialog: boolean = false;
+  //Detalle
+  categ_Id: String = "";
+  categ_Descripcion: String = "";
+  
+  UsuarioCreacion: String = "";
+  UsuarioModificacion: String = "";
+  FechaCreacion: Date = null;
+  FechaModificacion: Date = null;
   ngOnInit(): void {
     this.getCategoria();
   }
@@ -63,6 +78,39 @@ export class CategoriaListadoComponent implements OnInit {
   showToast(severity: string, summary: string, detail: string): void {
     this.messageService.add({ severity: severity, summary: summary, detail: detail });
   }
+  
+cancelar(){
+  this.Collapse= false;
+  this.Detalles = false;
+  this.CategoriaForm = new FormGroup({
+    Cargo_Id: new FormControl(0,Validators.required),
+    Cargo_Descripcion: new FormControl("", Validators.required),
+    
+  });
+  this.cateCodigo=true;
+}
+
+collapse(){
+  this.Collapse= true;
+  this.Detalles = false;
+}
+detalles(codigo) {
+this.Collapse = false;
+this.Detalles = true;
+this.service.getdetalles(codigo).subscribe({
+  next: (data: Fill) => {
+    this.categ_Id = data.categ_Id,
+    this.categ_Descripcion = data.categ_Descripcion,
+ 
+
+  
+    this.UsuarioCreacion = data.usuarioCreacion,
+    this.UsuarioModificacion = data.usuarioModificacion
+    this.FechaCreacion = data.categ_FechaCreacion,
+    this.FechaModificacion = data.categ_FechaModificacion
+ }
+});
+}
 
   getCategoria(): void {
     this.service.getCategoria().subscribe(
@@ -225,6 +273,21 @@ export class CategoriaListadoComponent implements OnInit {
   // eliminarDepartamento(): void {
   //   this.deleteModal = false;
   // }
+  Fill(codigo) {
+    this.service.getFill(codigo).subscribe({
+        next: (data: Fill) => {
+            this.CategoriaForm = new FormGroup({
+              categ_Id: new FormControl(data.categ_Id,Validators.required),
+              categ_Descripcion: new FormControl(data.categ_Descripcion, Validators.required),
+               
+            });
+            this.Collapse= true;
+
+            this.Detalles = false;
+        }
+      });
+
+}
 }
 
 @NgModule({

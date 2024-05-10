@@ -217,7 +217,7 @@ ValidarNumero(event: KeyboardEvent) {
   }
 }
 onSubmit() {
-  if (this.clienteForm.valid && this.clienteForm.get('depar_Id').value !== '0' && this.clienteForm.get('Munic_Id').value !== '0'&& this.clienteForm.get('estad_Id').value !== '0' ) {
+  if (this.clienteForm.valid && this.clienteForm.get('depar_Id').value !== '0' && this.clienteForm.get('munic_Id').value !== '0'&& this.clienteForm.get('estad_Id').value !== '0' ) {
      this.viewModel = this.clienteForm.value;
      if (this.Valor == "Agregar") {
       this.service.EnviarEmpleado(this.viewModel).subscribe((data: MensajeViewModel[]) => {
@@ -304,7 +304,7 @@ Fill(codigo) {
 
    
             depar_Id: new FormControl(data.depar_Id, [Validators.required]),
-            Munic_Id: new FormControl(data.munic_Id, [Validators.required]),
+            munic_Id: new FormControl(data.munic_Id, [Validators.required]),
         });
 
           this.MunicipioCodigo = data.munic_Id;
@@ -312,7 +312,7 @@ Fill(codigo) {
           this.service.getMunicipios(data.depar_Id).subscribe(
             (data: any) => {
               this.municipios = data; 
-              this.clienteForm.get('Munic_Id').setValue(this.MunicipioCodigo); 
+              this.clienteForm.get('munic_Id').setValue(this.MunicipioCodigo); 
             }
           );
             this.ID = data.emple_Id;

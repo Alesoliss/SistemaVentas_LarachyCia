@@ -1,9 +1,9 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { CargosViewModel } from '../../api/Models/CargosViewModel';
+import { CargosViewModel,Fill } from '../../api/Models/CargosViewModel';
 import { DepartamentoServiceService } from '../../api/Services/departamento-service.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,6 +20,13 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class CargosListadoComponent implements OnInit {
   cargo!: CargosViewModel[];
+  staticData = [{}];
+
+  carCodigo: boolean = true;
+  fill: any[] = [];
+  Collapse: boolean = false;
+  Detalles: boolean = false;
+  CargoForm: FormGroup;
   showModal: boolean = false;
   editModal: boolean = false;
   showDeleteConfirmation: boolean = false;
@@ -37,6 +44,16 @@ export class CargosListadoComponent implements OnInit {
     usuarioModificacion: '' 
 
 };
+deleteProductDialog: boolean = false;
+//Detalle
+cargoid: String = "";
+desripcion: String = "";
+
+UsuarioCreacion: String = "";
+UsuarioModificacion: String = "";
+FechaCreacion: String = "";
+FechaModificacion: String = "";
+
   constructor(private service: CargosServiceService, private router: Router,   private messageService: MessageService) {}
 
   ngOnInit(): void {
@@ -60,6 +77,45 @@ onGlobalFilter(event: any): void {
 showToast(severity: string, summary: string, detail: string): void {
   this.messageService.add({ severity: severity, summary: summary, detail: detail });
 }
+
+
+cancelar(){
+  this.Collapse= false;
+  this.Detalles = false;
+  this.CargoForm = new FormGroup({
+    Cargo_Id: new FormControl("",Validators.required),
+    Cargo_Descripcion: new FormControl("", Validators.required),
+    
+  });
+  this.carCodigo=true;
+}
+
+collapse(){
+  this.Collapse= true;
+  this.Detalles = false;
+}
+detalles(codigo) {
+this.Collapse = false;
+this.Detalles = true;
+this.service.getDetalles(codigo).subscribe({
+    next: (response: any) => {
+        const data = response.data[0]; // Acceder al primer elemento del array
+        console.log('Respuesta del servidor:', data);
+        this.cargoid = data.cargo_Id;
+        this.desripcion = data.cargo_Descripcion;
+     
+        this.UsuarioCreacion = data.usuarioCreacion;
+        this.UsuarioModificacion = data.usuarioModificacion;
+        this.FechaCreacion = data.cargo_FechaCreacion;
+        this.FechaModificacion = data.cargo_FechaModificacion;
+    },
+    error: (error) => {
+        console.error('Error al obtener detalles:', error);
+    }
+});
+}
+
+
 
   getCargo(): void {
     this.service.getCargo().subscribe(
@@ -220,7 +276,21 @@ showToast(severity: string, summary: string, detail: string): void {
   // eliminarDepartamento(): void {
   //   this.deleteModal = false;
   // }
+  Fill(codigo) {
+    this.service.getFill(codigo).subscribe({
+        next: (data: Fill) => {
+            this.CargoForm = new FormGroup({
+              Cargo_Id: new FormControl(data.cargo_Id,Validators.required),
+                Cargo_Descripcion: new FormControl(data.cargo_Descripcion, Validators.required),
+               
+            });
+            this.Collapse= true;
 
+            this.Detalles = false;
+        }
+      });
+
+}
 
 }
 

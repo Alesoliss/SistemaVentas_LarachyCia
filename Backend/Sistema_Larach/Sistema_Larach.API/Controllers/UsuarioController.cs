@@ -193,12 +193,12 @@ namespace Sistema_Larach.API.Controllers
             return Ok(list);
         }
 
-        [HttpGet("Detalles")]
-        public IActionResult DetallesUsuarios(int Usuar_Id)
+        [HttpGet("Detalles/{Usuar_Id}")]
+        public IActionResult Details(int Usuar_Id)
         {
-            var list = _accesoService.DetallesUsuarios(Usuar_Id);
+            var list = _accesoService.CargarUsuarios(Usuar_Id);
 
-            return Ok(list);
+            return Json(list.Data);
         }
 
         //[HttpGet("ValidarReestablecer/{usuario}")]

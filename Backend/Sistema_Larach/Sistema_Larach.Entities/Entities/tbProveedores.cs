@@ -37,7 +37,10 @@ namespace Sistema_Larach.Entities
         public string UsuarioCreacion { get; set; }
         [NotMapped]
         public string UsuarioModificacion { get; set; }
-
+        [NotMapped]
+        public string Depa_Departamento { get; set; }
+        [NotMapped]
+        public string Depar_Id { get; set; }
         public virtual tbMunicipios Munic { get; set; }
         public virtual tbUsuarios Prove_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Prove_UsuarioModificacionNavigation { get; set; }

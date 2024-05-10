@@ -12,7 +12,7 @@ export class CategoriasViewModel {
 }
 
 export class Fill {
-    categ_Id!: number;
+    categ_Id!: string;
     categ_Descripcion!: string;
     cate_ImagenUrl!: string;
     categ_UsuarioCreacion!: number;

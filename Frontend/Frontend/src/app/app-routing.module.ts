@@ -18,7 +18,7 @@ import { ListEmpleadoComponent } from './demo/components/Empleados/listEmpleados
 import { ProductoListadoComponent } from './demo/components/Productos/listProductos.component';
 import { ProductoCreateComponent } from './demo/components/Productos/createProducto.component';
 import { SucursalesListadoComponent } from './demo/components/Sucursales/listSucursales.component';
-import { ClientesListadoComponent } from './demo/components/Cliente/listCliente.component';
+import { ListClienteComponent } from './demo/components/Cliente/listCliente.component';
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
 import { VentasEncabezadoListadoComponent } from './demo/components/Ventas/listVenta.component';
 import { ventaCreateComponent } from './demo/components/Ventas/createVenta.component';
@@ -62,7 +62,7 @@ import { FiltroReportesComponent } from './ReportesFiltrados/FiltroReportes.comp
                     { path: 'Productos', component: ProductoListadoComponent },
                     { path: 'ProductoCreate', component: ProductoCreateComponent },
                     { path: 'Sucursal', component: SucursalesListadoComponent },
-                    { path: 'Cliente', component: ClientesListadoComponent },
+                    { path: 'Cliente', component: ListClienteComponent },
                     { path: 'ventaslistado', component: VentasEncabezadoListadoComponent },
                     { path: 'ventaCreate', component: ventaCreateComponent },
                     { path: 'reportes', component: ReportesListadoComponent },

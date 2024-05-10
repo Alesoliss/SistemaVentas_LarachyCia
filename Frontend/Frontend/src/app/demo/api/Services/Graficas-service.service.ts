@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { BASE_URL } from './urlsettings';
 import { ProductoMasCompradoMes,TotalVentasPorCategoria,ProductoMes,Ventatotalescatgoria } from '../../api/Models/GraficoViewModel';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -116,8 +116,15 @@ export class ServiceService {
 // }
 
 
+private apiUrl: string = BASE_URL + "/api/Grafico/";
 
+VentasPorMes(): Observable<{ anio: string, mes: string,mode_Descripcion: string, cantidadPrestamos: number }[]> {
+  return this.http.get<{ anio: string, mes: string, mode_Descripcion:string, cantidadPrestamos: number }[]>(`${this.apiUrl}VentasPorMes`);
+} 
 
+ProductosVendidosPorCategoriaMesAnio(): Observable<{ anio: string, mes: string, cantidadPrestamos: number }[]> {
+  return this.http.get<{ anio: string, mes: string, cantidadPrestamos: number }[]>(`${this.apiUrl}ProductosVendidosPorCategoriaMesAnio`);
+} 
 
 
 

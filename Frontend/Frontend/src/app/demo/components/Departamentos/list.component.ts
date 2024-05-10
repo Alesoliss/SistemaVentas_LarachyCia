@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { DepartamentosViewModel } from '../../api/Models/DepartamentosViewModel';
+import { DepartamentosViewModel,Fill } from '../../api/Models/DepartamentosViewModel';
 import { DepartamentoServiceService } from '../../api/Services/departamento-service.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -65,6 +65,41 @@ export class DepartamentosListadoComponent implements OnInit {
       }
     );
   }
+  tabla: string = "";
+  detalless: string = "collapse";
+  edit: string = "collapse";
+
+  depar_Id: string= '';
+  depar_Descripcion: string = ''; 
+  depar_UsuarioCreacion: string= ''; 
+  depar_FechaCreacion:  Date = null; 
+  depar_UsuarioModificacion: null; 
+  depar_FechaModificacion: string = ''; 
+  depar_Estado: null;
+  usuarioCreacion: string =''; 
+  usuarioModificacion: string = ''; 
+
+  detalles(codigo){
+    this.tabla = "collapse";
+    this.detalless = "";
+    this.service.getDetalles(codigo).subscribe({
+        next: (data: Fill) => {
+          this.depar_Id = data.depar_Id;
+          this.depar_Descripcion = data.depar_Descripcion;
+          this.usuarioCreacion = data.depar_UsuarioCreacion;
+          this.depar_FechaCreacion = data.depar_FechaCreacion;
+          this.usuarioModificacion = data.depar_UsuarioModificacion;
+          this.depar_FechaModificacion = data.depar_FechaModificacion;
+        }
+      });
+  }
+
+  volver(){
+    this.tabla = "";
+    this.detalless = "collapse";
+  }
+
+
 
   clear(): void {
     this.getDepartamentos(); // Recargar los departamentos originales

@@ -216,6 +216,35 @@ namespace Sistema_Larach.BusinessLogic.Services
             }
         }
 
+        //////////////////////////////////////////////////////Nuevo//////////////////////////////////
+        ///
+        public ServiceResult VentasPorMes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _graficoRepository.VentasPorMes();
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
 
+                return result.Error(ex.Message);
+            }
+        }
+        public ServiceResult ProductosVendidosPorCategoriaMesAnio()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _graficoRepository.ProductosVendidosPorCategoriaMesAnio();
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
     }
 }

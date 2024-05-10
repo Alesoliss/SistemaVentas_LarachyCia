@@ -19,9 +19,16 @@ namespace Sistema_Larach.DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public tbCargos Find(int? id)
+        public tbCargos Fill(int id)
         {
-            throw new NotImplementedException();
+            tbCargos result = new tbCargos();
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@Cargo_Id", id);
+                result = db.QueryFirst<tbCargos>(ScriptDataBase.cargoBuscar, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
         }
 
         public IEnumerable<tbCargos> FindDetalle(string id)
@@ -122,9 +129,7 @@ namespace Sistema_Larach.DataAccess.Repository
             }
         }
 
-
-
-        tbCargos IRepository<tbCargos>.Find(int? id)
+        public tbCargos Find(int? id)
         {
             throw new NotImplementedException();
         }

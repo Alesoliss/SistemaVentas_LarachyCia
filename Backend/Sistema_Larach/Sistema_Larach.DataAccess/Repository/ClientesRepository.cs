@@ -49,13 +49,14 @@ namespace Sistema_Larach.DataAccess.Repository
                 parametro.Add("@Clien_Correo", item.Clien_Correo);
                 parametro.Add("@Munic_Id", item.Munic_Id);
                 parametro.Add("@Clien_Direccion", item.Clien_Direccion);
-                parametro.Add("@Clien_UsuarioModificacion", item.Clien_UsuarioModificacion);
-                parametro.Add("@Clien_FechaModificacion", item.Clien_FechaModificacion);
-                parametro.Add("@Clien_Estado", 1);
+                parametro.Add("@Clien_UsuarioModificacion", 1);
+                parametro.Add("@Clien_FechaModificacion", DateTime.Now);
+                parametro.Add("@Clien_Estado", true);
 
                 var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
 
-                return new RequestStatus { CodeStatus = result, MessageStatus = "" };
+                string mensaje = (result == 1) ? "exito" : "error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
             //throw new NotImplementedException();
         }
@@ -69,13 +70,15 @@ namespace Sistema_Larach.DataAccess.Repository
                 return result;
             }
         }
-        public IEnumerable<tbClientes> FindClientes(int codigo)
+        public tbClientes Fill(int id)
         {
-            string sql = $"[Venta].[sp_Clientes_Buscar] '{codigo}'";
-            List<tbClientes> result = new List<tbClientes>();
+
+            tbClientes result = new tbClientes();
             using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
             {
-                result = db.Query<tbClientes>(sql, commandType: System.Data.CommandType.Text).ToList();
+                var parameter = new DynamicParameters();
+                parameter.Add("Clien_Id", id);
+                result = db.QueryFirst<tbClientes>(ScriptDataBase.Clientesllenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
 
@@ -102,21 +105,23 @@ namespace Sistema_Larach.DataAccess.Repository
             using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("@PrimerNombre", item.Clien_PrimerNombre);
-                parameter.Add("@SegundoNombre", item.Clien_SegundoNombre);
-                parameter.Add("@PrimerApellido", item.Clien_PrimerApellido);
-                parameter.Add("@SegundoApellido", item.Clien_SegundoApellido);
-                parameter.Add("@Sexo", item.Clien_Sexo);
-                parameter.Add("@EstadId", item.Estad_Id);
-                parameter.Add("@Telefono", item.Clien_Telefono);
-                parameter.Add("@Correo", item.Clien_Correo);
-                parameter.Add("@MunicId", item.Munic_Id);
-                parameter.Add("@Direccion", item.Clien_Direccion);
-                parameter.Add("@UsuarioCreacion", 1);
-                parameter.Add("@FechaCreacion", DateTime.Now);
+                parameter.Add("@Clien_PrimerNombre", item.Clien_PrimerNombre);
+                parameter.Add("@Clien_SegundoNombre", item.Clien_SegundoNombre);
+                parameter.Add("@Clien_PrimerApellido", item.Clien_PrimerApellido);
+                parameter.Add("@Clien_SegundoApellido", item.Clien_SegundoApellido);
+                parameter.Add("@Clien_Sexo", item.Clien_Sexo);
+                parameter.Add("@Estad_Id", item.Estad_Id);
+                parameter.Add("@Clien_Telefono", item.Clien_Telefono);
+                parameter.Add("@Clien_Correo", item.Clien_Correo);
+                parameter.Add("@Munic_Id", item.Munic_Id);
+                parameter.Add("@Clien_Direccion", item.Clien_Direccion);
+                parameter.Add("@Clien_UsuarioCreacion", 1);
+                parameter.Add("@Clien_FechaCreacion", DateTime.Now);
+                parameter.Add("@Clien_Estado", true);
                 var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
 
-                return new RequestStatus { CodeStatus = result, MessageStatus = "" };
+                string mensaje = (result == 1) ? "exito" : "error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
         }
 

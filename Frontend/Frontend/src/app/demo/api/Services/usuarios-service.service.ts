@@ -45,8 +45,8 @@ export class UsuariosServiceService {
 
 
 
-  getdetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`https://localhost:44300/api/Usuario/Detalles/Usuarios?Usuar_Id=${codigo}`);
+  getdetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`${ 'https://localhost:44300/api/Usuario/Detalles/' + codigo}`);
   }
 
   eliminarmetodo(categoriaId: number): Observable<any> {

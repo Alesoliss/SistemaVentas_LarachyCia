@@ -1,6 +1,6 @@
 <p-toast style="background-color: red ;"></p-toast>
 <div class="grid">
-    <div class="col-12">
+    <div class="col-12" *ngIf="!Detalles" >
         <div class="card">
             <h5>Cargos</h5>
             <div class="flex justify-content-start mb-3">
@@ -47,10 +47,11 @@
                         <td style="align-items: center; text-align: center;">
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
                             (click)="openModal('editar', cargo)">Editar</button>
+                            <p-button  label="Detalles"   icon="pi pi-book" size="small"
+                            (click)="detalles(cargo.cargo_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
                                 (click)="eliminarcategoria(cargo.cargo_Id)">Eliminar</button>
-                                <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-warning"
-                                (click)="showDetails(cargo)">Detalles</button>
+                             
                         </td>
                     </tr>
                 </ng-template>
@@ -68,7 +69,70 @@
         </div>
     </div>
   </div>
-  
+    <!-- Detalles del Municipio -->
+    <div class="col-12" *ngIf="Detalles">
+        <div class="card-body">
+         
+            <div class="card">
+                <div class="card-header">
+
+                    <div class="card-title">
+                        <h1>Auditoria</h1>
+                    </div>
+                    <div class="p-fluid p-formgrid grid">
+                        <div class="field col-12 md:col-4" *ngIf="carCodigo">
+                            <div class="field rows">
+                                <label for="Codigo" style="font-weight: 800;">Codigo:</label>
+                            </div>
+                            <div class="field rows">
+                                <label for="Codigo">{{ Cargo_Id }}</label>
+                            </div>
+                        </div>
+                        
+                        <div class="field col-12 md:col-4">
+                            <div class="field rows">
+                                <label for="Municipio" style="font-weight: 800;">Descripcion:</label>
+                            </div>
+                            <div class="field rows">
+                                <label for="Municipio">{{ Cargo_Descripcion }}</label>
+                            </div>
+                        </div>
+                        
+                      
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p-table [value]="staticData">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width:200px">Accion</th>
+                                <th style="width:200px">Usuario</th>
+                                <th style="width:200px">Fecha</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-transaction>
+                            <tr>
+                                <td style="width:200px;">Creado</td>
+                                <td style="width:200px">{{ UsuarioCreacion }}</td>
+                                <td style="width:200px">{{ FechaCreacion }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width:200px;">Modificado</td>
+                                <td style="width:200px">{{ UsuarioModificacion }}</td>
+                                <td style="width:200px">{{ FechaModificacion }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                    <button pButton icon="pi pi-cancel" type="button" (click)="cancelar()" label="Regresar" class="p-button-danger"></button>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+<!-- Fin de la sección grid -->
 
   <p-dialog [(visible)]="showModal" header="Nuevo cargo" [modal]="true" [style]="{ width: '50%' }">
     <ng-template pTemplate="content">

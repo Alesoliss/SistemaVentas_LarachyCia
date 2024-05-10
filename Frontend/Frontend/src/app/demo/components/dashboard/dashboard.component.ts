@@ -1,408 +1,351 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { Product } from '../../api/product';
-import { ProductService } from '../../service/product.service';
-import { Subscription, debounceTime } from 'rxjs';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { ServiceService } from '../../api/Services/Graficas-service.service';
-import { ProductoMasCompradoMes,TotalVentasPorCategoria,ProductoMes,Ventatotalescatgoria } from '../../api/Models/GraficoViewModel';
-import { dA } from '@fullcalendar/core/internal-common';
 
-@Component({
-    templateUrl: './dashboard.component.html',
-})
-export class DashboardComponent implements OnInit, OnDestroy {
+// import { ServiceService } from '../../api/Services/Graficas-service.service';
+// import { Chart, registerables } from 'chart.js';
+// import { FormsModule } from '@angular/forms';
+// import { MessageService } from 'primeng/api';
+// import { ChartData, ChartOptions } from 'chart.js'; 
+// import { ChartModule } from 'primeng/chart';
+// import { Component, OnInit, NgModule,Inject } from '@angular/core';
+// import { Router } from '@angular/router';
+// import { CommonModule } from '@angular/common';
+// import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { TableModule } from 'primeng/table';
+// import { ButtonModule } from 'primeng/button';
+// import { InputTextModule } from 'primeng/inputtext';
+// import { DialogModule } from 'primeng/dialog';
+// import { ToggleButtonModule } from 'primeng/togglebutton';
+// import { RippleModule } from 'primeng/ripple';
+// import { MultiSelectModule } from 'primeng/multiselect';
+// import { DropdownModule } from 'primeng/dropdown';
+// import { ProgressBarModule } from 'primeng/progressbar';
+// import { ToastModule } from 'primeng/toast';
+// import { SliderModule } from 'primeng/slider';
+// import { RatingModule } from 'primeng/rating';
+// import { MatDialog } from '@angular/material/dialog';
+// import { MatButtonModule } from '@angular/material/button';
+// import { DataViewModule } from 'primeng/dataview';
+// import { PickListModule } from 'primeng/picklist';
+// import { OrderListModule } from 'primeng/orderlist';
+// import { Product } from 'src/app/demo/api/product';
+// import { ProductService } from 'src/app/demo/service/product.service';
+// import { SelectItem } from 'primeng/api';
 
-    items!: MenuItem[];
+// Chart.register(...registerables);
 
-    products!: Product[];
-    maquillajeMes:ProductoMasCompradoMes[];
-    JoyaMes:TotalVentasPorCategoria[];
-    MaqJoyaMes:ProductoMes[];
-    totalMa:Ventatotalescatgoria[];
-   
-   Top1:string;
-   Catidad1:string ="";
-   Top2:string;
-   Catidad2: string;
-   Top3:string;
-   Catidad3: string ="";
-   Top4:string;
-   Catidad4: string;
-   Top5:string;
-   Catidad5: string;
-   CantTop3: boolean = true;
-porcentaje1: number;
+// @Component({
+//   selector: 'app-estadisticos',
+//   templateUrl: './dashboard.component.html',
+//   providers: [MessageService] // Agregar MessageService como proveedor
+// })
+// export class EstadisticosComponent implements OnInit{
+//   fechaInicio: string;
+//   fechaFin: string;
 
+//   MyChart: Chart;
+//   MyChartSexo: Chart;
+//   MyChartModelo: Chart;
+//   MyChartEstado: Chart;
 
- totalVendido1 : string;
- totalVendido2 : string;
-totalfinalma: string;
-totalfinaljo : string;
-   Topm1:string;
-   Catidadm1: string;
-   Topm2:string;
-   Catidadm2: string;
-   Topm3:string;
-   Catidadm3: string;
-   Topm4:string;
-   Catidadm4: string;
-   Topm5:string;
-   Catidadm5: string;
+//   chartDataEstado: ChartData;
+//   chartOptionsEstado: ChartOptions;
 
-total1:string;
-total2:string;
-total3:string;
-total4:string;
-total5:string;
-total6:string;
-total7:string;
-total8:string;
-total9:string;
-total10:string;
-total11:string;
-total12:string;
-total13:string;
-    pieData: any;
-   
-    chartData: any;
-    pieOptions: any;
-    chartOptions: any;
+//   chartDataModelo: ChartData;
+//   chartOptionsModelo: ChartOptions;
 
-    subscription!: Subscription;
-    top1: String = "arreglo[0]";
-    cantidadTop1: Number = 30;
+//   constructor(
+//     private dashboardService: ServiceService,
+//     private messageService: MessageService // Inyectar MessageService
+//   ) { }
 
+//   ngOnInit(): void {
+//     const fechaActual = new Date().toISOString().slice(0, 10);
+//     this.fechaInicio = fechaActual;
+//     this.fechaFin = fechaActual;
+    
+//     console.log(this.fechaInicio + this.fechaFin)
+//     this.filtrarCompras();
+//   }
 
-    constructor(private productService: ProductService, public service:ServiceService,public layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$
-        .pipe(debounceTime(25))
-        .subscribe((config) => {
-            this.initChart();
-        });
-    }
+//   filtrarCompras() {
+//     const fechaInicio = new Date(this.fechaInicio);
+//     const fechaFin = new Date(this.fechaFin);
 
-    ngOnInit() {
-
-        this.initChart();
-        this.productService.getProductsSmall().then(data => this.products = data);
-
-        // this.service.getproducto().subscribe((data: Productos[]) => {
-        //     console.log(data);
-        //     this.Productos = data;
-
-
-            
-        // });
-
+//     if (fechaInicio <= fechaFin) {
       
-
-
-        
-        this.service.getMaquillajemes().subscribe({
-            next: (data: ProductoMasCompradoMes[]) => {
-                if (data && data.length > 0) {
-                    this.Top1 = data[0].nombreProducto;
-                    this.Catidad1 = data[0].totalComprado;
-                    if (data.length > 1) {
-                        this.Top2 = data[1].nombreProducto;
-                        this.Catidad2 = data[1].totalComprado;
-                    }
-                    if (data.length > 2) {
-                        this.Top3 = data[2].nombreProducto;
-                        this.Catidad3 = data[2].totalComprado;
-                    }
-                    if (data.length > 3) {
-                        this.Top4 = data[3].nombreProducto;
-                        this.Catidad4 = data[3].totalComprado;
-                    }
-                    if (data.length > 4) {
-                        this.Top5 = data[4].nombreProducto;
-                        this.Catidad5 = data[4].totalComprado;
-                    }
-                } else {
-                    console.error("El arreglo 'data' está vacío o es null.");
-                }
-            },
-            error: (error) => {
-                console.error("Error al obtener datos:", error);
-            }
-        });
-        
-        console.log("estaaa"+this.Catidad1)
-        if(this.Catidad3  == null){
-          this.CantTop3 = false;
-         }
-          this.porcentaje1 = (parseInt(this.Catidad1) /100)* 100;
-
-
-
-
-
-
-
-          this.service.getJoyas().subscribe({
-            next: (data: TotalVentasPorCategoria[]) => {
-               this.Topm1 = data[0].producto,
-               this.Catidadm1 = data[0].totalVentas,
-               this.Topm2 = data[1].producto,
-               this.Catidadm2 = data[1].totalVentas,
-               this.Topm3 = data[2].producto,
-               this.Catidadm3 = data[2].totalVentas,
-               this.Topm4 = data[3].producto,
-               this.Catidadm4 = data[3].totalVentas,
-               this.Topm5 = data[4].producto,
-               this.Catidadm5 = data[4].totalVentas
-               
-            }
-          });
+//         const fechasEnRango: string[] = [];
+//         let fechaActual = new Date(fechaInicio);
+//         while (fechaActual <= fechaFin) {
+//             fechasEnRango.push(fechaActual.toISOString().slice(0, 7));
+//             fechaActual.setMonth(fechaActual.getMonth() + 1); 
+//         }
 
      
-
-
-
-
-
-
-
-
-        //   this.service.getto().subscribe({
-        //     next: (data: totalanual[]) => {
-        //        this.total1 = data[0].totalVentas,
-        //        this.total2 = data[1].totalVentas,
-        //        this.total3 = data[2].totalVentas,
-        //        this.total4 = data[3].totalVentas,
-        //        this.total5 = data[4].totalVentas,
-        //        this.total6 = data[5].totalVentas,
-        //        this.total7 = data[6].totalVentas,
-        //        this.total8 = data[7].totalVentas,
-        //        this.total9 = data[8].totalVentas,
-        //        this.total10 = data[9].totalVentas,
-        //        this.total11 = data[10].totalVentas,
-        //        this.total12 = data[11].totalVentas,
-        //        this.total13 = data[12].totalVentas
-               
-        //     }
-        //   });
-
-
-
-
-
-
-
-
-
-
-        // this.service.getMaquioJoya().subscribe((data: MaqJoyaMes[]) => {
-        //     console.log(data);
-        //     this.MaqJoyaMes = data;
-
-
-            
-        // });
-
-
-
-
-        
-        this.service.getMaquioJoya().subscribe((data: ProductoMes[]) => {
-            console.log(data);
-            this.MaqJoyaMes = data;
-
-            this.totalVendido1 = data[0].cantidad;
-            
-            
-   
-        });
-   
-
-
-
-
-
-
-        
-        // this.service.gettm().subscribe((data: totalMa[]) => {
-        //     console.log(data);
-        //     this.totalMa = data;
-
-         
-        //     this.totalfinalma = data[0].totalFinal
-   
-        // });
-   
-  
-        // this.service.gettj().subscribe((data: totalJo[]) => {
-          
-        //     this.totalJo = data;
-
-         
-        //     this.totalfinaljo = data[0].totalFinal
-        //     console.log("el total"+this.totalfinaljo)
-
-        // });
-   
-
-
-
-
-    }
-
-
-
-    
-
-
-
-
-
-    initChart() {
-        
-        const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-
-        this.chartOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: textColor
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                }
-            }
-        };
-
-
-       
-   
-        this.pieData = {
-            
-            labels: ['Productos', 'Categoria' ],
-            datasets: [
-                {
-                    data: [this.totalfinaljo, this.totalfinalma],
+//         this.dashboardService.VentasPorMes().subscribe(
+//             data => {
+                
+//                 const comprasFiltradas = data.filter(compra => {
+//                     const fechaCompra = `${compra.anio}-${compra.mes.padStart(2, '0')}`;
                     
-                    backgroundColor: [
-                        documentStyle.getPropertyValue('--indigo-500'),
-                        documentStyle.getPropertyValue('--bluegray-700'),
-                        documentStyle.getPropertyValue('--teal-500')
-                    ],
-                    hoverBackgroundColor: [
-                        documentStyle.getPropertyValue('--indigo-400'),
-                        documentStyle.getPropertyValue('--bluegray-700'),
-                        documentStyle.getPropertyValue('--teal-400')
-                    ]
-                    
-                }]
-               
-        };
- 
-
-        this.pieOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        usePointStyle: true,
-                        color: textColor
-                    }
-                }
-            }
-        };
-
-    }
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     this.service.getMaquioJoya().subscribe((data: MaqJoyaMes[]) => {
-       
-//         this.MaqJoyaMes = data;
-
-//         const totalVendidoe1 = data[0].cantidad;
-//         const totalVendido2e = data[1].cantidad;
-        
-
-//     this.pieData = {
-//         labels: ['Joyas', 'Maquillaje' ],
-//         datasets: [
-//             {
-//                 data: [totalVendidoe1, totalVendido2e],
-//                 backgroundColor: [
-//                     documentStyle.getPropertyValue('--indigo-500'),
-//                     documentStyle.getPropertyValue('--bluegray-700'),
-//                     documentStyle.getPropertyValue('--teal-500')
-//                 ],
-//                 hoverBackgroundColor: [
-//                     documentStyle.getPropertyValue('--indigo-400'),
-//                     documentStyle.getPropertyValue('--bluegray-700'),
-//                     documentStyle.getPropertyValue('--teal-400')
-//                 ]
-//             }]
-//     };
-// });
-
-//     this.pieOptions = {
-//         plugins: {
-//             legend: {
-//                 labels: {
-//                     usePointStyle: true,
-//                     color: textColor
-//                 }
+//                     return fechasEnRango.includes(fechaCompra);
+//                 });
+                
+//                 this.renderizarGrafico(comprasFiltradas);
+//             },
+//             error => {
+//                 console.error('Error al obtener datos de préstamos:', error);
+//                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al obtener datos de la API.' });
 //             }
-//         }
-//     };
+//         );
 
+// // // //  this.dashboardService.obtenerPrestaPorSexo().subscribe(
+// // // //   data => {
+   
+// // // //       const comprasFiltradas = data.filter(compra => {
+// // // //           const fechaCompra = `${compra.anio}-${compra.mes.padStart(2, '0')}`;
+// // // //           return fechasEnRango.includes(fechaCompra);
+// // // //       });
+   
+// // // //       this.renderizarGraficoSexo(comprasFiltradas);
+// // // //   },
+// // // //   error => {
+// // // //       console.error('Error al obtener datos de préstamos:', error);
+// // // //       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al obtener datos de la API.' });
+// // // //   }
+// // // // );
+// this.dashboardService.ProductosVendidosPorCategoriaMesAnio().subscribe(
+//   data => {
+//       // Filtrar los datos por todas las fechas dentro del rango
+//       const comprasFiltradas = data.filter(compra => {
+//           const fechaCompra = `${compra.anio}-${compra.mes.padStart(2, '0')}`;
+//           return fechasEnRango.includes(fechaCompra);
+//       });
+//       // Renderizar gráfico con los datos filtrados
+//       this.renderizarGraficoModelo(comprasFiltradas);
+//   },
+//   error => {
+//       console.error('Error al obtener datos de préstamos:', error);
+//       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al obtener datos de la API.' });
+//   }
+// );
+
+//  this.dashboardService.().subscribe(
+//    data => {
+//        // Filtrar los datos por todas las fechas dentro del rango
+//      const comprasFiltradas = data.filter(compra => {
+//            const fechaCompra = `${compra.anio}-${compra.mes.padStart(2, '0')}`;           return fechasEnRango.includes(fechaCompra);
+//       });
+//        // Renderizar gráfico con los datos filtrados
+//       this.renderizarGraficoEstado(comprasFiltradas);
+//    },
+//    error => {
+//        console.error('Error al obtener datos de préstamos:', error);
+//      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al obtener datos de la API.' });
+//    }
+// );
+//     } else {
+//         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La fecha de inicio debe ser anterior o igual a la fecha de fin.' });
+//     }
+// }
+
+//   renderizarGrafico(compras: { anio: string, mes: string, cantidadPrestamos: number }[]) {
+//     const fechas = compras.map(compra => `${compra.anio}-${compra.mes}`);
+//     console.log(fechas)
+//     const cantidades = compras.map(compra => compra.cantidadPrestamos);
+
+//     if (this.MyChart) {
+//       this.MyChart.destroy(); // Destruir el gráfico existente si existe
+//     }
+
+//     this.MyChart = new Chart("barChart", {
+//       type: 'bar',
+//       data: {
+//         labels: fechas,
+//         datasets: [{
+//           label: 'Prestamos',
+//           data: cantidades,
+//           backgroundColor: [
+//             'rgba(255, 193, 7, 0.6)', // Color #ffc107 para la primera compra
+//             'rgba(54, 162, 235, 0.6)', // Color para la segunda compra
+//             'rgba(255, 206, 86, 0.6)', // Color para la tercera compra
+//             // Añadir más colores si es necesario
+//           ],
+//           borderColor: [
+//             'rgba(255, 193, 7, 1)', // Color del borde para la primera compra
+//             'rgba(54, 162, 235, 1)', // Color del borde para la segunda compra
+//             'rgba(255, 206, 86, 1)', // Color del borde para la tercera compra
+//             // Añadir más colores si es necesario
+//           ],
+//           borderWidth: 1,
+//           barPercentage: 0.4 // Ajusta el ancho de las barras, un valor de 1 significa que las barras ocuparán todo el espacio disponible
+//         }]
+//       },
+//       options: {
+//         scales: {
+//           y: {
+//             beginAtZero: true,
+//             title: {
+//               display: true,
+//               text: 'Cantidad de Prestamos',
+//               color: 'white' // Cambiar color de texto a blanco
+//             },
+//             ticks: {
+//               color: 'white' // Cambiar color de las etiquetas del eje Y a blanco
+//             }
+//           },
+//           x: {
+//             title: {
+//               display: true,
+//               text: 'Fecha',
+//               color: 'white' // Cambiar color de texto a blanco
+//             },
+//             ticks: {
+//               color: 'white' // Cambiar color de las etiquetas del eje X a blanco
+//             }
+//           }
+//         },
+//         plugins: {
+//           legend: {
+//             display: false,
+//             labels: {
+//               color: 'white' // Cambiar color de las etiquetas de la leyenda a blanco
+//             }
+//           }
+//         },
+//         layout: {
+//           padding: {
+//             left: 10,
+//             right: 10,
+//             top: 10,
+//             bottom: 10
+//           }
+//         },
+//         responsive: true,
+       
+//       }
+//     });
+//   }
+  
+// //   renderizarGraficoSexo(compras: { anio: string, mes: string, clie_Sexo: string, cantidadPrestamos: number }[]) {
+// //     // Filtrar los datos por género (solo Femenino y Masculino)
+// //     const comprasFemenino = compras.filter(compra => compra.clie_Sexo === 'Femenino');
+// //     const comprasMasculino = compras.filter(compra => compra.clie_Sexo === 'Masculino');
+
+// //     // Obtener las cantidades de préstamos para cada género
+// //     const cantidadFemenino = comprasFemenino.reduce((total, compra) => total + compra.cantidadPrestamos, 0);
+// //     const cantidadMasculino = comprasMasculino.reduce((total, compra) => total + compra.cantidadPrestamos, 0);
+
+// //     // Renderizar el gráfico con solo dos barras (Femenino y Masculino)
+// //     if (this.MyChartSexo) {
+// //         this.MyChartSexo.destroy(); // Destruir el gráfico existente si existe
+// //     }
+
+// //     this.MyChartSexo = new Chart("barChartSexo", {
+// //         type: 'bar',
+// //         data: {
+// //             labels: ['Femenino', 'Masculino'],
+// //             datasets: [{
+// //                 label: 'Cantidad de Prestamos',
+// //                 data: [cantidadFemenino, cantidadMasculino],
+// //                 backgroundColor: [
+// //                     'rgba(255, 99, 132, 0.6)', // Color para Femenino
+// //                     'rgba(54, 162, 235, 0.6)', // Color para Masculino
+// //                 ],
+// //                 borderColor: [
+// //                     'rgba(255, 99, 132, 1)', // Color del borde para Femenino
+// //                     'rgba(54, 162, 235, 1)', // Color del borde para Masculino
+// //                 ],
+// //                 borderWidth: 1,
+// //                 barPercentage: 0.4 // Ajusta el ancho de las barras
+// //             }]
+// //         },
+// //         options: {
+// //             scales: {
+// //                 y: {
+// //                     beginAtZero: true,
+// //                     title: {
+// //                         display: true,
+// //                         text: 'Cantidad de Prestamos',
+// //                         color: 'white' // Cambiar color de texto a blanco
+// //                     },
+// //                     ticks: {
+// //                         color: 'white' // Cambiar color de las etiquetas del eje Y a blanco
+// //                     }
+// //                 },
+// //                 x: {
+// //                     title: {
+// //                         display: true,
+// //                         text: 'Sexo',
+// //                         color: 'white' // Cambiar color de texto a blanco
+// //                     },
+// //                     ticks: {
+// //                         color: 'white' // Cambiar color de las etiquetas del eje X a blanco
+// //                     }
+// //                 }
+// //             },
+// //             plugins: {
+// //                 legend: {
+// //                     display: false   // Ocultar leyenda ya que solo hay dos barras
+// //                 }
+// //             },
+// //             layout: {
+// //                 padding: {
+// //                     left: 10,
+// //                     right: 10,
+// //                     top: 10,
+// //                     bottom: 10
+// //                 }
+// //             },
+// //             responsive: true,
+// //         }
+// //     });
+// // }
+
+// renderizarGraficoModelo(compras: { anio: string, mes: string, mode_Descripcion: string, cantidadPrestamos: number }[]) {
+//   // Obtén los datos para el gráfico de estado civil
+//   const labels = compras.map(compra => `${compra.anio}-${compra.mes.padStart(2, '0')} - ${compra.mode_Descripcion}`);
+//   const data = compras.map(compra => compra.cantidadPrestamos);
+
+//   // Asigna los datos y opciones para el gráfico de estado civil
+//   this.chartDataModelo = {
+//     labels: labels,
+//     datasets: [
+//       {
+//         data: data,
+//         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'], // Colores para cada sector del gráfico
+//         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'] // Colores para el efecto hover
+//       }
+//     ]
+//   };
+
+//   this.chartOptionsModelo = {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     // Otras opciones que desees configurar...
+//   };
+// }
+
+// renderizarGraficoEstado(compras: { anio: string, mes: string, esta_Descripcion: string, cantidadPrestamos: number }[]) {
+//   // Obtén los datos para el gráfico de estado civil
+//   const labels = compras.map(compra => `${compra.anio}-${compra.mes.padStart(2, '0')} - ${compra.esta_Descripcion}`);
+//   const data = compras.map(compra => compra.cantidadPrestamos);
+
+//   // Asigna los datos y opciones para el gráfico de estado civil
+//   this.chartDataEstado = {
+//     labels: labels,
+//     datasets: [
+//       {
+//         data: data,
+//         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'], // Colores para cada sector del gráfico
+//         hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'] // Colores para el efecto hover
+//       }
+//     ]
+//   };
+
+//   this.chartOptionsEstado = {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     // Otras opciones que desees configurar...
+//   };
 // }
 
 
@@ -410,14 +353,42 @@ total13:string;
 
 
 
+//   cambiarFechaInicio(event: Event) {
+//     this.fechaInicio = (event.target as HTMLInputElement).value;
+//     this.filtrarCompras();
+//   }
 
+//   cambiarFechaFin(event: Event) {
+//     this.fechaFin = (event.target as HTMLInputElement).value;
+//     this.filtrarCompras();
+//   }
+// }
 
-
-    
-
-    ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
-    }
-}
+// @NgModule({
+//   imports: [
+//     OrderListModule,
+//     PickListModule,
+//     CommonModule,
+//     ReactiveFormsModule,
+//     TableModule,
+//     ButtonModule,
+//     InputTextModule,
+//     ToggleButtonModule,
+//     RippleModule,
+//     FormsModule,ChartModule,
+//     FormsModule,
+//     MultiSelectModule,
+//     DropdownModule,
+//     ProgressBarModule,
+//     DialogModule,
+//     ToastModule,
+//     SliderModule,
+//     RatingModule,
+//     MatButtonModule,
+//     DataViewModule
+//   ],
+//   declarations: [
+//     EstadisticosComponent
+//   ]
+// })
+// export class EstadisticosComponentModule { }

@@ -42,6 +42,7 @@ namespace Sistema_Larach.Common.Models
         public int? Clien_UsuarioModificacion { get; set; }
         public DateTime? Clien_FechaModificacion { get; set; }
         public DateTime? Clien_FechaCreacion { get; set; }
+
         [NotMapped]
         public string UsuarioCreacion { get; set; }
         [NotMapped]

@@ -9,8 +9,8 @@ import { Observable,map } from 'rxjs';
 export class CategoriasServiceservice {
 
   constructor(private http: HttpClient) { }
-  Url = 'http://sistemalarach.somee.com/API/Categoria/Listado';
-  private baseUrl = 'http://sistemalarach.somee.com/API/Categoria';
+  Url = 'https://localhost:44300/API/Categoria/Listado';
+  private baseUrl = 'https://localhost:44300/API/Categoria';
   
   insertarCategoria(formData: any): Observable<any> {
     return this.http.post<any>(this.baseUrl + '/Create/', formData).pipe(
@@ -26,8 +26,15 @@ export class CategoriasServiceservice {
     return this.http.put(url, categoria);
   }
   
-  getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/Municipios/Detalles/' + codigo}`);
+ 
+  getFill(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`https://localhost:44300/API/Categoria/Detalles?Categ_Id=${codigo}`);
+  }
+
+
+
+  getdetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`https://localhost:44300/API/Categoria/Detalles?Categ_Id=${codigo}`);
   }
 
   eliminarCategoria(categoriaId: number): Observable<any> {

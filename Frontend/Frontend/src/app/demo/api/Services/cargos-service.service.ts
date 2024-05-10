@@ -26,10 +26,12 @@ export class CargosServiceService {
     return this.http.put(url, categoria);
   }
   
-  getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/Cargo/Detalles/' + codigo}`);
+  getDetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`${'https://localhost:44300/API/Cargo/Detalles/' + codigo}`);
   }
-
+  getFill(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`${'https://localhost:44300/API/Cargo/Detalles/' + codigo}`);
+  }
   eliminarCargo(categoriaId: number): Observable<any> {
     const url = `${this.baseUrl}/Eliminar/${categoriaId}`;
     return this.http.delete(url);

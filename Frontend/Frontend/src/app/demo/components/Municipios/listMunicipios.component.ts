@@ -377,4 +377,4 @@ openModal(tipo: string, municipio?: MunicipiosViewModel): void {
   ],
   declarations: [MunicipioListadoComponent]
 })
-export class MetodoPagoListadoModule {}
+export class MunicipioListadoModule {}

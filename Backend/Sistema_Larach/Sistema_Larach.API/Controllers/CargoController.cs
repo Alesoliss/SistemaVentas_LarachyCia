@@ -104,12 +104,12 @@ namespace Sistema_Larach.API.Controllers
                 return Problem(list.Message);
             }
         }
-        [HttpGet("Detalles")]
-        public IActionResult Details(int Categ_Id)
+        [HttpGet("Detalles/{Cargo_Id}")]
+        public IActionResult Details(int Cargo_Id)
         {
-            var list = _generalServices.BuscarCargos(Categ_Id);
+            var list = _generalServices.BuscarCargos(Cargo_Id);
 
-            return Ok(list);
+            return Json(list.Data);
         }
 
         [HttpDelete("Eliminar/{Cargo_Id}")]

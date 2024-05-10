@@ -143,7 +143,14 @@ namespace Sistema_Larach.Entities
         public string Munic_Descripcion { get; set; }
         [NotMapped]
         public string Estad_Descripcion { get; set; }
-
+        [NotMapped]
+        public string Anio { get; set; }
+        [NotMapped]
+        public string Mes { get; set; }
+        [NotMapped]
+        public int CantidadVentas { get; set; }
+        [NotMapped]
+        public int CantidadProductosVendidos { get; set; }
         public virtual tbSucursales Sucur { get; set; }
         public virtual tbUsuarios Venen_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Venen_UsuarioModificacionNavigation { get; set; }

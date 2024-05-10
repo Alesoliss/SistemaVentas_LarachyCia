@@ -65,7 +65,7 @@
   
                         <td style="align-items: center; text-align: center;">
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
-                            (click)="openModal(it'edar', usuario)">Editar</button>
+                            (click)="openModal('editar', usuario)">Editar</button>
                                 <p-button  label="Detalles"   icon="pi pi-book" size="small"
                                 (click)="detalles(usuario.usuar_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
@@ -105,16 +105,16 @@
                                 <label for="Codigo" style="font-weight: 800;">Usuario:</label>
                             </div>
                             <div class="field rows">
-                                <label for="Codigo">{{ usuario }}</label>
+                                <label for="Codigo">{{ usuar_Usuario }}</label>
                             </div>
                         </div>
                         
                         <div class="field col-12 md:col-4">
                             <div class="field rows">
-                                <label for="Municipio" style="font-weight: 800;">admin:</label>
+                                <label for="usuar_Admin" style="font-weight: 800;">admin:</label>
                             </div>
                             <div class="field rows">
-                                <label for="Municipio">{{ admin}}</label>
+                                <label for="usuar_Admin">{{ usuar_Admin}}</label>
                             </div>
                         </div>
                         
@@ -123,7 +123,7 @@
                                 <label for="Departamento">Empleados:</label>
                             </div>
                             <div class="field rows">
-                                <label for="Departamento">{{ empleado }}</label>
+                                <label for="Departamento">{{ emple_Id }}</label>
                             </div>
                         </div>
                     </div>

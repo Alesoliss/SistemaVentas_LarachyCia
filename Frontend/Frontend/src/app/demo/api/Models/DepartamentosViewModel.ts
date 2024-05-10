@@ -13,10 +13,10 @@ export class DepartamentosViewModel {
 export class Fill {
     depar_Id!: string;
     depar_Descripcion!: string;
-    depar_UsuarioCreacion!: number;
+    depar_UsuarioCreacion!: string;
     depar_FechaCreacion!: Date;
-    depar_UsuarioModificacion?: number | null;
-    depar_FechaModificacion?: Date | null;
+    depar_UsuarioModificacion?: string | null;
+    depar_FechaModificacion?: string | null;
     depar_Estado?: boolean | null;
     usuarioCreacion?: string;
     usuarioModificacion?: string;

@@ -1,6 +1,6 @@
 <p-toast style="background-color: red ;"></p-toast>
 <div class="grid">
-    <div class="col-12">
+    <div class="col-12" *ngIf="!Detalles">
         <div class="card">
             <h5>Categorías</h5>
             <div class="flex justify-content-start mb-3">
@@ -47,10 +47,11 @@
                         <td style="align-items: center; text-align: center;">
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
                             (click)="openModal('editar', categoria)">Editar</button>
+                            <p-button  label="Detalles"   icon="pi pi-book" size="small"
+                            (click)="detalles(categoria.categ_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
                                 (click)="eliminarcategoria(categoria.categ_Id)">Eliminar</button>
-                                <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-warning"
-                                (click)="showDetails(categoria)">Detalles</button>
+                             
                         </td>
                     </tr>
                 </ng-template>
@@ -66,6 +67,68 @@
                 </ng-template>
             </p-table>
         </div>
+    </div>
+</div>
+ <!-- Detalles del Municipio -->
+ <div class="col-12" [class.hidden]="!Detalles">
+    <div class="card-body">
+     
+        <div class="card">
+            <div class="card-header">
+
+                <div class="card-title">
+                    <h1>Auditoria</h1>
+                </div>
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-4" *ngIf="cateCodigo">
+                        <div class="field rows">
+                            <label for="Codigo" style="font-weight: 800;">Codigo:</label>
+                        </div>
+                        <div class="field rows">
+                            <label for="Codigo">{{ categ_Id }}</label>
+                        </div>
+                    </div>
+                    
+                    <div class="field col-12 md:col-4">
+                        <div class="field rows">
+                            <label for="Municipio" style="font-weight: 800;">Descripcion:</label>
+                        </div>
+                        <div class="field rows">
+                            <label for="Municipio">{{ categ_Descripcion }}</label>
+                        </div>
+                    </div>
+                    
+                  
+                </div>
+            </div>
+            <div class="card-body">
+                <p-table [value]="staticData">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:200px">Accion</th>
+                            <th style="width:200px">Usuario</th>
+                            <th style="width:200px">Fecha</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-transaction>
+                        <tr>
+                            <td style="width:200px;">Creado</td>
+                            <td style="width:200px">{{ UsuarioCreacion }}</td>
+                            <td style="width:200px">{{ FechaCreacion }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width:200px;">Modificado</td>
+                            <td style="width:200px">{{ UsuarioModificacion }}</td>
+                            <td style="width:200px">{{ FechaModificacion }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                <button pButton icon="pi pi-cancel" type="button" (click)="cancelar()" label="Regresar" class="p-button-danger"></button>
+            </div>
+        </div>
+       
     </div>
 </div>
 

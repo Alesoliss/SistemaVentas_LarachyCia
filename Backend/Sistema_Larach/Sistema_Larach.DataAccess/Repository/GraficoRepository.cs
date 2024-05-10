@@ -142,6 +142,26 @@ namespace Sistema_Larach.DataAccess.Repository
                 return result;
             }
         }
+        /////////////////////Nuevos dash
+        public IEnumerable<tbVentasEncabezado> VentasPorMes()
+        {
+            List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                result = db.Query<tbVentasEncabezado>(ScriptDataBase.Grafica1_VentasPorMes, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
+        public IEnumerable<tbVentasEncabezado> ProductosVendidosPorCategoriaMesAnio()
+        {
+            List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                result = db.Query<tbVentasEncabezado>(ScriptDataBase.Grafica2_ProductosVendidosPorCategoriaMesAnio, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
+
         ////////////////////////////////////////////////////////////////////////
         ///
 

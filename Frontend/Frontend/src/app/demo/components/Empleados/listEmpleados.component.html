@@ -55,19 +55,25 @@
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_Direccion'].invalid" style="color: red !important;">Direccion Requerido</small>
 
                     </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="emple_Telefono" class="form-label">Telefono</label>
+                        <input pInputText id="emple_Telefono" class="form-control" formControlName="emple_Telefono" type="text" required autofocus />
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && clienteForm.controls['emple_Telefono'].invalid" style="color: red !important;">Direccion Requerido</small>
+
+                    </div>
 
                     <div class="field col-12 md:col-6">
                         <label for="emple_Sexo" class="form-label">Sexo</label>
                         <div class="col-md-3">
                             <label>
-                                <input type="radio" class="form-check-input" name="sexo" value="M" checked formControlName="emple_Sexo"> Masculino
-                              </label>
+                                <input type="radio" class="form-check-input" name="emple_Sexo" value="M" [formControl]="clienteForm.get('emple_Sexo')"> Masculino
+                            </label>
                             </div>
 
                             <div class="col-md-3">
                                 <label>
-                                    <input type="radio" class="form-check-input" name="sexo" value="F" formControlName="emple_Sexo"> Femenino
-                                  </label>
+                                    <input type="radio" class="form-check-input" name="emple_Sexo" value="F" [formControl]="clienteForm.get('emple_Sexo')"> Femenino
+                                </label>
                                 </div>
                             </div>
 
@@ -107,11 +113,11 @@
                       </div>
 
                       <div class="field col-12 md:col-6">
-                          <label for="Municipio">Municipio</label>
-                          <select formControlName="Munic_Id" pInputText id="Munic_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('Munic_Id').value === '0'}" >
+                          <label for="munic_Id">Municipio</label>
+                          <select formControlName="munic_Id" pInputText id="munic_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('munic_Id').value === '0'}" >
                             <option *ngFor="let muni of municipios" [value]="muni.value">{{ muni.text }}</option>
                           </select>
-                          <small *ngIf="submitted && clienteForm.get('Munic_Id').value === '0'" style="color: red;">Municipio Requerido</small>
+                          <small *ngIf="submitted && clienteForm.get('munic_Id').value === '0'" style="color: red;">Municipio Requerido</small>
                         </div>
 
 

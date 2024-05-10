@@ -232,6 +232,8 @@ namespace Sistema_Larach.DataAccess.Repository
         public static string VentasDetalle_Buscar = "[Venta].[SP_VentasDetalle_Buscar]";
         public static string VentasDetalle_Actualizar = "[Venta].[SP_VentasDetalle_Modificar]";
         public static string VentasDetalle_Delete = "[Venta].[SP_VentasDetalle_Eliminar]";
+        public static string Grafica1_VentasPorMes = "Venta.SP_VentasPorMes";
+        public static string Grafica2_ProductosVendidosPorCategoriaMesAnio = "Venta.[SP_ProductosVendidosPorCategoriaMesAnio]";
         #endregion
 
         #region VentasEncabezado
@@ -261,6 +263,7 @@ namespace Sistema_Larach.DataAccess.Repository
         #region Clientes
         public static string Clientes_MunicipioDDL = "[Gral].[SP_Municipios_DropDownList]";
         public static string Clientes_EstadoCivilDDL = "[Gral].[SP_EstadosCiviles_DropDownList]";
+        public static string Clientesllenar = "[Venta].[sp_Clientes_Buscar]";
         #endregion
 
 

@@ -121,5 +121,18 @@ namespace Sistema_Larach.API.Controllers
             var list = _graficoServices.Ventatotalcate();
             return Ok(list.Data);
         }
+
+        [HttpGet("VentasPorMes")]
+        public IActionResult VentasPorMes()
+        {
+            var list = _graficoServices.VentasPorMes();
+            return Ok(list.Data);
+        }
+        [HttpGet("ProductosVendidosPorCategoriaMesAnio")]
+        public IActionResult ProductosVendidosPorCategoriaMesAnio()
+        {
+            var list = _graficoServices.ProductosVendidosPorCategoriaMesAnio();
+            return Ok(list.Data);
+        }
     }
 }
