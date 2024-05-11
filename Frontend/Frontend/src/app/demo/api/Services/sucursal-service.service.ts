@@ -3,6 +3,7 @@ import {SucursalesViewModel,Fill} from '../Models/SucursalesViewModel';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
+import { BASE_URL } from './urlsettings';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,8 @@ export class SucursalServiceService {
   }
   
   getFill(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`http://sistemalarach.somee.com/API/Municipios/Detalles?Munic_Id=${codigo}`);
+    return this.http.get<Fill>(`${BASE_URL + 'API/Sucursales/Detalles/' + codigo}`);
   }
-
 
 
   getdetalles(codigo: number): Observable<Fill> {

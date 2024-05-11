@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { CargosViewModel,Fill } from '../Models/CargosViewModel';
 import { Observable,map } from 'rxjs';
+import { BASE_URL } from './urlsettings';
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +28,8 @@ export class CargosServiceService {
   }
   
   getFill(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`https://localhost:44300/API/Cargo/Detalles?Cargo_Id=${codigo}`);
+    return this.http.get<Fill>(`${BASE_URL + 'API/Cargo/Detalles/' + codigo}`);
   }
-
 
 
   getdetalles(codigo: string): Observable<Fill> {

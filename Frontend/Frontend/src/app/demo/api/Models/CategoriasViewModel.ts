@@ -15,7 +15,7 @@ export class Fill {
     categ_Id!: string;
     categ_Descripcion!: string;
     cate_ImagenUrl!: string;
-    categ_UsuarioCreacion!: number;
+    categ_UsuarioCreacion!: string;
     categ_FechaCreacion!: Date;
     categ_UsuarioModificacion?: number | null;
     categ_FechaModificacion?: Date | null;

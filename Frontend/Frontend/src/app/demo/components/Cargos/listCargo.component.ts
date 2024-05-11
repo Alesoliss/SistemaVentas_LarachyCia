@@ -97,25 +97,20 @@ collapse(){
   this.Detalles = false;
 }
 
-  detalles(codigo) {
-    this.Collapse = false;
-    this.Detalles = true;
-    this.service.getdetalles(codigo).subscribe({
-        next: (response: any) => {
-            const data = response.data[0]; // Acceder al primer elemento del array
-            console.log('Respuesta del servidor:', data);
-            this.Cargo_Id = data.cargo_Id;
-            this.Cargo_Descripcion = data.cargo_Descripcion;
-            this.UsuarioCreacion = data.usuarioCreacion;
-            this.UsuarioModificacion = data.usuarioModificacion;
-            this.FechaCreacion = data.cargo_FechaCreacion;
-            this.FechaModificacion = data.munic_FechaModificacion;
-        },
-        error: (error) => {
-            console.error('Error al obtener detalles:', error);
-        }
+detalles(id){
+  this.Collapse= false;
+
+  this.Detalles = true;
+  this.service.getFill(id).subscribe({
+      next: (data: Fill) => {
+         this.Cargo_Descripcion = data.cargo_Descripcion,
+         this.UsuarioCreacion = data.usuarioCreacion,
+         this.UsuarioModificacion = data.usuarioModificacion
+        //  this.FechaCreacion = data.cargo_FechaCreacion,
+        //  this.FechaModificacion = data.fechaModificacion
+      }
     });
-  }
+}
 
 
   getCargo(): void {

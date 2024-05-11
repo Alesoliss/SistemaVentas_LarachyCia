@@ -60,9 +60,9 @@ export class SucursalesListadoComponent implements OnInit {
   sucur_Direccion: string = "";
   sucur_Telefono: string = "";
   sucur_UsuarioCreacion: number = 0;
-  sucur_FechaCreacion: Date;
+  sucur_FechaCreacion: string = "";
   sucur_UsuarioModificacion: number | null;
-  sucur_FechaModificacion: Date | null;
+  sucur_FechaModificacion: string = "";
   sucur_Estado: boolean | null;
   munic_Descripcion: string = "";
   usuarioCreacion: string = "";
@@ -121,8 +121,8 @@ getSucursal(): void {
     this.Collapse= false;
     this.Detalles = false;
     this.sucursalForm = new FormGroup({
-        sucur_Descripcion: new FormControl("",Validators.required),
-        munic_Id: new FormControl("",Validators.required),
+      sucur_Descripcion: new FormControl("",Validators.required),
+   
         sucur_Direccion: new FormControl("", Validators.required),
         sucur_Telefono: new FormControl('0', [Validators.required])
     });
@@ -133,27 +133,33 @@ getSucursal(): void {
     this.Collapse= true;
     this.Detalles = false;
 }
-detalles(codigo) {
-  this.Collapse = false;
+detalles(id){
+  this.Collapse= false;
   this.Detalles = true;
-  this.service.getdetalles(codigo).subscribe({
-      next: (response: any) => {
-          const data = response.data[0]; // Acceder al primer elemento del array
-          console.log('Respuesta del servidor:', data);
+
+  this.service.getFill(id).subscribe({
+      next: (data: Fill) => {
+        if (data) { // Check if data is not null or undefined
           this.sucur_Descripcion = data.sucur_Descripcion;
-          this.sucur_Telefono = data.sucur_Telefono;
-          this.munic_Id = data.munic_Id;
+          this.sucur_Direccion = data.sucur_Direccion;
+   
           this.sucur_Telefono = data.sucur_Telefono;
           this.usuarioCreacion = data.usuarioCreacion;
           this.usuarioModificacion = data.usuarioModificacion;
-          this.sucur_FechaCreacion = data.sucur_FechaCreacion;
-          this.sucur_FechaModificacion = data.sucur_FechaModificacion;
+          this.sucur_FechaCreacion = data.fechaCreacion;
+          this.sucur_FechaModificacion = data.fechaModificacion;
+        } else {
+          // Handle the case where data is null or undefined
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se cargaron todos los datos', life: 3000 });
+        }
       },
       error: (error) => {
-          console.error('Error al obtener detalles:', error);
+        // Handle any errors from the service call
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Fallo al cargar los datos', life: 3000 });
       }
-  });
+    });
 }
+
 
 getMunicipio(): void {
   this.MunicipiosServiceService.getMunicipio().subscribe(
@@ -331,7 +337,7 @@ getMunicipio(): void {
         next: (data: Fill) => {
             this.sucursalForm = new FormGroup({
               sucur_Descripcion: new FormControl("",Validators.required),
-              munic_Id: new FormControl("",Validators.required),
+        
               sucur_Direccion: new FormControl("", Validators.required),
               sucur_Telefono: new FormControl('0', [Validators.required])
             });

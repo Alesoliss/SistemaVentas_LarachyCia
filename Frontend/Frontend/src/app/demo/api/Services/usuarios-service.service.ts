@@ -3,6 +3,9 @@ import {UsuariosViewModel,Fill} from '../Models/UsuariosViewModel';
 import {HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
+import { dropEmpleado } from '../Models/EmpleadosViewModel';
+import { dropRol } from '../Models/RolesViewModel';
+import { BASE_URL } from './urlsettings';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,7 @@ import { map } from 'rxjs';
 export class UsuariosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'http://sistemalarach.somee.com/api/Usuario/Listado';
+  Url = 'https://localhost:44300/api/Usuario/Listado';
   getUsuarios (){
     return this.http.get<UsuariosViewModel[]>(this.Url);
   }
@@ -25,34 +28,35 @@ export class UsuariosServiceService {
 
 
   
-  insertarUsuario(formData: any): Observable<any> {
-    return this.http.post<any>(this.baseUrl + '/Insert/', formData).pipe(
-      map(response => {
-        return response;
-      }),
-    );
+EnviarUsuario(formData: any): Observable<any> {
+  return this.http.post<any>(BASE_URL + 'api/Usuario/Insert', formData).pipe(
+    map(response => {
+      return response;
+    }),
+  );
+}
+
+getFill(codigo: string): Observable<Fill> {
+  return this.http.get<Fill>(`${BASE_URL + 'api/Usuario/Detalles/' + codigo}`);
+}
+EliminarUsuario(ID): Observable<any>{
+  return this.http.delete<any>(`${BASE_URL + 'api/Usuario/Delete/' + ID}`)
+}
+ActualizarUsuario(formData){
+  return this.http.put(BASE_URL + 'api/Usuario/Update/', formData)
+}
+  urlDrop = BASE_URL + 'API/Empleados/DropDown'
+
+  getDropDownEmpleado(){
+    return this.http.get<dropEmpleado[]>(this.urlDrop)
   }
 
+  urlDropRol = BASE_URL + 'API/Rol/DropDown'
 
-  actualizarUsuario(categoria: UsuariosViewModel): Observable<any> {
-    const url = `${this.baseUrl}/Update`;
-    return this.http.put(url, categoria);
-  }
-  
-  getFill(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`http://sistemalarach.somee.com/API/Municipios/Detalles?Munic_Id=${codigo}`);
+  getDropDownRol(){
+    return this.http.get<dropRol[]>(this.urlDropRol)
   }
 
-
-
-  getdetalles(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`${ 'https://localhost:44300/api/Usuario/Detalles/' + codigo}`);
-  }
-
-  eliminarmetodo(categoriaId: number): Observable<any> {
-    const url = `${this.baseUrl}/Delete/${categoriaId}`;
-    return this.http.delete(url);
-  }
 
 
 }

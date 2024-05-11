@@ -25,18 +25,18 @@ export class ClienteViewModel {
 export class ClienteEnviar {
     
 
-    clien_Id!: string;
-    clien_PrimerNombre!: string;
-    clien_SegundoNombre!: string;
-    clien_PrimerApellido!: string;
-    clien_SegundoApellido!: string;
-    clien_Sexo!: string;
-    estad_Id!: string;
-    clien_Telefono!: string;
-    clien_Correo!: string;
-    munic_Id!: string;
-    clien_Direccion!: string;
-    depar_Id!: string;
+    Clien_Id!: string;
+    Clien_PrimerNombre!: string;
+    Clien_SegundoNombre!: string;
+    Clien_PrimerApellido!: string;
+    Clien_SegundoApellido!: string;
+    Clien_Sexo!: string;
+    Estad_Id!: string;
+    Clien_Telefono!: string;
+    Clien_Correo!: string;
+    Munic_Id!: string;
+    Clien_Direccion!: string;
+   
   
 
 }

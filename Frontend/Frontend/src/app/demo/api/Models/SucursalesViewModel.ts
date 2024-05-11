@@ -12,6 +12,8 @@ export class SucursalesViewModel {
     munic_Descripcion!: string;
     usuarioCreacion!: string;
     usuarioModificacion!: string;
+    fechaCreacion?: string;
+    fechaModificacion?: string;
 }
 
 export class dropSucursales{
@@ -33,4 +35,6 @@ export class Fill {
     munic_Descripcion!: string;
     usuarioCreacion!: string;
     usuarioModificacion!: string;
+    fechaCreacion?: string;
+    fechaModificacion?: string;
 }

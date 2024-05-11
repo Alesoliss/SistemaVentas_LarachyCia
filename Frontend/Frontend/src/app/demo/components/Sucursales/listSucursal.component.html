@@ -101,21 +101,29 @@
                     <h1>Auditoria</h1>
                 </div>
                 <div class="p-fluid p-formgrid grid">
-                    <div class="field col-12 md:col-4" *ngIf="sucur_Id">
+                    <!-- <div class="field col-12 md:col-4" *ngIf="sucur_Id">
                         <div class="field rows">
                             <label for="Codigo" style="font-weight: 800;">Sucursales </label>
                         </div>
                         <div class="field rows">
-                            <label for="Codigo">{{ sucursal }}</label>
+                            <label for="Codigo">{{ sucur_Descripcion }}</label>
                         </div>
-                    </div>
+                    </div> -->
                     
                     <div class="field col-12 md:col-4">
                         <div class="field rows">
                             <label for="Municipio" style="font-weight: 800;">Direccion:</label>
                         </div>
                         <div class="field rows">
-                            <label for="Municipio">{{ Direccion }}</label>
+                            <label for="Municipio">{{ sucur_Direccion }}</label>
+                        </div>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <div class="field rows">
+                            <label for="Municipio" style="font-weight: 800;">Sucursal:</label>
+                        </div>
+                        <div class="field rows">
+                            <label for="Municipio">{{ sucur_Descripcion }}</label>
                         </div>
                     </div>
                     
@@ -124,7 +132,7 @@
                             <label for="Departamento">Telefono:</label>
                         </div>
                         <div class="field rows">
-                            <label for="Departamento">{{ Telefono }}</label>
+                            <label for="Departamento">{{ sucur_Telefono }}</label>
                         </div>
                     </div>
                 </div>

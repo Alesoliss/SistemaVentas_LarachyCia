@@ -1,4 +1,4 @@
-<p-toast style="background-color: red ;"></p-toast>
+<p-toast ></p-toast>
 <div class="grid">
     <div class="col-12" *ngIf="!Detalles" >
         <div class="card">
@@ -45,12 +45,12 @@
                         <td>{{cargo.cargo_Descripcion}}</td>
   
                         <td style="display: flex; justify-content: space-around;">
-                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"
-                            (click)="openModal('editar', cargo)"></button>
-                            <button  pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary"
-                            (click)="detalles(cargo.cargo_Id)" severity="secondary" [raised]="true" [plain]="true"></button>
-                                <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"
-                                (click)="eliminarcategoria(cargo.cargo_Id)"></button>
+                            <p-button  label="Editar"   icon="pi pi-user-edit" size="small"
+                            (click)="openModal('editar', cargo)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Detalles"   icon="pi pi-book" size="small"
+                            (click)="detalles(cargo.cargo_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                                <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="eliminarcategoria(cargo.cargo_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                              
                         </td>
                     </tr>

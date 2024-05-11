@@ -78,3 +78,8 @@ export class Fill {
     estad_Descripcion?: string;
     depa_Departamento?: string;
 }
+
+export class dropEmpleado{
+    value?:String;
+    text?:String;
+}

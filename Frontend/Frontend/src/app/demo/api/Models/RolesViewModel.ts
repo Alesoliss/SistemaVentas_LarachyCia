@@ -18,3 +18,8 @@ export class RolesViewModel {
     pantID!: number;
     pantDescripcion!: string;
 }
+
+export class dropRol{
+    value?:String;
+    text?:String;
+}

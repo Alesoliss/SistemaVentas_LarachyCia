@@ -44,12 +44,12 @@
                       <td>{{depto.depar_Id}}</td>
                       <td>{{depto.depar_Descripcion}}</td>
                       <td style="display: flex; justify-content: space-around;">
-                        <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"
-                        (click)="openModal('editar', depto)"></button>
-                        <p-button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary"
+                        <p-button label="Editar"   icon="pi pi-user-edit" size="small"
+                        (click)="openModal('editar', depto)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <p-button label="Detalles"   icon="pi pi-book" size="small"
                         (click)="detalles(depto.depar_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                        <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"
-                        (click)="eliminarcategoria(depto.depar_Id)"></button>
+                        <button label="Eliminar" icon="pi pi-trash" size="small"
+                        (click)="eliminarcategoria(depto.depar_Id)" severity="danger" [raised]="true" [plain]="true"></button>
                        
                       </td>
                   </tr>

@@ -1,9 +1,9 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { UnidadesViewModel } from '../../api/Models/UnidadesViewModel';
+import { Fill, UnidadesViewModel } from '../../api/Models/UnidadesViewModel';
 import { UnidadServiceService } from '../../api/Services/unidades-service.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -19,6 +19,13 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class UnidadesListadoComponent implements OnInit {
   unidades: UnidadesViewModel[] = [];
+  staticData = [{}];
+
+  carCodigo: boolean = true;
+  fill: any[] = [];
+  Collapse: boolean = false;
+  Detalles: boolean = false;
+  UnidadForm: FormGroup;
   showModal: boolean = false;
   editModal: boolean = false;
   showDeleteConfirmation: boolean = false;
@@ -38,6 +45,14 @@ export class UnidadesListadoComponent implements OnInit {
   
 constructor(private service: UnidadServiceService, private router: Router,private messageService: MessageService) {}
 
+//Detalle
+Unida_Id: String = "";
+Unida_Descripcion: String = "";
+
+UsuarioCreacion: String = "";
+UsuarioModificacion: String = "";
+FechaCreacion: String = "";
+FechaModificacion: String = "";
   ngOnInit(): void {
     this.getUnidades();
   }
@@ -66,6 +81,38 @@ constructor(private service: UnidadServiceService, private router: Router,privat
       }
     );
   }
+  
+cancelar(){
+  this.Collapse= false;
+  this.Detalles = false;
+  this.UnidadForm = new FormGroup({
+    Unida_Id: new FormControl(0,Validators.required),
+    Unida_Descripcion: new FormControl("", Validators.required),
+    
+  });
+  this.carCodigo=true;
+}
+
+collapse(){
+  this.Collapse= true;
+  this.Detalles = false;
+}
+
+detalles(id){
+  this.Collapse= false;
+
+  this.Detalles = true;
+  this.service.getDetalles(id).subscribe({
+      next: (data: Fill) => {
+         this.Unida_Descripcion = data.unida_Descripcion,
+         this.UsuarioCreacion = data.usuarioCreacion,
+         this.UsuarioModificacion = data.usuarioModificacion
+         this.FechaCreacion = data.fechaCreacion,
+         this.FechaModificacion = data.fechaModificacion
+      }
+    });
+}
+
 
   clear(): void {
     this.getUnidades(); // Recargar las unidades originales
@@ -214,6 +261,21 @@ constructor(private service: UnidadServiceService, private router: Router,privat
   // eliminarUnidad(): void {
   //   this.deleteModal = false;
   // }
+  Fill(codigo) {
+    this.service.getDetalles(codigo).subscribe({
+        next: (data: Fill) => {
+            this.UnidadForm = new FormGroup({
+              Unida_Id: new FormControl(data.unida_Id,Validators.required),
+                Unida_Descripcion: new FormControl(data.unida_Descripcion, Validators.required),
+               
+            });
+            this.Collapse= true;
+
+            this.Detalles = false;
+        }
+      });
+
+}
 }
 
 @NgModule({

@@ -19,6 +19,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class ImpuestoListadoComponent implements OnInit {
   impuesto!: ImpuestosViewModel[];
+  fill: any[] = [];
+  EstaCodigo: boolean = true;
+  Collapse: boolean = false;
+  Detalles: boolean = false;
+  municipioForm: FormGroup;
   showModal: boolean = false;
   editModal: boolean = false;
   showDeleteConfirmation: boolean = false;
@@ -35,32 +40,22 @@ export class ImpuestoListadoComponent implements OnInit {
     usuarioCreacion: '', 
     usuarioModificacion: '' 
   };
-  estadocivilForm: FormGroup;
-
-  Collapse: boolean = false;
-
-  Detalles: boolean = false;
  
-  MunCodigo: boolean = true;
-  Valor: string = "";
-  staticData = [{}];
-
-
-  deleteProductDialog: boolean = false;
-  //Detalle
-  descripcion: number = 0;
-  id: string="";
-  UsuarioCreacion: String = "";
-  UsuarioModificacion: String = "";
-  FechaCreacion: Date = null;
-  FechaModificacion: String = "";
-  ID: String = "";
-
   constructor(private service: ImpuestoServiceService, private router: Router,private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.getImpuesto();
   }
+  deleteProductDialog: boolean = false;
+  //Detalle
+  Id: String = "";
+  descripcion: number = 0;
+
+  UsuarioCreacion: String = "";
+  UsuarioModificacion: String = "";
+  FechaCreacion: String = "";
+  FechaModificacion: String = "";
+  ID: String = "";
 
   onGlobalFilter(event: any): void {
     const searchText = event.target.value.toLowerCase();
@@ -102,29 +97,29 @@ export class ImpuestoListadoComponent implements OnInit {
     this.Detalles = false;
 }
 detalles(id){
-    this.Collapse= false;
-  
-    this.Detalles = true;
-    this.service.getFill(id).subscribe({
-        next: (data: Fill) => {
-           this.descripcion = data.impue_Descripcion,
-           this.UsuarioCreacion = data.usuarioCreacion,
-           this.UsuarioModificacion = data.usuarioModificacion
-           this.FechaCreacion = data.impue_FechaCreacion,
-           this.FechaModificacion = data.fechaModificacion
-        }
-      });
+  this.Collapse= false;
+
+  this.Detalles = true;
+  this.service.getFill(id).subscribe({
+      next: (data: Fill) => {
+         this.descripcion = data.impue_Descripcion,
+         this.UsuarioCreacion = data.usuarioCreacion,
+         this.UsuarioModificacion = data.usuarioModificacion
+         this.FechaCreacion = data.fechaCreacion,
+         this.FechaModificacion = data.fechaModificacion
+      }
+    });
 }
 //Cerrar Collapse y reiniciar el form
 cancelar(){
     this.Collapse= false;
     
     this.Detalles = false;
-    this.estadocivilForm = new FormGroup({
+    this.municipioForm = new FormGroup({
       impue_Descripcion: new FormControl("", Validators.required),
       });
     
-    this.MunCodigo=true;
+    this.EstaCodigo=true;
 
 }
 
@@ -279,19 +274,17 @@ cancelar(){
   // eliminarDepartamento(): void {
   //   this.deleteModal = false;
   // }
-
-  Fill(id) {
-    this.service.getFill(id).subscribe({
+  Fill(codigo) {
+    this.service.getFill(codigo).subscribe({
         next: (data: Fill) => {
-          this.estadocivilForm = new FormGroup({
-            impue_Descripcion: new FormControl(data.impue_Descripcion, Validators.required),
+            this.municipioForm = new FormGroup({
+             
+              impue_Descripcion: new FormControl(data.impue_Descripcion, Validators.required),
+               
             });
-
-            this.id = data.impue_Id;
             this.Collapse= true;
-            this.MunCodigo = false;
+
             this.Detalles = false;
-          
         }
       });
 

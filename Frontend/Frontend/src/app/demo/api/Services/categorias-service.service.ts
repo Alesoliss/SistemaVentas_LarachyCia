@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {CategoriasViewModel,Fill} from '../Models/CategoriasViewModel';
 import {HttpClient} from '@angular/common/http';
 import { Observable,map } from 'rxjs';
+import { BASE_URL } from './urlsettings';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class CategoriasServiceservice {
   
  
   getFill(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>(`https://localhost:44300/API/Categoria/Detalles?Categ_Id=${codigo}`);
+    return this.http.get<Fill>(`${BASE_URL + 'API/Categoria/Detalles/' + codigo}`);
   }
 
 

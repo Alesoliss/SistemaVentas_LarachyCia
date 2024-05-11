@@ -3,6 +3,7 @@ import {UnidadesViewModel,Fill} from '../Models/UnidadesViewModel';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
+import { BASE_URL } from './urlsettings';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ import { map } from 'rxjs';
 export class UnidadServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'http://sistemalarach.somee.com/API/Unidades/Listado';
-  private baseUrl = 'http://sistemalarach.somee.com/API/Unidades';
+  Url = 'https://localhost:44300/API/Unidades/Listado';
+  private baseUrl = 'https://localhost:44300/API/Unidades';
 
   
   insertarmetodo(formData: any): Observable<any> {
@@ -28,8 +29,8 @@ export class UnidadServiceService {
     return this.http.put(url, categoria);
   }
   
-  getDetalles(codigo: number): Observable<Fill> {
-    return this.http.get<Fill>(`${'http://sistemalarach.somee.com/API/Unidades/Detalles/' + codigo}`);
+  getDetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`${BASE_URL + 'API/Unidades/Detalles/' + codigo}`);
   }
 
   eliminarmetodo(categoriaId: number): Observable<any> {

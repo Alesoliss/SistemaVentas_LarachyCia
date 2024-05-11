@@ -19,4 +19,6 @@ export class Fill {
     unida_Estado?: boolean | null;
     usuarioCreacion!: string;
     usuarioModificacion!: string;
+    fechaCreacion?: string;
+    fechaModificacion?: string;
 }

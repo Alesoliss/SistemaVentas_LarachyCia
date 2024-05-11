@@ -97,7 +97,7 @@ collapse(){
 detalles(codigo) {
 this.Collapse = false;
 this.Detalles = true;
-this.service.getdetalles(codigo).subscribe({
+this.service.getFill(codigo).subscribe({
   next: (data: Fill) => {
     this.categ_Id = data.categ_Id,
     this.categ_Descripcion = data.categ_Descripcion,

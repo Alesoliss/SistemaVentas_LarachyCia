@@ -91,23 +91,19 @@ export class EstadoCivilListadoComponent implements OnInit {
     this.Collapse= true;
     this.Detalles = false;
 }
-detalles(codigo) {
-  this.Collapse = false;
+detalles(id){
+  this.Collapse= false;
+
   this.Detalles = true;
-  this.service.getdetalles(codigo).subscribe({
-      next: (response: any) => {
-          const data = response.data[0]; // Acceder al primer elemento del array
-          console.log('Respuesta del servidor:', data);
-          this.Descripcion = data.estad_Descripcion;
-          this.UsuarioCreacion = data.usuarioCreacion;
-          this.UsuarioModificacion = data.usuarioModificacion;
-          this.FechaCreacion = data.munic_FechaCreacion;
-          this.FechaModificacion = data.munic_FechaModificacion;
-      },
-      error: (error) => {
-          console.error('Error al obtener detalles:', error);
+  this.service.getFill(id).subscribe({
+      next: (data: Fill) => {
+         this.Descripcion = data.estad_Descripcion,
+         this.UsuarioCreacion = data.usuarioCreacion,
+         this.UsuarioModificacion = data.usuarioModificacion
+         this.FechaCreacion = data.fechaCreacion,
+         this.FechaModificacion = data.fechaModificacion
       }
-  });
+    });
 }
 //Cerrar Collapse y reiniciar el form
 
