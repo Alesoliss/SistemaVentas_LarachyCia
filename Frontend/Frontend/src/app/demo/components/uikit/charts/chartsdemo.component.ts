@@ -140,15 +140,15 @@ export class ChartsDemoComponent implements OnInit {
           label: 'Ventas',
           data: cantidades,
           backgroundColor: [
-            'rgba(255, 193, 7, 0.6)', // Color #ffc107 para la primera compra
-            'rgba(54, 162, 235, 0.6)', // Color para la segunda compra
-            'rgba(255, 206, 86, 0.6)', // Color para la tercera compra
+            'rgba(76, 175, 80, 1)', // Verde
+  'rgba(255, 235, 59, 1)', // Amarillo
+  'rgba(244, 67, 54, 1)', // Color para la tercera compra
             // Añadir más colores si es necesario
           ],
           borderColor: [
-            'rgba(255, 193, 7, 1)', // Color del borde para la primera compra
-            'rgba(54, 162, 235, 1)', // Color del borde para la segunda compra
-            'rgba(255, 206, 86, 1)', // Color del borde para la tercera compra
+            'rgba(76, 175, 80, 1)', // Verde
+  'rgba(255, 235, 59, 1)', // Amarillo
+  'rgba(244, 67, 54, 1)', // Color del borde para la tercera compra
             // Añadir más colores si es necesario
           ],
           borderWidth: 1,
@@ -287,8 +287,8 @@ renderizarGraficoModelo(compras: { anio: string, mes: string, categ_Descripcion:
     datasets: [
       {
         data: data,
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'], // Colores para cada sector del gráfico
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'] // Colores para el efecto hover
+        backgroundColor: ['#4BC0C0', '#FFCE56', '#FF6384', '#36A2EB'], // Colores para cada sector del gráfico
+        hoverBackgroundColor: ['#4BC0C0', '#FFCE56', '#FF6384', '#36A2EB'] // Colores para el efecto hover
       }
     ]
   };
@@ -311,8 +311,8 @@ renderizarGraficoEstado(compras: { anio: string, mes: string, estad_Descripcion:
     datasets: [
       {
         data: data,
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'], // Colores para cada sector del gráfico
-        hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'] // Colores para el efecto hover
+        backgroundColor: ['#4BC0C0', '#FFCE56', '#FF6384', '#36A2EB'], // Colores para cada sector del gráfico
+        hoverBackgroundColor: ['#4BC0C0', '#FFCE56', '#FF6384', '#36A2EB'] // Colores para el efecto hover
       }
     ]
   };

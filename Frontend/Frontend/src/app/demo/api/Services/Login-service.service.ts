@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {LoginVieweMOdel} from '../Models/LoginViewModel';
+import {UsuariosViewModel} from '../Models/UsuariosViewModel';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,8 +12,8 @@ import { Observable } from 'rxjs';
  
  
    UrlLogin =  'http://sistemalarach.somee.com/api/Usuario/Login/';
-   login(loginData: LoginVieweMOdel): Observable<any> {
-       return this.http.get<any>(`${this.UrlLogin}${loginData.usuario},${loginData.contra}`, {});
+   login(loginData: UsuariosViewModel): Observable<any> {
+       return this.http.get<any>(`${this.UrlLogin}${loginData.usuar_Usuario},${loginData.usuar_Contrasena}`, {});
      }
  
    //  getLogin(){

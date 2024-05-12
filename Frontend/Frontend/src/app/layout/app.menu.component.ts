@@ -291,11 +291,11 @@ export class AppMenuComponent implements OnInit {
                                 icon: 'pi pi-fw pi-lock',
                                 routerLink: ['/app/categoria']
                             },
-                            {
-                                label: 'Productos',
-                                icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/app/Productos']
-                            },
+                            // {
+                            //     label: 'Productos',
+                            //     icon: 'pi pi-fw pi-lock',
+                            //     routerLink: ['/app/Productos']
+                            // },
                             {
                                 label: 'Sucursales',
                                 icon: 'pi pi-fw pi-lock',
@@ -341,7 +341,7 @@ export class AppMenuComponent implements OnInit {
     //             };
 
     //             // Filtrar el menú completo por secciones y subsecciones
-    //             this.model = this.meunucompleto
+    //             this.model = this.Menucompelto
     //                 .map(section => {
     //                     const itemsFiltrados = section.items.map(subSection => {
     //                         // Filtra los subítems dentro de cada subsección
@@ -364,9 +364,10 @@ export class AppMenuComponent implements OnInit {
         
 
             
-    //     menuCompleto = [
+    //     Menucompelto = [
     //         {
     //             label: 'Inicio',
+    //             icon: 'pi pi-fw pi-globe',
     //             items: [
     //                 { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/app/dashboard'] }
     //             ]

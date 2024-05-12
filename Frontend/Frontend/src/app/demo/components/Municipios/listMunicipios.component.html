@@ -48,13 +48,13 @@
                         <td>{{municipio.munic_Descripcion}}</td>
   
                         <td style="align-items: center; text-align: center;">
-                            <button label="Editar"   icon="pi pi-user-edit" size="small"
-                                (click)="openModal('editar', municipio)" severity="primary" [raised]="true" [plain]="true">Editar</button> 
+                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
+                                (click)="openModal('editar', municipio)" severity="primary" [raised]="true" [plain]="true"></p-button> 
                             <p-button  label="Detalles"   icon="pi pi-book" size="small"
                              (click)="detalles(municipio.munic_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
 
-                            <button label="Eliminar" icon="pi pi-trash" size="small"
-                                (click)="eliminarMunicipio(municipio.munic_Id)" severity="danger" [raised]="true" [plain]="true">Eliminar</button>
+                            <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="eliminarMunicipio(municipio.munic_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                         </td>
                     </tr>
                 </ng-template>

@@ -1,5 +1,5 @@
 <div class="grid">
-    <div class="col-12">
+    <div class="col-12" *ngIf="!Detalles">
         <div class="card">
             <h5>Metodo de pago</h5>
             <div class="flex justify-content-start mb-3">
@@ -46,10 +46,10 @@
                         <td style="align-items: center; text-align: center;">
                             <p-button label="Editar"   icon="pi pi-user-edit" size="small"
                             (click)="openModal('editar', impuesto)" severity="primary" [raised]="true" [plain]="true"></p-button>
-                            <button label="Detalles"   icon="pi pi-book" size="small"
-                            >Detalles</button>
-                                <button label="Eliminar" icon="pi pi-trash" size="small"
-                                (click)="eliminarcategoria(impuesto.mtPag_Id)" severity="danger" [raised]="true" [plain]="true">Eliminar</button>
+                            <p-button label="Detalles"   icon="pi pi-book" size="small"
+                            (click)="detalles(impuesto.mtPag_Id)" severity="secondary" [raised]="true" [plain]="true" ></p-button>
+                                <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="eliminarcategoria(impuesto.mtPag_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                               
                         </td>
                     </tr>
@@ -149,7 +149,70 @@
     </ng-template>
     <ng-template pTemplate="footer">
         <!-- Botones del pie de página -->
-        <button pButton type="button" label="Cancelar" (click)="closeModal('editar')"></button>
-        <button pButton type="button" label="Guardar" class="p-button-success" (click)="guardarCambios()"></button>
+        <button style="color: #0464B4;" pButton type="button" label="Cancelar" class="p-button-text" (click)="closeModal('editar')"></button>
+        <button pButton type="button" label="Guardar" class="p-button-danger" (click)="guardarCambios()"></button>
     </ng-template>
 </p-dialog>
+
+<!-- Detalles del Municipio -->
+<div class="col-12" *ngIf="Detalles">
+    <div class="card-body">
+     
+        <div class="card">
+            <div class="card-header">
+
+                <div class="card-title">
+                    <h1>Auditoria</h1>
+                </div>
+                <div class="p-fluid p-formgrid grid">
+                    <!-- <div class="field col-12 md:col-4" *ngIf="carCodigo">
+                        <div class="field rows">
+                            <label for="Cargo_Id" style="font-weight: 800;">Codigo:</label>
+                        </div>
+                        <div class="field rows">
+                            <label for="Cargo_Id">{{ Cargo_Id }}</label>
+                        </div>
+                    </div> -->
+                    
+                    <div class="field col-12 md:col-4">
+                        <div class="field rows">
+                            <label for="Cargo_Descripcion" style="font-weight: 800;">Descripcion:</label>
+                        </div>
+                        <div class="field rows">
+                            <label for="Cargo_Descripcion">{{ mtPag_Descripcion }}</label>
+                        </div>
+                    </div>
+                    
+                  
+                </div>
+            </div>
+            <div class="card-body">
+                <p-table [value]="staticData">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:200px">Accion</th>
+                            <th style="width:200px">Usuario</th>
+                            <th style="width:200px">Fecha</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-transaction>
+                        <tr>
+                            <td style="width:200px;">Creado</td>
+                            <!-- <td style="width:200px">{{ UsuarioCreacion }}</td>
+                            <td style="width:200px">{{ FechaCreacion }}</td> -->
+                        </tr>
+                        <tr>
+                            <td style="width:200px;">Modificado</td>
+                            <!-- <td style="width:200px">{{ UsuarioModificacion }}</td>
+                            <td style="width:200px">{{ FechaModificacion }}</td> -->
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                <button pButton icon="pi pi-cancel" type="button" (click)="cancelar()" label="Regresar" class="p-button-danger"></button>
+            </div>
+        </div>
+       
+    </div>
+</div>

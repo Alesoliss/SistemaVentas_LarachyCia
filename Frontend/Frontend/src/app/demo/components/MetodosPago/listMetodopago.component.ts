@@ -1,12 +1,12 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog';
-import { MetodosPagoViewModel } from '../../api/Models/MetodosPagoViewModel';
+import { MetodosPagoViewModel,Fill } from '../../api/Models/MetodosPagoViewModel';
 import { MetodopagoServiceService } from '../../api/Services/metodosPago-service.service';
 import { MensajeViewModel } from '../../api/Models/MensajeViewModel';
 import { ToastModule } from 'primeng/toast'; 
@@ -18,6 +18,13 @@ import { ToastModule } from 'primeng/toast';
 
 export class MetodoPagoListadoComponent implements OnInit {
   impuesto!: MetodosPagoViewModel[];
+  staticData = [{}];
+
+  carCodigo: boolean = true;
+  fill: any[] = [];
+  Collapse: boolean = false;
+  Detalles: boolean = false;
+  MetodoForm: FormGroup;
   showModal: boolean = false;
   editModal: boolean = false;
   showDeleteConfirmation: boolean = false;
@@ -37,6 +44,14 @@ export class MetodoPagoListadoComponent implements OnInit {
 
   constructor(private service: MetodopagoServiceService, private router: Router) {}
 
+//Detalle
+mtPag_Id: String = "";
+mtPag_Descripcion: String = "";
+
+// usuarioCreacion: String = "";
+// usuarioModificacion: String = "";
+// FechaCreacion: String = "";
+// FechaModificacion: String = "";
   ngOnInit(): void {
     this.getMetodoPago();
   }
@@ -70,6 +85,32 @@ export class MetodoPagoListadoComponent implements OnInit {
 
   clear(): void {
     this.getMetodoPago();
+  }
+    
+cancelar(){
+  this.Collapse= false;
+  this.Detalles = false;
+  this.MetodoForm = new FormGroup({
+    MtPag_Descripcion: new FormControl("", Validators.required),
+    
+  });
+  this.carCodigo=true;
+}
+  collapse(){
+    this.Collapse= true;
+    this.Detalles = false;
+  }
+  
+  detalles(id){
+    this.Collapse= false;
+  
+    this.Detalles = true;
+    this.service.getDetalles(id).subscribe({
+        next: (data: Fill) => {
+           this.mtPag_Descripcion = data.mtPag_Descripcion
+          
+        }
+      });
   }
   
   metodoSeleccionadoId: string = '';
@@ -202,6 +243,22 @@ export class MetodoPagoListadoComponent implements OnInit {
   // eliminarDepartamento(): void {
   //   this.deleteModal = false;
   // }
+
+  Fill(codigo) {
+    this.service.getDetalles(codigo).subscribe({
+        next: (data: Fill) => {
+            this.MetodoForm = new FormGroup({
+              Unida_Id: new FormControl(data.mtPag_Id,Validators.required),
+              mtPag_Descripcion: new FormControl(data.mtPag_Descripcion, Validators.required),
+               
+            });
+            this.Collapse= true;
+
+            this.Detalles = false;
+        }
+      });
+
+}
 }
 
 @NgModule({

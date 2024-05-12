@@ -48,8 +48,8 @@
                         (click)="openModal('editar', depto)" severity="primary" [raised]="true" [plain]="true"></p-button>
                         <p-button label="Detalles"   icon="pi pi-book" size="small"
                         (click)="detalles(depto.depar_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                        <button label="Eliminar" icon="pi pi-trash" size="small"
-                        (click)="eliminarcategoria(depto.depar_Id)" severity="danger" [raised]="true" [plain]="true"></button>
+                        <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                        (click)="eliminarcategoria(depto.depar_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                        
                       </td>
                   </tr>
@@ -74,20 +74,20 @@
       
         <form class="p-grid p-fluid">
             <div class="p-col-6" style="display: flex;">
-                <div style="flex: 1;">
-                    <label for="new-Departamento-id" class="p-d-block"> codigo</label>
-                    <input type="text" id="new-Departamento-id" name="new-Departamento-id" [(ngModel)]="departamentoSeleccionado.depar_Id" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
+                <div style="flex: 0.5; margin-right: 10px;">
+                    <label for="new-Departamento-id" class="p-d-block">Código</label>
+                    <input type="text" id="new-Departamento-id" name="new-Departamento-id" [(ngModel)]="departamentoSeleccionado.depar_Id" class="p-inputtext" style="width: 100%; padding: 0.5rem;" maxlength="2" />
                 </div>
-            </div>
-            <div class="p-col-6" style="display: flex;">
-              
                 <div style="flex: 1;">
-                    <label for="new-Departamento-id" class="p-d-block"> departamento</label>
+                    <label for="new-Departamento-descripcion" class="p-d-block">Departamento</label>
                     <input type="text" id="new-Departamento-descripcion" name="new-Departamento-descripcion" [(ngModel)]="departamentoSeleccionado.depar_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
                 </div>
             </div>
-           
-        </form>      
+        </form>
+        
+        
+          
+             
     </ng-template>
     <ng-template pTemplate="footer">
         <!-- Botones del pie de página -->
@@ -144,19 +144,18 @@
     <ng-template pTemplate="content">
         <!-- Contenido del formulario de edición -->
         <form class="p-grid p-fluid">
-            <div class="p-col-6">
-                <div style="flex: 1;">
-                    <label for="new-Departamento-id" class="p-d-block"> codigo</label>
-                    <input type="text" id="new-Departamento-id" name="new-Departamento-id" [(ngModel)]="departamentoSeleccionado.depar_Id" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
+            <div class="p-col-6" style="display: flex;">
+                <div style="flex: 0.5; margin-right: 10px;">
+                    <label for="new-Departamento-id" class="p-d-block">Código</label>
+                    <input type="text" id="new-Departamento-id" name="new-Departamento-id" [(ngModel)]="departamentoSeleccionado.depar_Id" class="p-inputtext" style="width: 100%; padding: 0.5rem;" maxlength="2" />
                 </div>
-            </div>
-            <div class="p-col-6">
                 <div style="flex: 1;">
-                    <label for="new-Departamento-id" class="p-d-block"> departamento</label>
+                    <label for="new-Departamento-descripcion" class="p-d-block">Departamento</label>
                     <input type="text" id="new-Departamento-descripcion" name="new-Departamento-descripcion" [(ngModel)]="departamentoSeleccionado.depar_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
                 </div>
             </div>
-          </form>
+        </form>
+        
                 
     </ng-template>
     <ng-template pTemplate="footer">

@@ -24,16 +24,19 @@ import { CommonModule } from '@angular/common';
     
     onLogin() {
       this.userService.login(this.usuario, this.contrase).subscribe({
-        next: (response) => {
-          if (response.code == 200) {
-            this.cookieService.set('namee', response.data.perso_Id);
-            this.cookieService.set('roleID', response.data.roles_Id);
-            console.log(response);
+        next: (data) => {
+          if (data.length > 0) {
+            console.log('Login successful', data);
+            // Almacena el nombre de usuario en el Local Storage
+            // this.cookieService.set('namee', response.data.emple_Id);
+            // this.cookieService.set('roleID', response.data.roles_Id);
+      
             this.router.navigate(['/app/dashboard']);
           } else {
             // Maneja la respuesta de error
-            this.errorMessage = 'Error en la conexión con el servidor';
-            console.error('Login failed:', response.message);
+               // Maneja la respuesta vacía como credenciales incorrectas
+               this.errorMessage = 'Usuario o contraseña incorrectos';
+               console.error('Login failed: Incorrect credentials');
           }
         },
         error: (error) => {

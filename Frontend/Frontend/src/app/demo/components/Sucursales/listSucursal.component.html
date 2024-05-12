@@ -4,7 +4,7 @@
         <div class="card">
             <h5>Sucursales</h5>
             <div class="flex justify-content-start mb-3">
-                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openModal('nuevo')" ></button>
+                <button pButton icon="pi pi-plus" style="margin-bottom: 10px ;" (click)="openModal('nuevo')" >Agregar</button>
             </div>
             
             <p-table [value]="sucursal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
@@ -50,13 +50,7 @@
                                     placeholder="Buscar por descripción"></p-columnFilter>
                             </div>
                         </th>
-                        <th style="min-width: 12rem">
-                            <div class="flex justify-content-between align-items-center">
-                                Municipio
-                                <p-columnFilter type="text" field="munic_Id" display="menu"
-                                    placeholder="Buscar por descripción"></p-columnFilter>
-                            </div>
-                        </th>
+                     
                         <th style="min-width: 12rem">Acciones</th>
                     </tr>
                 </ng-template>
@@ -66,14 +60,14 @@
                         <td>{{sucursal.sucur_Descripcion}}</td>
                         <td>{{sucursal.sucur_Direccion}}</td>
                         <td>{{sucursal.sucur_Telefono}}</td>
-                        <td>{{sucursal.munic_Idng}}</td>
+                     
                         <td style="align-items: center; text-align: center;">
-                            <button label="Editar"   icon="pi pi-user-edit" size="small"
-                            (click)="openModal('editar', sucursal)" severity="primary" [raised]="true" [plain]="true"></button>
+                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
+                            (click)="openModal('editar', sucursal)" severity="primary" [raised]="true" [plain]="true"></p-button>
                             <p-button  label="Detalles"   icon="pi pi-book" size="small"
                             (click)="detalles(sucursal.sucur_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                                <button label="Eliminar" icon="pi pi-trash" size="small"
-                                (click)="eliminarcategoria(sucursal.sucur_Id)" severity="danger" [raised]="true" [plain]="true"></button>
+                                <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="eliminarcategoria(sucursal.sucur_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                                
                         </td>
                     </tr>
