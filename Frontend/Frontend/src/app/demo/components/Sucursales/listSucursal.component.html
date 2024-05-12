@@ -68,12 +68,13 @@
                         <td>{{sucursal.sucur_Telefono}}</td>
                         <td>{{sucursal.munic_Idng}}</td>
                         <td style="align-items: center; text-align: center;">
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
-                            (click)="openModal('editar', sucursal)" >Editar</button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
-                                (click)="eliminarcategoria(sucursal.sucur_Id)" >Eliminar</button>
-                                <p-button  label="Detalles"   icon="pi pi-book" size="small"
-                                (click)="detalles(sucursal.sucur_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                            <button label="Editar"   icon="pi pi-user-edit" size="small"
+                            (click)="openModal('editar', sucursal)" severity="primary" [raised]="true" [plain]="true"></button>
+                            <p-button  label="Detalles"   icon="pi pi-book" size="small"
+                            (click)="detalles(sucursal.sucur_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                                <button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="eliminarcategoria(sucursal.sucur_Id)" severity="danger" [raised]="true" [plain]="true"></button>
+                               
                         </td>
                     </tr>
                 </ng-template>

@@ -53,6 +53,7 @@ export class Fill {
     clien_Correo!: string;
     munic_Id!: string;
     munic_Descripcion!: string;
+
     depar_Id!: string;
     depa_Departamento?: string;
     estad_Descripcion!: string;

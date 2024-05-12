@@ -44,12 +44,12 @@
                         <td>{{unidad.unida_Id}}</td>
                         <td>{{unidad.unida_Descripcion}}</td>
                         <td style="align-items: center; text-align: center;">
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
-                            (click)="openModal('editar', unidad)">Editar</button>
-                            <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-warning"
-                            (click)="detalles(unidad.unida_Id)">Detalles</button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
-                                (click)="eliminarcategoria(unidad.unida_Id)">Eliminar</button>
+                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
+                            (click)="openModal('editar', unidad)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <p-button label="Detalles"   icon="pi pi-book" size="small"
+                            (click)="detalles(unidad.unida_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                                <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="eliminarcategoria(unidad.unida_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                                
                         </td>
                     </tr>

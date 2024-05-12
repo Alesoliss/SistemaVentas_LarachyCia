@@ -6,7 +6,9 @@ import { map } from 'rxjs';
 import { dropEmpleado } from '../Models/EmpleadosViewModel';
 import { dropRol } from '../Models/RolesViewModel';
 import { BASE_URL } from './urlsettings';
-
+interface Pantalla {
+  pantalla: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -56,7 +58,11 @@ ActualizarUsuario(formData){
   getDropDownRol(){
     return this.http.get<dropRol[]>(this.urlDropRol)
   }
-
+  private rolurl = 'https://localhost:44300/API/';
+  UrlPantallasRoles = this.rolurl + 'Rol/'
+  getPantallasDeRol(idRoll: Number) {
+    return this.http.get<Pantalla[]>(`${this.UrlPantallasRoles}Listado/${idRoll}`);
+  }
 
 
 }

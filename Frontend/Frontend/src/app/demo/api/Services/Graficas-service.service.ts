@@ -131,6 +131,19 @@ obtenerPrestaPorEstado(): Observable<{ anio: string, mes: string,estad_Descripci
 
 
 
+VentasPorMesfiltradas(FechaInicio: string, FechaFinal: string): Observable<{ anio: string, mes: string, cantidadVentas: number }[]> {
+  return this.http.get<{ anio: string, mes: string, cantidadVentas: number }[]>(`${this.apiUrl}VentasPorMesfiltradas/${FechaInicio}/${FechaFinal}`);
+} 
+
+ProductosVendidosPorCategoriaMesAniofiltrado(FechaInicio: string, FechaFinal: string): Observable<{ anio: string, mes: string, categ_Descripcion: string, cantidadProductosVendidos: number }[]> {
+  return this.http.get<{ anio: string, mes: string, categ_Descripcion:string, cantidadProductosVendidos: number }[]>(`${this.apiUrl}ProductosVendidosPorCategoriaMesAniofiltrado/${FechaInicio}/${FechaFinal}`);
+} 
+
+ComprasPorEstadoCivilfiltrado(FechaInicio: string, FechaFinal: string): Observable<{ anio: string, mes: string, estad_Descripcion: string, cantidadCompras: number }[]> {
+  return this.http.get<{ anio: string, mes: string, estad_Descripcion:string, cantidadCompras: number }[]>(`${this.apiUrl}ComprasPorEstadoCivilfiltrado/${FechaInicio}/${FechaFinal}`);
+} 
+
+
 
 
 }

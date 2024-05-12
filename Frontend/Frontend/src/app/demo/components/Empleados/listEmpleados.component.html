@@ -209,9 +209,9 @@
                     
                    
                     <td style="display: flex; justify-content: space-around;">
-                        <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(empl.emple_Id)"></button>
-                        <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(empl.emple_Id)"></button>
-                        <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(empl.emple_Id)"></button>
+                        <p-button label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(empl.emple_Id)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <p-button label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(empl.emple_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                        <p-button label="Eliminar" icon="pi pi-trash" size="small"  (click)="deleteSelectedProducts(empl.emple_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                     </td>
                 </tr>
             </ng-template>

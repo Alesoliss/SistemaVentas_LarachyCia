@@ -44,12 +44,13 @@
                         <td>{{impuesto.mtPag_Descripcion}}</td>
   
                         <td style="align-items: center; text-align: center;">
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info mr-2"
-                            (click)="openModal('editar', impuesto)" >Editar</button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
-                                (click)="eliminarcategoria(impuesto.mtPag_Id)" >Eliminar</button>
-                                <button pButton pRipple icon="pi pi-info-circle" class="p-button-rounded p-button-warning"
-                                >Detalles</button>
+                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
+                            (click)="openModal('editar', impuesto)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <button label="Detalles"   icon="pi pi-book" size="small"
+                            >Detalles</button>
+                                <button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="eliminarcategoria(impuesto.mtPag_Id)" severity="danger" [raised]="true" [plain]="true">Eliminar</button>
+                              
                         </td>
                     </tr>
                 </ng-template>

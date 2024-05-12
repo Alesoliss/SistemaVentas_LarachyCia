@@ -231,30 +231,38 @@ onSubmit() {
   } 
 
 
-  deleteSelectedProducts(codigo) {
-    this.deleteProductDialog = true;
-    this.ID = codigo;
-    console.log("El codigo es" + codigo);
-  }
-confirmDelete() {
-    this.service.EliminarCliente(this.ID).subscribe({
-        next: (response) => {
-            if(response.message == "La accion ha sido existosa"){
-               
-                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Eliminado con Exito', life: 3000 });
-                this.Collapse= false;
-                this.DataTable = true;
-                this.Detalles = false;
-                this.submitted = false;
-                this.deleteProductDialog = false;
-                this.ngOnInit();
-               }else{
-                this.deleteProductDialog = false;
-                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se logro eliminar', life: 3000 });
-               }
-        },
-    });
+  municipioSeleccionadoId: string = '';
 
+  deleteSelectedProducts(municipioId: string): void {
+    console.log('ID:', municipioId);
+    // Almacena el ID del municipio seleccionado
+    this.municipioSeleccionadoId = municipioId;
+    // Muestra el modal de confirmación
+    this.deleteProductDialog = true;
+}
+
+confirmDelete(): void {
+  if (this.municipioSeleccionadoId) {
+      this.service.EliminarCliente(this.municipioSeleccionadoId).subscribe(
+          (response) => {
+              console.log('Proveedor eliminado exitosamente', response);
+
+              // Añadimos un mensaje de éxito aquí para verificar si se ejecuta
+              this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Municipio eliminado correctamente' });
+              this.DataTable = true;
+              this.Collapse= false;
+              // this.get();
+              this.municipioSeleccionadoId = '';
+          },
+          (error) => {
+            this.messageService.add({ severity: 'Error', summary: 'Danger Message', detail: 'El Municipio no se eliminado correctamente' });
+              this.municipioSeleccionadoId = '';
+          }
+      );
+  } else {
+      console.error('ID del municipio seleccionado está vacío');
+  }
+  this.deleteProductDialog = false;
 }
 Fill(codigo) {
     this.service.getFill(codigo).subscribe({
