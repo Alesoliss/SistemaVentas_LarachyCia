@@ -15,8 +15,8 @@ export class AppMenuComponent implements OnInit {
 
     constructor(public layoutService: LayoutService , public UsuariosServiceService: UsuariosServiceService,public CookieService: CookieService,private layoutcomponent: AppLayoutComponent) { }
 
-    ngOnInit() {
-        this.model = [
+    // ngOnInit() {
+        modelo = [
             {
                 label: 'Inicio',
                 items: [
@@ -322,274 +322,222 @@ export class AppMenuComponent implements OnInit {
             
        
         ];
-    };
-    //     ngOnInit() {
-    //         const roleId = Number.parseInt(this.CookieService.get('roleID'));
+    // };
+        ngOnInit() {
+            const roleId = Number.parseInt(this.CookieService.get('roleID'));
 
-    //         this.UsuariosServiceService.getPantallasDeRol(roleId).subscribe(pantallasPermitidas => {
+            this.UsuariosServiceService.getPantallasDeRol(roleId).subscribe(pantallasPermitidas => {
 
-    //             const nombresPermitidos = new Set(pantallasPermitidas.map(pant => pant.pantalla.toLowerCase().trim()));
+                const nombresPermitidos = new Set(pantallasPermitidas.map(pant => pant.pantalla.toLowerCase().trim()));
 
-    //             // Función para filtrar los subítems
-    //             const filtrarSubitems = (subitems) => {
-    //                 return subitems.filter(opcion => {
-    //                     // Normaliza el nombre del subítem
-    //                     const nombreLowerCase = opcion.label.toLowerCase().trim();
-    //                     // Verifica si el subítem está en los nombres permitidos
-    //                     return nombresPermitidos.has(nombreLowerCase);
-    //                 });
-    //             };
+                // Función para filtrar los subítems
+                const filtrarSubitems = (subitems) => {
+                    return subitems.filter(opcion => {
+                        // Normaliza el nombre del subítem
+                        const nombreLowerCase = opcion.label.toLowerCase().trim();
+                        // Verifica si el subítem está en los nombres permitidos
+                        return nombresPermitidos.has(nombreLowerCase);
+                    });
+                };
 
-    //             // Filtrar el menú completo por secciones y subsecciones
-    //             this.model = this.Menucompelto
-    //                 .map(section => {
-    //                     const itemsFiltrados = section.items.map(subSection => {
-    //                         // Filtra los subítems dentro de cada subsección
-    //                         const subItemsFiltrados = filtrarSubitems(subSection.items || []);
-    //                         return {
-    //                             ...subSection,
-    //                             items: subItemsFiltrados
-    //                         };
-    //                     }).filter(subSection => subSection.items.length > 0);
+                // Filtrar el menú completo por secciones y subsecciones
+                this.model = this.Menucompleto 
+                    .map(section => {
+                        const itemsFiltrados = section.items.map(subSection => {
+                            // Filtra los subítems dentro de cada subsección
+                            const subItemsFiltrados = filtrarSubitems(subSection.items || []);
+                            return {
+                                ...subSection,
+                                items: subItemsFiltrados
+                            };
+                        }).filter(subSection => subSection.items.length > 0);
 
-    //                     // Devuelve la sección principal solo si hay subítems permitidos
-    //                     return {
-    //                         ...section,
-    //                         items: itemsFiltrados
-    //                     };
-    //                 })
-    //                 .filter(section => section.items.length > 0);
-    //         });
-
+                        // Devuelve la sección principal solo si hay subítems permitidos
+                        return {
+                            ...section,
+                            items: itemsFiltrados
+                        };
+                    })
+                    .filter(section => section.items.length > 0);
+            });
+        }
         
 
             
-    //     Menucompelto = [
-    //         {
-    //             label: 'Inicio',
-    //             icon: 'pi pi-fw pi-globe',
-    //             items: [
-    //                 { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/app/dashboard'] }
-    //             ]
-    //         },
-    //         {
-    //             items: [
-    //                 {
-    //                     label: 'General',
-    //                     icon: 'pi pi-fw pi-cog',
-    //                     items: [
-    //                         { label: 'Empleados', icon: 'pi pi-fw pi-cog', routerLink: ['/pages/empleados'] },
-    //                         { label: 'Estados', icon: 'pi pi-fw pi-cog', routerLink: ['/pages/estados'] },
-    //                         { label: 'Ciudades', icon: 'pi pi-fw pi-cog', routerLink: ['/pages/ciudades'] },
-    //                         { label: 'Estados Civiles', icon: 'pi pi-fw pi-cog', routerLink: ['/pages/estadosciviles'] },
-    //                     ]
-    //                 }
-    //             ]
-    //         },
-    //         {
-    //             items: [
-    //                 {
-    //                     label: 'Procinco',
-    //                     icon: 'pi pi-fw pi-globe',
-    //                     items: [
-    //                         { label: 'Cursos Impartidos', icon: 'pi pi-fw pi-globe', routerLink: ['/pages/cursosimp'] },
-    //                         { label: 'Cursos', icon: 'pi pi-fw pi-globe', routerLink: ['/pages/cursos'] },
-    //                         { label: 'Contenido por Cursos', icon: 'pi pi-fw pi-globe', routerLink: ['/pages/contenidoporcurso'] },
-    //                         {
-    //                             label: 'Contenido',
-    //                             icon: 'pi pi-fw pi-globe',
-    //                             routerLink: ['/pages/contenido']
-    //                         },
-    //                         {
-    //                             label: 'Categorias',
-    //                             icon: 'pi pi-fw pi-globe',
-    //                             routerLink: ['/pages/categorias']
-    //                         },
-    //                         {
-    //                             label: 'Informes de Empleados',
-    //                             icon: 'pi pi-fw pi-globe',
-    //                             routerLink: ['/pages/informesempleados']
-    //                         },
-    //                         {
-    //                             label: 'Titulos',
-    //                             icon: 'pi pi-fw pi-globe',
-    //                             routerLink: ['/pages/titulos']
-    //                         },
-    //                         {
-    //                             label: 'cargos',
-    //                             icon: 'pi pi-fw pi-globe',
-    //                             routerLink: ['/pages/cargos']
-    //                         },
-    //                     ]
-    //                 }
-    //             ]
-    //         },
-    //         {
+            Menucompleto  = [
+            {
+                label: 'Inicio',
+                icon: 'pi pi-fw pi-globe',
+                items: [
+                    { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/app/dashboard'] }
+                ]
+            },
+            {
 
-    //             label: 'General',
-    //             icon: 'pi pi-fw pi-briefcase',
-    //             items: [
-    //                 {
-    //                     label: 'Landing',
-    //                     icon: 'pi pi-fw pi-globe',
-    //                      routerLink: ['/reporte1']
-    //                  },
-    //                 {
-    //                     label: 'Paginas',
-    //                     icon: 'pi pi-fw pi-user',
-    //                     items: [
-    //                         {
-    //                             label: 'Departamentos',
-    //                             icon: 'pi pi-fw pi-sign-in',
-    //                             routerLink: ['/app/departamentos'] 
-    //                         },
+                label: 'General',
+                icon: 'pi pi-fw pi-briefcase',
+                items: [
+                    {
+                        label: 'Landing',
+                        icon: 'pi pi-fw pi-globe',
+                         routerLink: ['/reporte1']
+                     },
+                    {
+                        label: 'Paginas',
+                        icon: 'pi pi-fw pi-user',
+                        items: [
+                            {
+                                label: 'Departamentos',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/app/departamentos'] 
+                            },
                             
-    //                         {
-    //                             label: 'Cargos',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/cargos']
-    //                         },
-    //                         {
-    //                             label: 'Estados Civiles',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/EstadoCivil']
-    //                         },
-    //                         {
-    //                             label: 'Municipio',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/municipio']
-    //                         },
-    //                         {
-    //                             label: 'Empleados',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/Empleado']
-    //                         },
-    //                         {
-    //                             label: 'Cliente',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/Cliente']
-    //                         },
+                            {
+                                label: 'Cargos',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/cargos']
+                            },
+                            {
+                                label: 'Estados Civiles',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/EstadoCivil']
+                            },
+                            {
+                                label: 'Municipio',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/municipio']
+                            },
+                            {
+                                label: 'Empleados',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/Empleado']
+                            },
+                            {
+                                label: 'Cliente',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/Cliente']
+                            },
                            
                            
-    //                     ]
-    //                 },
-    //                 // {
-    //                 //     label: 'Crud',
-    //                 //     icon: 'pi pi-fw pi-pencil',
-    //                 //     routerLink: ['/pages/crud']
-    //                 // },
-    //                 // {
-    //                 //     label: 'Timeline',
-    //                 //     icon: 'pi pi-fw pi-calendar',
-    //                 //     routerLink: ['/pages/timeline']
-    //                 // },
-    //                 // {
-    //                 //     label: 'Not Found',
-    //                 //     icon: 'pi pi-fw pi-exclamation-circle',
-    //                 //     routerLink: ['/notfound']
-    //                 // },
-    //                 // {
-    //                 //     label: 'Login',
-    //                 //     icon: 'pi pi-fw pi-exclamation-circle',
-    //                 //     routerLink: ['/login']
-    //                 // },
-    //                 // {
-    //                 //     label: 'Empty',
-    //                 //     icon: 'pi pi-fw pi-circle-off',
-    //                 //     routerLink: ['/pages/empty']
-    //                 // },
-    //             ]
-    //         },
-    //         {
+                        ]
+                    },
+                    // {
+                    //     label: 'Crud',
+                    //     icon: 'pi pi-fw pi-pencil',
+                    //     routerLink: ['/pages/crud']
+                    // },
+                    // {
+                    //     label: 'Timeline',
+                    //     icon: 'pi pi-fw pi-calendar',
+                    //     routerLink: ['/pages/timeline']
+                    // },
+                    // {
+                    //     label: 'Not Found',
+                    //     icon: 'pi pi-fw pi-exclamation-circle',
+                    //     routerLink: ['/notfound']
+                    // },
+                    // {
+                    //     label: 'Login',
+                    //     icon: 'pi pi-fw pi-exclamation-circle',
+                    //     routerLink: ['/login']
+                    // },
+                    // {
+                    //     label: 'Empty',
+                    //     icon: 'pi pi-fw pi-circle-off',
+                    //     routerLink: ['/pages/empty']
+                    // },
+                ]
+            },
+            {
 
-    //             label: '',
-    //             icon: 'pi pi-fw pi-briefcase',
-    //             items: [
+                label: '',
+                icon: 'pi pi-fw pi-briefcase',
+                items: [
                
-    //                 {
-    //                     label: 'Acceso',
-    //                     icon: 'pi pi-fw pi-user',
-    //                     items: [
+                    {
+                        label: 'Acceso',
+                        icon: 'pi pi-fw pi-user',
+                        items: [
                            
-    //                         {
-    //                             label: 'Roles',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/rol']
-    //                         },
-    //                         {
-    //                             label: 'Usuarios',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/usuario']
-    //                         },
+                            {
+                                label: 'Roles',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/rol']
+                            },
+                            {
+                                label: 'Usuarios',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/usuario']
+                            },
                             
                            
-    //                     ]
-    //                 },
+                        ]
+                    },
                
-    //             ]
-    //         },
-    //         {
+                ]
+            },
+            {
 
-    //             label: '',
-    //             icon: 'pi pi-fw pi-briefcase',
-    //             items: [
+                label: '',
+                icon: 'pi pi-fw pi-briefcase',
+                items: [
                
-    //                 {
-    //                     label: 'Comercial',
-    //                     icon: 'pi pi-fw pi-user',
-    //                     items: [
-    //                         {
-    //                             label: 'Unidades',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/unidad']
-    //                         },
+                    {
+                        label: 'Comercial',
+                        icon: 'pi pi-fw pi-user',
+                        items: [
+                            {
+                                label: 'Unidades',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/unidad']
+                            },
                           
-    //                         {
-    //                             label: 'Impuesto',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/Impuesto']
-    //                         },
-    //                         {
-    //                             label: 'Metodo pago',
-    //                             icon: 'pi pi-fw pi-times-circle',
-    //                             routerLink: ['/app/metodoPago']
-    //                         },
-    //                         {
-    //                             label: 'Categoria',
-    //                             icon: 'pi pi-fw pi-lock',
-    //                             routerLink: ['/app/categoria']
-    //                         },
-    //                         {
-    //                             label: 'Productos',
-    //                             icon: 'pi pi-fw pi-lock',
-    //                             routerLink: ['/app/Productos']
-    //                         },
-    //                         {
-    //                             label: 'Sucursales',
-    //                             icon: 'pi pi-fw pi-lock',
-    //                             routerLink: ['/app/Sucursal']
-    //                         },
-    //                         {
-    //                             label: 'Graficos',
-    //                             icon: 'pi pi-fw pi-chart-bar',
-    //                             routerLink: ['/app/charts']
-    //                         },
+                            {
+                                label: 'Impuesto',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/Impuesto']
+                            },
+                            {
+                                label: 'Metodo pago',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/metodoPago']
+                            },
+                            {
+                                label: 'Categoria',
+                                icon: 'pi pi-fw pi-lock',
+                                routerLink: ['/app/categoria']
+                            },
+                            {
+                                label: 'Productos',
+                                icon: 'pi pi-fw pi-lock',
+                                routerLink: ['/app/Productos']
+                            },
+                            {
+                                label: 'Sucursales',
+                                icon: 'pi pi-fw pi-lock',
+                                routerLink: ['/app/Sucursal']
+                            },
+                            {
+                                label: 'Graficos',
+                                icon: 'pi pi-fw pi-chart-bar',
+                                routerLink: ['/app/charts']
+                            },
                            
-    //                     ]
+                        ]
                         
-    //                 },
+                    },
                
-    //             ]
+                ]
                 
-    //         },
+            },
 
 
-    //     ];
-    // }
+        ];
+    }
     
     
     
-        }
+
 
 
 

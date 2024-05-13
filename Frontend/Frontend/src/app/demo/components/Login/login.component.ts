@@ -28,15 +28,13 @@ import { CommonModule } from '@angular/common';
           if (data.length > 0) {
             console.log('Login successful', data);
             // Almacena el nombre de usuario en el Local Storage
-            // this.cookieService.set('namee', response.data.emple_Id);
-            // this.cookieService.set('roleID', response.data.roles_Id);
-      
+            this.cookieService.set('roleID', data[0].roles_Id); // Suponiendo que el nombre de usuario está en data[0].empl_Nombre
+            console.log('Nombre de usuario almacenado:', data[0].roles_Id); // Agrega esta línea para mostrar el nombre de usuario en la consola
             this.router.navigate(['/app/dashboard']);
           } else {
-            // Maneja la respuesta de error
-               // Maneja la respuesta vacía como credenciales incorrectas
-               this.errorMessage = 'Usuario o contraseña incorrectos';
-               console.error('Login failed: Incorrect credentials');
+            // Maneja la respuesta vacía como credenciales incorrectas
+            this.errorMessage = 'Usuario o contraseña incorrectos';
+            console.error('Login failed: Incorrect credentials');
           }
         },
         error: (error) => {
@@ -45,6 +43,7 @@ import { CommonModule } from '@angular/common';
         }
       });
     }
+    
     
     
   }
