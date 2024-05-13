@@ -42,6 +42,14 @@ namespace Sistema_Larach.Entities
         [NotMapped]
         public string UsuarioModificacion { get; set; }
 
+
+
+
+
+
+        [NotMapped]
+        public List<int> PantallasID { get; set; }
+
         public virtual tbUsuarios Roles_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Roles_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRoles { get; set; }

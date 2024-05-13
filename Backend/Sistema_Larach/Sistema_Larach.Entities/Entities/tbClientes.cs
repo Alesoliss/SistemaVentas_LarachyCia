@@ -35,5 +35,7 @@ namespace Sistema_Larach.Entities
         [NotMapped]
         public string UsuarioModificacion { get; set; }
         public virtual tbUsuarios Clien_UsuarioCreacionNavigation { get; set; }
+        [NotMapped]
+        public string Clien_DNI { get; set; }
     }
 }

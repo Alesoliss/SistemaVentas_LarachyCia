@@ -711,6 +711,30 @@ namespace Sistema_Larach.BusinessLogic.Services
         #region Factura
 
 
+
+
+
+
+        public ServiceResult ListadoFactura()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ventasEncabezado.List2();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+
         public ServiceResult CrearFactura(tbVentasEncabezado item, out int id)
         {
             var result = new ServiceResult();
@@ -735,6 +759,8 @@ namespace Sistema_Larach.BusinessLogic.Services
             }
         }
 
+
+
         public ServiceResult InsertarDetalle(tbVentasDetalle item)
         {
             var result = new ServiceResult();
@@ -755,6 +781,91 @@ namespace Sistema_Larach.BusinessLogic.Services
                 return result.Error(ex.Message);
             }
         }
+
+
+
+        public ServiceResult ElimnarFacturaDetalle(string Venen_Id, string Prod_Descripcion)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ventasEncabezado.Deletee(Venen_Id, Prod_Descripcion);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+
+
+
+
+        public ServiceResult Emision(string Venen_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ventasEncabezado.Emitir(Venen_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+        public ServiceResult ListadoFacturaDetalles(string id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ventasEncabezado.ListaDetalles(id);
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult Facturafill(string id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _ventasEncabezado.Fill(id);
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
 
 
         #endregion

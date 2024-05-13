@@ -47,7 +47,7 @@ namespace Sistema_Larach.API.Controllers
 
             var listado = _supermercadoService.ListadoProductos();
 
-            return Ok(listado);
+            return Ok(listado.Data);
         }
 
 

@@ -10,6 +10,27 @@ namespace Sistema_Larach.DataAccess.Repository
     {
 
 
+
+        #region Factura
+        #region Factura
+
+        public static string CrearFactura = "[Venta].[SP_VentasEncabezado_Insertar]";
+        public static string DetalleEliminar = "[Venta].[SP_VentasDetalles_eliminar]";
+        public static string EmitirFac = "Venta.SP_FactuaraEmitida";
+
+
+        #endregion
+
+        #endregion
+
+
+
+
+
+
+
+
+
         #region PantallasPorRoles
         public static string PanRo_Insertar = "[Acce].[sp_PantallasPorRol_crear]";
         public static string PanRo_Buscar = "[Acce].[sp_PantallasPorRol_buscar]";
@@ -272,6 +293,42 @@ namespace Sistema_Larach.DataAccess.Repository
         #region sucursales
         public static string Sucursales_Drop = "Supr.SP_Sucursales_DDL";
         #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region Roles
+
+        public static string RolesListar = "Acce.sp_Roles_listar";
+        public static string Rolesllenar = "Acce.sp_Roles_buscar";
+        public static string RolesActualizar = "Acce.sp_Roles_actualizar";
+        public static string RolesEliminar = "Acce.sp_Roles_eliminar";
+
+        #endregion
+
+
+
+
+        #region RolesPorPantalla
+
+        public static string PantallasRolesListar = "[Acce].[sp_PantallasRoles_listar]";
+        public static string Rolesllenar2 = "[Acce].[sp_Roles_buscar]";
+        public static string PantallasRolesllenar = "[Acce].[sp_PantallasPorRol2_buscar]";
+        public static string PantallasRolesActualizar = "[Acce].[sp_PantallasPorRoles_actualizar]";
+        public static string PantallasRolesEliminar = "[Acce].[sp_PantallasPorRol_eliminar]";
+
+        #endregion
+
+
 
 
         //#region Pantallas 

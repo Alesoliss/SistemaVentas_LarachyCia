@@ -140,5 +140,27 @@ namespace Sistema_Larach.Common.Models
         public string Munic_Descripcion { get; set; }
         [NotMapped]
         public string Estad_Descripcion { get; set; }
+
+
+
+
+        [NotMapped]
+        public string? Producto { get; set; }
+
+        [NotMapped]
+        public string? Total_Cantidad { get; set; }
+
+        [NotMapped]
+        public string? Precio_Unitario { get; set; }
+
+        [NotMapped]
+        public string? Total { get; set; }
+
+        [NotMapped]
+        public string? Ventas { get; set; }
+
+
+
+
     }
 }

@@ -46,5 +46,10 @@ namespace Sistema_Larach.Common.Models
         public string UsuarioCreacion { get; set; }
         [NotMapped]
         public string UsuarioModificacion { get; set; }
+
+
+
+        [NotMapped]
+        public string Clien_DNI { get; set; }
     }
 }

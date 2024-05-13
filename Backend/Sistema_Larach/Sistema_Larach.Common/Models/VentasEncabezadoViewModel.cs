@@ -22,6 +22,7 @@ namespace Sistema_Larach.Common.Models
         public bool? Venen_Estado { get; set; }
         public int MtPag_Id { get; set; }
         public string Venen_NroTarjeta { get; set; }
+        [NotMapped]
         public int Emple_Id { get; set; }
         [NotMapped]
         public string empleado { get; set; }
@@ -139,6 +140,38 @@ namespace Sistema_Larach.Common.Models
         public string Munic_Descripcion { get; set; }
         [NotMapped]
         public string Estad_Descripcion { get; set; }
+
+
+
+
+
+        [NotMapped]
+        public string Nombre { get; set; }
+
+
+        [NotMapped]
+        public string Emple_PrimerNombre { get; set; }
+
+
+
+
+        [NotMapped]
+        public string? Producto { get; set; }
+
+        [NotMapped]
+        public string? Total_Cantidad { get; set; }
+
+        [NotMapped]
+        public string? Precio_Unitario { get; set; }
+
+        [NotMapped]
+        public string? Total { get; set; }
+
+        [NotMapped]
+        public string? Ventas { get; set; }
+
+
+
 
 
     }

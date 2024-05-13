@@ -23,14 +23,26 @@ namespace Sistema_Larach.Entities
         public int? Venen_UsuarioModificacion { get; set; }
         public DateTime? Venen_FechaModificacion { get; set; }
         public bool? Venen_Estado { get; set; }
+
+        [NotMapped]
+        public string Venen_Emitida { get; set; }
         public int Emple_Id { get; set; }
         [NotMapped]
         public string empleado { get; set; }
 
+
+        [NotMapped]
+        public string Clien_DNI { get; set; }
+
         public int MtPag_Id { get; set; }
         public string Venen_NroTarjeta { get; set; }
+
         [NotMapped]
         public string MtPag_Descripcion { get; set; }
+
+
+
+
         //detalle
         [NotMapped]
         public int Vende_Id { get; set; }
@@ -105,6 +117,30 @@ namespace Sistema_Larach.Entities
         public string Sucur_Descripcion { get; set; }
         [NotMapped]
         public string cliente { get; set; }
+
+
+
+
+
+
+        [NotMapped]
+        public string? Producto { get; set; }
+
+        [NotMapped]
+        public string? Total_Cantidad { get; set; }
+
+        [NotMapped]
+        public string? Precio_Unitario { get; set; }
+
+        [NotMapped]
+        public string? Total { get; set; }
+
+        [NotMapped]
+        public string? Ventas { get; set; }
+
+
+
+
 
 
 

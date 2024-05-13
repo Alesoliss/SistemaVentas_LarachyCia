@@ -226,17 +226,3 @@ export class CategoriaListadoComponent implements OnInit {
   //   this.deleteModal = false;
   // }
 }
-
-@NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    TableModule,
-    ButtonModule,
-    InputTextModule,
-    DialogModule,
-    ToastModule 
-  ],
-  declarations: [CategoriaListadoComponent]
-})
-export class DepartamentosListadoModule {}

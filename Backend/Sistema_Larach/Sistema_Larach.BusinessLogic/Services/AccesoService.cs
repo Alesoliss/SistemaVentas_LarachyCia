@@ -1,4 +1,6 @@
-﻿using Sistema_Larach.Common.Models;
+﻿using AHM.Total.Travel.DataAccess.Repositories;
+using Microsoft.Data.SqlClient;
+using Sistema_Larach.Common.Models;
 using Sistema_Larach.DataAccess.Repository;
 using Sistema_Larach.Entities;
 using System;
@@ -15,15 +17,16 @@ namespace Sistema_Larach.BusinessLogic.Services
         private readonly ClientesRepository _clientesRepository;
         private readonly RolesRepository _rolesRepository;
 
-
+        private readonly PantallasPorRolesRepository _pantallasPorRolesRepository;
 
 
         public AccesoService(UsuariosRepository usuariosRepository, ClientesRepository
-            clientesRepository, RolesRepository rolesRepository)
+            clientesRepository, RolesRepository rolesRepository, PantallasPorRolesRepository pantallasPorRolesRepository)
         {
             _usuariosRepository = usuariosRepository;
             _clientesRepository = clientesRepository;
             _rolesRepository = rolesRepository;
+            _pantallasPorRolesRepository = pantallasPorRolesRepository;
 
         }
 
@@ -315,7 +318,220 @@ namespace Sistema_Larach.BusinessLogic.Services
             }
         }
 
+
+
+
+
+
+        public string InsertarRol(tbRoles item)
+        {
+            string error = "";
+            try
+            {
+                int result = _rolesRepository.Insertar(item);
+                if (result == 0)
+                    error = "el codigo no es valido";
+                else error = result.ToString();
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+            return error;
+        }
+
+
+
+
+
+
+        public ServiceResult EliminarRol(string Role_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rolesRepository.Delete(Role_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+
+
+
+        public ServiceResult ListadoPantallaRoles()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasPorRolesRepository.List();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+
+
+        public ServiceResult EditarRol(tbRoles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rolesRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok("okis", list);
+                }
+                else
+                {
+                    return result.Error("Y existe un registro con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+        public ServiceResult InsertarRolesPantalla(tbPantallasPorRoles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasPorRolesRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+        public ServiceResult EditarRolesPantalla(tbPantallasPorRoles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasPorRolesRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok("okis", list);
+                }
+                else
+                {
+                    return result.Error("Y existe un registro con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+        public ServiceResult EliminarRolesPantalla(string Roles_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasPorRolesRepository.Delete(Roles_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+
+
+
+
+
+        public ServiceResult obterRolesPantalla(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasPorRolesRepository.Fill(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+        public ServiceResult ObtenerRoles(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasPorRolesRepository.Fill2(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+
+
+
+
         #endregion
+
+
+
+
+
+
+
 
     }
 }

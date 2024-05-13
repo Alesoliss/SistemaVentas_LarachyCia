@@ -18,6 +18,106 @@ namespace Sistema_Larach.DataAccess.Repository
 
     public class VentasEncabezadoRepository : IRepository<tbVentasEncabezado>
     {
+
+
+
+
+
+
+        public (RequestStatus, int) Insertar(tbVentasEncabezado item)
+        {
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Sucur_Id", 1);
+                parametro.Add("Venen_FechaPedido", DateTime.Now);
+                parametro.Add("Venen_UsuarioCreacion", 1);
+                parametro.Add("Venen_FechaCreacion", DateTime.Now);
+                parametro.Add("Clien_Id", item.Clien_Id);
+                parametro.Add("Emple_Id", 1);
+                parametro.Add("MtPag_Id", item.MtPag_Id);
+                parametro.Add("Venen_Id", item.Venen_Id);
+
+
+                parametro.Add("ID", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                var result = db.Execute(ScriptDataBase.CrearFactura,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+                int Fact_Id = parametro.Get<int>("ID");
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return (new RequestStatus { CodeStatus = result, MessageStatus = mensaje }, Fact_Id);
+            }
+        }
+
+
+
+
+
+
+
+        public RequestStatus InsertarDetalle(tbVentasDetalle item)
+        {
+            const string sql = "[Venta].[SP_VentasDetalle_ValidarYInsertar]";
+
+
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Venen_Id", item.Venen_Id);
+                parametro.Add("@Produ_Descripcion", item.Produ_Descripcion);
+                parametro.Add("@Vende_Cantidad ", item.Vende_Cantidad);
+                parametro.Add("@Vende_UsuarioCreacion",1);
+                parametro.Add("@Vende_FechaCreacion", DateTime.Now);
+                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
+
+
+
+
+
+
+
+        public IEnumerable<FaturaDetaViewModel> ListaDetalles(string ID)
+        {
+            const string sql = "[Venta].[SP_VentasDetalle_listarcontotal]";
+
+            var parameters = new { Venen_Id = ID };
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                return db.Query<FaturaDetaViewModel>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+
+
+
+
+        public IEnumerable<tbVentasEncabezado> Fill(string ID)
+        {
+            const string sql = "[Venta].[sp_VentaEcabezado_buscar2]";
+
+            var parameters = new { Venen_Id = ID };
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                return db.Query<tbVentasEncabezado>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+
+
+
+
+
+
+
         public RequestStatus Delete(int Venen_Id)
         {
             string sql = ScriptDataBase.VentasEncabezado_Delete;
@@ -32,6 +132,40 @@ namespace Sistema_Larach.DataAccess.Repository
 
             throw new NotImplementedException();
         }
+
+
+
+
+        public RequestStatus Deletee(string Venen_Id, string Prod_Descripcion)
+        {
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Venen_Id", Venen_Id);
+                parameter.Add("Prod_Descripcion", Prod_Descripcion);
+                var result = db.QueryFirst(ScriptDataBase.DetalleEliminar, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+            }
+        }
+
+
+
+
+
+
+        public RequestStatus Emitir(string Venen_Id)
+        {
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Venen_Id", Venen_Id);
+                var result = db.QueryFirst(ScriptDataBase.EmitirFac, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+            }
+        }
+
+
+
 
         public RequestStatus Delete(int? id)
         {
@@ -124,6 +258,25 @@ namespace Sistema_Larach.DataAccess.Repository
             }
         }
 
+
+
+
+
+
+
+        public IEnumerable<tbVentasEncabezado> List2()
+        {
+            const string sql = "[Venta].[sp_Factura_listar]";
+
+            List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
+
+            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+            {
+                result = db.Query<tbVentasEncabezado>(sql, commandType: CommandType.Text).ToList();
+
+                return result;
+            }
+        }
 
 
 
@@ -328,51 +481,52 @@ namespace Sistema_Larach.DataAccess.Repository
 
         //nuevo po si acaso
 
-        public RequestStatus InsertarDetalle(tbVentasDetalle item)
-        {
-            const string sql = "[Venta].[SP_VentasDetalle_Insertar]";
+        //public RequestStatus InsertarDetalle(tbVentasDetalle item)
+        //{
+        //    const string sql = "[Venta].[SP_VentasDetalle_Insertar]";
 
       
 
-            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
-            {
-                var parametro = new DynamicParameters();
-                parametro.Add("@Produ_Id", item.Produ_Id);
-                parametro.Add("@Vende_Cantidad", item.Vende_Cantidad);
-                parametro.Add("@Venen_Id", item.Venen_Id);
+        //    using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+        //    {
+        //        var parametro = new DynamicParameters();
+        //        parametro.Add("@Produ_Id", item.Produ_Id);
+        //        parametro.Add("@Vende_Cantidad", item.Vende_Cantidad);
+        //        parametro.Add("@Venen_Id", item.Venen_Id);
 
 
-                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
-                string mensaje = (result == 1) ? "Exito" : "Error";
-                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
-            }
-        }
-        public (RequestStatus, int) Insertar(tbVentasEncabezado item)
-        {
-            using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
-            {
-                var parametro = new DynamicParameters();
+        //        var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+        //        string mensaje = (result == 1) ? "Exito" : "Error";
+        //        return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+        //    }
+        //}
+        
+        
+        
+        
+        
+        //public (RequestStatus, int) Insertar(tbVentasEncabezado item)
+        //{
+        //    using (var db = new SqlConnection(Sistema_LarachContext.ConnectionString))
+        //    {
+        //        var parametro = new DynamicParameters();
+        //        parametro.Add("@Venen_FechaPedido", DateTime.Now);
+        //        parametro.Add("@Sucur_Id", item.Sucur_Id);
+        //        parametro.Add("@Clien_Id", item.Clien_Id);
+        //        parametro.Add("@Emple_Id", item.Emple_Id);
+        //        parametro.Add("Venen_UsuarioCreacion", 1);
+        //        parametro.Add("Venen_FechaCreacion", DateTime.Now);
+        //        parametro.Add("Venen_Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
+        //        var result = db.Execute(ScriptDataBase.VentasEncabezado_Insertar,
+        //            parametro,
+        //             commandType: CommandType.StoredProcedure
+        //            );
+        //        int Fact_Id = parametro.Get<int>("Fact_Id");
+        //        string mensaje = (result == 1) ? "Exito" : "Error";
 
-
-
-                parametro.Add("@Venen_FechaPedido", DateTime.Now);
-                parametro.Add("@Sucur_Id", item.Sucur_Id);
-                parametro.Add("@Clien_Id", item.Clien_Id);
-                parametro.Add("@Emple_Id", item.Emple_Id);
-                parametro.Add("Venen_UsuarioCreacion", 1);
-                parametro.Add("Venen_FechaCreacion", DateTime.Now);
-                parametro.Add("Venen_Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
-
-                var result = db.Execute(ScriptDataBase.VentasEncabezado_Insertar,
-                    parametro,
-                     commandType: CommandType.StoredProcedure
-                    );
-                int Fact_Id = parametro.Get<int>("Fact_Id");
-                string mensaje = (result == 1) ? "Exito" : "Error";
-
-                return (new RequestStatus { CodeStatus = result, MessageStatus = mensaje }, Fact_Id);
-            }
-        }
+        //        return (new RequestStatus { CodeStatus = result, MessageStatus = mensaje }, Fact_Id);
+        //    }
+        //}
     }
 }

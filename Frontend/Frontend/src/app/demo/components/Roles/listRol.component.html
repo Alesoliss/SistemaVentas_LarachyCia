@@ -1,24 +1,52 @@
-<div class="grid">
-    <div class="col-12">
-        <div class="card">
-            <h5>Roles</h5>
-            <div class="flex justify-content-start mb-3">
-                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" (click)="openModal()"></button>
-            </div>
-            
-            <p-table [value]="roles" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
-                [paginator]="true" [globalFilterFields]="['roles_Id','roles_Descripcion']" responsiveLayout="scroll">
-                <ng-template pTemplate="caption">
-                    <div class="flex justify-content-between flex-column sm:flex-row">
-                        <button pButton label="Limpiar Filtro" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
-                            (click)="clear()"></button>
-                        <span class="p-input-icon-left mb-2">
-                            <i class="pi pi-search"></i>
-                            <input pInputText type="text" #filter (input)="onGlobalFilter($event)" placeholder="Buscar"
-                                class="w-full" />
-                        </span>
+<div class="main-card mb-3 card"> 
+    <div class="card-header">
+        <h3 class="card-title">Roles</h3>
+    </div>
+    <div class="card-body">
+        <button (click)="collapse()" pButton icon="pi pi-plus" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Agregar</button>
+     
+
+        <div [class.hidden]="!Collapse" style="margin-top: 20px;">
+            <form [formGroup]="rolForm">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="Rol">Rol</label>
+                        <input pInputText id="Rol" formControlName="Rol_Rol" type="text" required autofocus 
+                               [ngClass]="{'ng-invalid ng-dirty': submitted && rolForm.controls['Rol_Rol'].invalid}"
+                               (keydown)="validarTexto($event)" />
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && rolForm.controls['Rol_Rol'].invalid" style="color: red !important;">Rol Requerido</small>
                     </div>
-                </ng-template>
+                </div>
+            </form>  
+            <p-tree [value]="files1" selectionMode="checkbox" [(selection)]="selectedFiles1"
+            (onNodeSelect)="onNodeSelect($event)" (onNodeUnselect)="onNodeUnselect($event)">
+    </p-tree>
+       
+              <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                <button pButton  type="button" (click)="onSubmit()" label="Agregar"  icon="pi pi-check" size="small" class="p-button-outlined"></button>
+                <button pButton icon="pi pi-stop" type="button" (click)="cancelar()" label="Cancelar" class="p-button-outlined"></button>
+
+              </div>
+
+       
+
+
+        </div>
+        <p-table #dt1 [value]="Rol" dataKey="role_Id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [class.hidden]="!DataTable" [paginator]="true" [globalFilterFields]="['role_Id,role_Rol']" responsiveLayout="scroll">
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-between flex-column sm:flex-row">
+                    <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                    <span class="p-input-icon-left mb-2">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full"/>
+                    </span>
+                </div>
+            </ng-template>
+
+
+
+
+
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="min-width: 12rem">

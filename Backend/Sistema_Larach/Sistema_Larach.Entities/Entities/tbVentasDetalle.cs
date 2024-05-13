@@ -14,11 +14,14 @@ namespace Sistema_Larach.Entities
         public int Vende_Id { get; set; }
         public int? Produ_Id { get; set; }
         public int? Vende_Cantidad { get; set; }
-        public int? total { get; set; }
         public int? Venen_Id { get; set; }
-
         [NotMapped]
         public string? TotalFinal { get; set; }
+
+
+
+        [NotMapped]
+        public string? Produ_Descripcion { get; set; }
 
         [NotMapped]
         public string? Genero { get; set; }
@@ -57,7 +60,21 @@ namespace Sistema_Larach.Entities
 
 
 
-   
+
+
+       
+
+        [NotMapped]
+        public string? Total_Cantidad { get; set; }
+
+        [NotMapped]
+        public string? Precio_Unitario { get; set; }
+
+        [NotMapped]
+        public string? Total { get; set; }
+
+        [NotMapped]
+        public string? Ventas { get; set; }
 
 
 
