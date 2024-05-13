@@ -44,8 +44,8 @@
                       <td>{{depto.depar_Id}}</td>
                       <td>{{depto.depar_Descripcion}}</td>
                       <td style="display: flex; justify-content: space-around;">
-                        <p-button label="Editar"   icon="pi pi-user-edit" size="small"
-                        (click)="openModal('editar', depto)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <button pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2"
+                        (click)="openModal('editar', depto)" ></button>
                         <p-button label="Detalles"   icon="pi pi-book" size="small"
                         (click)="detalles(depto.depar_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                         <p-button label="Eliminar" icon="pi pi-trash" size="small"

@@ -44,8 +44,8 @@
                         <td>{{impuesto.mtPag_Descripcion}}</td>
   
                         <td style="align-items: center; text-align: center;">
-                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
-                            (click)="openModal('editar', impuesto)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <button pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2"
+                            (click)="openModal('editar', impuesto)" severity="primary" [raised]="true" [plain]="true"></button>
                             <p-button label="Detalles"   icon="pi pi-book" size="small"
                             (click)="detalles(impuesto.mtPag_Id)" severity="secondary" [raised]="true" [plain]="true" ></p-button>
                                 <p-button label="Eliminar" icon="pi pi-trash" size="small"
@@ -75,7 +75,7 @@
       
         <form class="p-grid p-fluid">
             <div class="p-col-6" style="display: flex;">
-                <div style="flex: 1;">
+                <div  style="flex: 0.5; margin-right: 10px;">
                     <label for="new-cargo-id" class="p-d-block"> Metodo de pago </label>
                     <input type="text" id="new-cargo-descripcion" name="new-cargo-descripcion" [(ngModel)]="impuestoSeleccionado.mtPag_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
                 </div>
@@ -123,7 +123,7 @@
 <!-- Modal para confirmar eliminación -->
 <p-dialog [(visible)]="showDeleteConfirmation" header="Confirmar Eliminación" [modal]="true" [style]="{width: '50%'}">
     <ng-template pTemplate="content">
-        ¿Estás seguro que deseas eliminar este municipio?
+        ¿Estás seguro que deseas eliminar este Metodo de pago?
     </ng-template>
     <ng-template pTemplate="footer">
         <button pButton type="button" label="No" class="p-button-text" (click)="cancelarEliminacion()"></button>
@@ -138,8 +138,8 @@
     <ng-template pTemplate="content">
         <!-- Contenido del formulario de edición -->
         <form class="p-grid p-fluid">
-            <div class="p-col-6">
-                <div style="flex: 1;">
+            <div class="p-col-6" style="display: flex;">
+                <div  style="flex: 0.5; margin-right: 10px;">
                     <label for="new-cargo-id" class="p-d-block"> Metodo de pago</label>
                     <input type="text" id="new-cargo-descripcion" name="new-cargo-descripcion" [(ngModel)]="impuestoSeleccionado.mtPag_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
                 </div>

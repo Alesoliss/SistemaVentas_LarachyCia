@@ -51,10 +51,10 @@ import { ChartsDemoComponent } from '../../src/app/demo/components/uikit/charts/
                     { path: 'proveedor', data: { breadcrumb: 'Proveedor' }, loadChildren: () => import('../app/demo/components/Proveedor/list-proveedor/Proveedordemo.module').then(m => m.ProveedorDemoModule) },
                     { path: 'departamentos', component: DepartamentosListadoComponent }, 
                     { path: 'cargos', component: CargosListadoComponent }, 
-                    { path: 'categoria', component: CategoriaListadoComponent }, 
+                    { path: 'Categorias', component: CategoriaListadoComponent }, 
                     { path: 'EstadoCivil', component: EstadoCivilListadoComponent }, 
                     { path: 'Impuesto', component: ImpuestoListadoComponent }, 
-                    { path: 'metodoPago', component: MetodoPagoListadoComponent }, 
+                    { path: 'Metodo Pago', component: MetodoPagoListadoComponent }, 
                     { path: 'municipio', component: MunicipioListadoComponent },
                     { path: 'usuario', component: ListUsuarioComponent }, 
                     { path: 'unidad', component: UnidadesListadoComponent },
@@ -64,7 +64,7 @@ import { ChartsDemoComponent } from '../../src/app/demo/components/uikit/charts/
                     { path: 'Productos', component: ProductoListadoComponent },
                     { path: 'ProductoCreate', component: ProductoCreateComponent },
                     { path: 'Sucursal', component: SucursalesListadoComponent },
-                    { path: 'Cliente', component: ListClienteComponent },
+                    { path: 'Clientes', component: ListClienteComponent },
                     { path: 'ventaslistado', component: VentasEncabezadoListadoComponent },
                     { path: 'ventaCreate', component: ventaCreateComponent },
                     { path: 'reportes', component: ReportesListadoComponent },
@@ -72,6 +72,9 @@ import { ChartsDemoComponent } from '../../src/app/demo/components/uikit/charts/
                     { path: 'ReporteFiltrado', component: FiltroReportesComponent },
                     { path: 'dashboard', component: EstadisticosComponent },
                     { path: 'charts', component: ChartsDemoComponent },
+                    { path: 'venta', loadChildren: () => import('./demo/components/venta/venta.module').then(m => m.VentaModule) },
+                    { path: 'acceso', loadChildren: () => import('./demo/components/acceso/acesso.module').then(m => m.AccesoModule) },
+                    
                    
                 ]
             },

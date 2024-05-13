@@ -4,7 +4,7 @@
         <div class="card">
             <h5>Estados Civiles</h5>
             <div class="flex justify-content-start mb-3">
-                <button pButton icon="pi pi-plus" style="margin-bottom: 10px ;" (click)="openModal('nuevo')">Agregar</button>
+                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" (click)="openModal('nuevo')"></button>
             </div>
             
             <p-table [value]="estado" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
@@ -45,8 +45,8 @@
                         <td>{{cargo.estad_Descripcion}}</td>
   
                         <td style="display: flex; justify-content: space-around;">
-                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
-                            (click)="openModal('editar', cargo)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <button pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2"
+                            (click)="openModal('editar', cargo)" severity="primary" [raised]="true" [plain]="true"></button>
                             <p-button  label="Detalles"   icon="pi pi-book" size="small"
                             (click)="detalles(cargo.estad_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                                 <p-button label="Eliminar" icon="pi pi-trash" size="small"
@@ -75,7 +75,7 @@
       
         <form class="p-grid p-fluid">
             <div class="p-col-6" style="display: flex;">
-                <div style="flex: 1;">
+                <div s style="flex: 0.5; margin-right: 10px;">
                     <label for="new-Estados-id" class="p-d-block"> EstadoCivil</label>
                     <input type="text" id="new-Estados-descripcion" name="new-Estados-descripcion" [(ngModel)]="estadoSeleccionado.estad_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
                 </div>
@@ -138,8 +138,8 @@
     <ng-template pTemplate="content">
         <!-- Contenido del formulario de edición -->
         <form class="p-grid p-fluid">
-            <div class="p-col-6">
-              <div class="p-field">
+            <div class="p-col-6" style="display: flex;">
+              <div  style="flex: 0.5; margin-right: 10px;">
                 <label for="new-Estados-descripcion" class="p-d-block">EstadoCivil</label>
                 <input type="text" id="new-Estados-descripcion" name="new-Estados-descripcion" [(ngModel)]="estadoSeleccionado.estad_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
               </div>

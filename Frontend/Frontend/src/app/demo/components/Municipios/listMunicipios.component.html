@@ -48,7 +48,7 @@
                         <td>{{municipio.munic_Descripcion}}</td>
   
                         <td style="align-items: center; text-align: center;">
-                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
+                            <p-button pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2"
                                 (click)="openModal('editar', municipio)" severity="primary" [raised]="true" [plain]="true"></p-button> 
                             <p-button  label="Detalles"   icon="pi pi-book" size="small"
                              (click)="detalles(municipio.munic_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>

@@ -16,16 +16,7 @@
 
 
 <div class="grid p-fluid">
-    <div class="col-12 lg:col-6">
-        <div class="card">
-            <h2>Cantidad de venta Por Fecha</h2>
-            <canvas id="barChart" class="chart"></canvas>
-        </div>
-    </div>
-  
-</div>
 
-<div class="grid p-fluid">
     <div class="col-12 lg:col-6">
         <div class="card">
             <h2>Productos Vendidos Por Categoria Mes </h2>
@@ -34,8 +25,19 @@
     </div>
     <div class="col-12 lg:col-6">
         <div class="card">
-            <h2>Cantidad de Compra Por Estado Civil</h2>
+            <h2>Cantidad de Compra Por Estado Civil del Mes</h2>
             <p-chart type="pie" [data]="chartDataEstado" [options]="chartOptionsEstado" styleClass="chart"></p-chart>
         </div>
     </div>
+</div>
+
+<div class="grid p-fluid">
+  
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h2>Cantidad de venta del Mes</h2>
+            <canvas id="barChart" class="chart"></canvas>
+        </div>
+    </div>
+ 
 </div>

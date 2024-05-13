@@ -4,7 +4,7 @@
         <div class="card">
             <h5>Categorías</h5>
             <div class="flex justify-content-start mb-3">
-                <button  pButton icon="pi pi-plus" style="margin-bottom: 10px ;"  (click)="openModal('nuevo')">Agregar</button>
+                <button  pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2" (click)="openModal('nuevo')"></button>
             </div>
             
             <p-table [value]="categorias" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
@@ -45,8 +45,8 @@
                         <td>{{categoria.categ_Descripcion}}</td>
   
                         <td style="display: flex; justify-content: space-around;">
-                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
-                            (click)="openModal('editar', categoria)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <button pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2"
+                            (click)="openModal('editar', categoria)" severity="primary" [raised]="true" [plain]="true"></button>
                             <p-button   label="Detalles"   icon="pi pi-book" size="small"
                             (click)="detalles(categoria.categ_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                                 <p-button label="Eliminar" icon="pi pi-trash" size="small"
@@ -137,7 +137,7 @@
       
         <form class="p-grid p-fluid">
             <div class="p-col-6" style="display: flex;">
-                <div style="flex: 1;">
+                <div  style="flex: 0.5; margin-right: 10px;">
                     <label for="new-categoria-id" class="p-d-block"> Categoría</label>
                     <input type="text" id="new-categoria-descripcion" name="new-categoria-descripcion" [(ngModel)]="categoriaSeleccionada.categ_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
                 </div>
@@ -200,8 +200,8 @@
     <ng-template pTemplate="content">
         <!-- Contenido del formulario de edición -->
         <form class="p-grid p-fluid">
-            <div class="p-col-6">
-              <div class="p-field">
+            <div class="p-col-6" style="display: flex;">
+              <div  style="flex: 0.5; margin-right: 10px;">
                 <label for="new-categoria-descripcion" class="p-d-block">Descripción</label>
                 <input type="text" id="new-categoria-descripcion" name="new-categoria-descripcion" [(ngModel)]="categoriaSeleccionada.categ_Descripcion" class="p-inputtext" style="width: 100%; padding: 0.5rem;" />
               </div>

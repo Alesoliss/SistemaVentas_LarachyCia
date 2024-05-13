@@ -4,7 +4,7 @@
         <h3 class="card-title">Usuario</h3>
     </div>
     <div class="card-body">
-        <button (click)="collapse()" pButton icon="pi pi-plus" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Agregar</button>
+        <button (click)="collapse()" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" [class.hidden]="!Agregar"></button>
           
         <div [class.hidden]="!Collapse" style="margin-top: 20px;">
 
@@ -19,7 +19,7 @@
                   </div>
                 <div class="field col-12 md:col-6" [class.hidden]="!Contrasenas" >
                   <label for="Usuar_Contrasena">Contraseña</label>
-                  <input pInputText id="Usuar_Contrasena" formControlName="Usuar_Contrasena" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && usuarioForm.get('Usua_Contraseña').value === ''}"
+                  <input pInputText id="Usuar_Contrasena" formControlName="Usuar_Contrasena" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && usuarioForm.get('Usuar_Contrasena').value === ''}"
                   (keydown)="validarTextoNumeros($event)" />
                   <small class="ng-dirty ng-invalid" *ngIf="submitted && usuarioForm.controls['Usuar_Contrasena'].invalid" style="color: red !important;">Contraseña Requerido</small>
                 </div>
@@ -104,7 +104,7 @@
                     <td>{{usuario.roles_Descripcion}}</td>
                     <td>{{usuario.perso_NombreCompleto}}</td>
                     <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
-                        <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(usuario.usuar_Id)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <button pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2" (click)="Fill(usuario.usuar_Id)" severity="primary" [raised]="true" [plain]="true"></button>
                         <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(usuario.usuar_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                         <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(usuario.usuar_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                     </td>

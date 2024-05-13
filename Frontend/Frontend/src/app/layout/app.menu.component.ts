@@ -99,7 +99,7 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/app/Empleado']
                             },
                             {
-                                label: 'Cliente',
+                                label: 'Clientes',
                                 icon: 'pi pi-fw pi-times-circle',
                                 routerLink: ['/app/Cliente']
                             },
@@ -413,9 +413,9 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/app/Empleado']
                             },
                             {
-                                label: 'Cliente',
+                                label: 'Clientes',
                                 icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/app/Cliente']
+                                routerLink: ['/app/Clientes']
                             },
                            
                            
@@ -462,7 +462,7 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Roles',
                                 icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/app/rol']
+                                routerLink: ['/app/acceso/rol']
                             },
                             {
                                 label: 'Usuarios',
@@ -498,20 +498,20 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/app/Impuesto']
                             },
                             {
-                                label: 'Metodo pago',
+                                label: 'Metodo Pago',
                                 icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/app/metodoPago']
+                                routerLink: ['/app/Metodo Pago']
                             },
                             {
-                                label: 'Categoria',
+                                label: 'Categorias',
                                 icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/app/categoria']
+                                routerLink: ['/app/Categorias']
                             },
-                            {
-                                label: 'Productos',
-                                icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/app/Productos']
-                            },
+                            // {
+                            //     label: 'Productos',
+                            //     icon: 'pi pi-fw pi-lock',
+                            //     routerLink: ['/app/Productos']
+                            // },
                             {
                                 label: 'Sucursales',
                                 icon: 'pi pi-fw pi-lock',
@@ -521,6 +521,11 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Graficos',
                                 icon: 'pi pi-fw pi-chart-bar',
                                 routerLink: ['/app/charts']
+                            },
+                            {
+                                label: 'venta',
+                                icon: 'pi pi-fw pi-cart-plus',
+                                routerLink: ['/app/venta/factura']
                             },
                            
                         ]

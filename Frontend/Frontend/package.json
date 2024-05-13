@@ -30,6 +30,8 @@
         "@popperjs/core": "^2.11.8",
         "chart.js": "^3.9.1",
         "izitoast": "^1.4.0",
+        "jspdf": "^2.5.1",
+        "jspdf-autotable": "^3.8.2",
         "ngx-cookie-service": "^17.1.0",
         "ngx-extended-pdf-viewer": "^15.0.9",
         "ngx-print": "^1.5.1",

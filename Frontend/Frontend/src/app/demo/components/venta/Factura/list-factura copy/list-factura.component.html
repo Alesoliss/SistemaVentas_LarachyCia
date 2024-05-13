@@ -1,0 +1,235 @@
+<p-toast></p-toast>
+<div class="main-card mb-3 card">
+    <div class="card-header">
+        <h3 class="card-title">Factura</h3>
+    </div>
+    <div class="card-body">
+        <button (click)="collapse()" pButton icon="pi pi-plus" style="margin-bottom: 10px;" [class.hidden]="!Agregar">Agregar</button>
+
+        <div [class.hidden]="!Collapse" style="margin-top: 20px;">
+            <form [formGroup]="FacturaForm" (keydown)="handleKeyDown($event)" (ngSubmit)="onSubmit()">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="Clien_DNI">DNI</label>
+                        <p-autoComplete [(ngModel)]="selectedClientesAdvanced"
+                            [suggestions]="filteredClientes"
+                            (completeMethod)="filterCliente($event)"
+                            (onSelect)="onSelectCliente($event)"
+                            field="clien_DNI"
+                            formControlName="Clien_DNI"
+                            appendTo="body">
+                        </p-autoComplete>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clien_DNI'].invalid" style="color: red !important;">DNI Requerido</small>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label for="Clien_PrimerNombre">Cliente</label>
+                        <input pInputText id="Clien_PrimerNombre" formControlName="Clien_PrimerNombre" type="text" required autofocus 
+                            [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Clien_PrimerNombre').value === ''}"
+                            (keydown)="validarTexto($event)" />
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clien_PrimerNombre'].invalid" style="color: red !important;">Nombre de Cliente Requerido</small>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label for="MtPag_Id">Método de Pago</label>
+                        <div class="payment-method-radio-buttons" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="form-check" style="margin-right: 10px;">
+                                <label>
+                                    <input type="radio" class="form-check-input" name="metodo_pago" value="1" formControlName="MtPag_Id" (change)="selectMetodoPago('Efectivo')"> 
+                                    <i class="pi pi-wallet"></i> Efectivo
+                                </label>
+                            </div>
+                    
+                            <div class="form-check" style="margin-right: 10px;">
+                                <label>
+                                    <input type="radio" class="form-check-input" name="metodo_pago" value="2" formControlName="MtPag_Id" (change)="selectMetodoPago('Tarjeta de Crédito')"> 
+                                    <i class="pi pi-credit-card"></i> Tarjeta de Crédito
+                                </label>
+                            </div>
+                    
+                        </div>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['MtPag_Id'].invalid" style="color: red !important;">
+                            Método Requerido
+                        </small>
+                    </div>
+                    
+<div class="field col-12 md:col-6">
+</div>
+                    <div class="field col-12 md:col-2">
+                        <label for="Produ_Id">Código</label>
+                        <p-autoComplete [(ngModel)]="selectedProductosAdvanced"
+                            [suggestions]="filteredProductos"
+                            (completeMethod)="filterProducto($event)"
+                            (onSelect)="onSelectProduct($event)"
+                            field="produ_Id"
+                            formControlName="Produ_Id"
+                            appendTo="body">
+                        </p-autoComplete>
+                        <!-- <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Produ_Id'].invalid" style="color: red !important;">Código Requerido</small> -->
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label for="Produ_Descripcion">Producto</label>
+                        <input pInputText id="Produ_Descripcion" formControlName="Produ_Descripcion" type="text" required autofocus 
+                            [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Produ_Descripcion').value === ''}"
+                            (keydown)="validarTexto($event)" />
+                        <!-- <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Produ_Descripcion'].invalid" style="color: red !important;">Producto Requerido</small> -->
+                    </div>
+                 
+
+                    <div class="field col-2 md:col-2">
+                        <label for="Vende_Cantidad">Cantidad</label>
+                        <input pInputText id="Vende_Cantidad" formControlName="Vende_Cantidad" type="number" required autofocus
+                            [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Vende_Cantidad').invalid}" />
+                    </div>
+
+                    <div class="field col-2 md:col-2" style="display: flex; align-items: flex-end;">
+                        <button pButton icon="pi pi-plus" type="button" (click)="onSubmit()" label="Agregar"   size="small" class="p-button-outlined"></button>
+
+                        <!-- <button pButton icon="pi pi-plus" type="button" label="Agregar" ></button> -->
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;" [class.hidden]="!Tabla">
+                    <h1>SubTotal: 100</h1>
+                </div>
+                <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;" [class.hidden]="!Tabla">
+                    <h1>Total: 50</h1>
+                </div>
+
+                
+            </form>
+
+
+
+            <p-table [value]="FacturaDetalle">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <!-- Asigna un valor fijo si es necesario -->
+                        <th style="width:5%;">Código</th>
+                        <th style="width:70%;">Producto</th>
+                        <th style="width:5%;">Cantidad</th>
+                        <th style="width:5%;">Precio</th>
+                        <th style="width:5%;">Total</th>
+                        <th style="width:5%;"></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-detalle>
+                    <tr>
+                        <td style="width:5%;">{{detalle.produ_Id}}</td>
+                        <td style="width:70%;">{{detalle.producto}}</td>
+                        <td style="width:5%;">{{detalle.cantidad}}</td>
+                        <td style="width:5%;">{{detalle.precio_Unitario}}</td>
+                        <td style="width:5%;">{{detalle.total}}</td>
+                        <td style="width:5%;">
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-Danger" (click)="confirmDelete(detalle.producto)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+  
+            </p-table>
+
+<div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+    <button pButton icon="pi pi-stop" type="button" (click)="cancelar()" label="Cancelar" class="p-button-outlined"></button>
+</div>
+        </div>
+ 
+
+
+
+
+
+
+
+        <p-table #dt1 [value]="Factura" dataKey="fact_Id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [class.hidden]="!DataTable"[paginator]="true" [globalFilterFields]="['fact_Id,clie_Nombre,empl_Nombre,mepa_Metodo,impu_Impuesto']" responsiveLayout="scroll">
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-between flex-column sm:flex-row">
+                    <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                    <span class="p-input-icon-left mb-2">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full"/>
+                    </span>
+                </div>
+            </ng-template>
+
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                             ID
+                            <p-columnFilter type="text" field="fact_Id" display="menu" placeholder="Search by name"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Cliente
+                            <p-columnFilter type="text" field="clie_Nombre" display="menu" placeholder="Search by country"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Empleado
+                            <p-columnFilter type="text" field="empl_Nombre" display="menu" placeholder="Search by country"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Impuesto
+                            <p-columnFilter type="text" field="impu_Impuesto" display="menu" placeholder="Search by country"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width: 12rem">
+                        <div class="flex justify-content-between align-items-center">
+                            Metodo Pago
+                            <p-columnFilter type="text" field="mepa_Metodo" display="menu" placeholder="Search by country"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="min-width: 14rem">
+                            Acciones
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-fact>
+                <tr>
+                    <td>
+                        {{fact.fact_Id}}
+                    </td>
+                    <td>
+                        {{fact.clie_Nombre}}
+                    </td>
+                    <td>
+                        {{fact.empl_Nombre}}
+                    </td>
+                    <td>
+                        {{fact.impu_Impuesto}}
+                    </td>
+                    <td>
+                        {{fact.mepa_Metodo}}
+                    </td>
+                    <td style="display: flex; justify-content: space-around;">
+                        <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"></button>
+                        <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="Imprimir()"></button>
+                        <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8">No customers found.</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="loadingbody">
+                <tr>
+                    <td colspan="8">Loading customers data. Please wait.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+<object type="application/pdf">
+    {{facura_impresa}}
+</object>
+
+
+

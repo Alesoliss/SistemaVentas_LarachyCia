@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
 
-        <button (click)="collapse()" pButton icon="pi pi-plus" style="margin-bottom: 10px;" [class.hidden]="!Agregar">Agregar</button>
+        <button (click)="collapse()" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" [class.hidden]="!Agregar"></button>
           
         <div [class.hidden]="!Collapse" style="margin-top: 20px;">
 
@@ -173,7 +173,7 @@
               
                     <td>{{clie.clien_Direccion}}</td>
                     <td style="display: flex; justify-content: space-around;">
-                        <p-button label="Editar"   icon="pi pi-user-edit" size="small"  (click)="Fill(clie.clien_Id)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <button pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2" (click)="Fill(clie.clien_Id)" severity="primary" [raised]="true" [plain]="true"></button>
                         <p-button label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(clie.clien_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                         <p-button label="Eliminar" icon="pi pi-trash" size="small"  (click)="deleteSelectedProducts(clie.clien_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                     </td>
@@ -234,7 +234,7 @@
                         <label for="Municipio">{{ Detalle_Sexo }}</label>
                     </div>
                 </div>
-                <div class="field col-12 md:col-4">
+                <!-- <div class="field col-12 md:col-4">
                     <div class="field rows">
                         <label for="Municipio" style="font-weight: 800;">Estado Civil:</label>
                     </div>
@@ -242,7 +242,7 @@
                         <label for="Municipio">{{ estadocivil }}</label>
                     </div>
                 </div>
-           
+            -->
                 
    
         <div class="field col-12 md:col-4">

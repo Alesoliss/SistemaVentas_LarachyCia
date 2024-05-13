@@ -4,7 +4,7 @@
         <div class="card">
             <h5>Sucursales</h5>
             <div class="flex justify-content-start mb-3">
-                <button pButton icon="pi pi-plus" style="margin-bottom: 10px ;" (click)="openModal('nuevo')" >Agregar</button>
+                <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-info mr-2" (click)="openModal('nuevo')" ></button>
             </div>
             
             <p-table [value]="sucursal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
@@ -61,9 +61,9 @@
                         <td>{{sucursal.sucur_Direccion}}</td>
                         <td>{{sucursal.sucur_Telefono}}</td>
                      
-                        <td style="align-items: center; text-align: center;">
-                            <p-button label="Editar"   icon="pi pi-user-edit" size="small"
-                            (click)="openModal('editar', sucursal)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <td style="display: flex; justify-content: space-around;">
+                            <button pButton pRipple label="Editar" icon="pi pi-plus" class="p-button-info mr-2" size="small"
+                            (click)="openModal('editar', sucursal)" severity="primary" [raised]="true" [plain]="true"></button>
                             <p-button  label="Detalles"   icon="pi pi-book" size="small"
                             (click)="detalles(sucursal.sucur_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
                                 <p-button label="Eliminar" icon="pi pi-trash" size="small"
@@ -169,8 +169,8 @@
 <p-dialog [(visible)]="showModal" header="Nuevo Usuario"[modal]="true" [style]="{ width: '50%' }">
 <ng-template pTemplate="content">
     <form class="p-grid p-fluid">
-        <div class="p-col-12">
-            <div class="p-field">
+        <div class="p-col-6">
+            <div  style="flex: 0.5; margin-right: 10px;">
                 <label for="new-Usuario-id">Sucursales:</label>
                 <input type="text" id="new-Usuario-id" name="new-Usuario-id" [(ngModel)]="sucursalSeleccionado.sucur_Descripcion" class="p-inputtext" />
             </div>
